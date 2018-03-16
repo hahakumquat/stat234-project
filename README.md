@@ -11,4 +11,5 @@ OpenAI Gym
 - pip install gym
 - conda install pytorch-cpu torchvision -c pytorch
 - conda install matplotlib
+4. Fix this error (https://github.com/openai/gym/pull/930) if unmerged into master OpenAI Gym branch
 
