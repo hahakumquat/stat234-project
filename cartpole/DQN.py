@@ -9,7 +9,7 @@ from PIL import Image
 
 class DQN(nn.Module):
 
-    def __init__(self, env, screen_width=600, batch_sz=128, lr=0.1):
+    def __init__(self, env, screen_width=600, batch_sz=128, lr=0.1, gamma=0.999):
         super(DQN, self).__init__()
 
         ## DQN architecture
@@ -31,24 +31,43 @@ class DQN(nn.Module):
         self.screen_width = 600
         self.batch_size = batch_sz
         self.learning_rate = lr
+        self.gamma = gamma
         
         self.optimizer = optim.RMSprop(self.parameters(),
                                        lr=self.learning_rate)
-        self.lossFunction = nn.SmoothL1Loss
+        self.loss_function = nn.SmoothL1Loss
 
-    def forward(self, ):
+    def forward(self, states):
         states = self.relu1(self.bn1(self.conv1(states)))
         states = self.relu2(self.bn2(self.conv2(states)))
         states = self.relu3(self.bn3(self.conv3(states)))
         return self.out_layer(states.view(states.size(0), -1))
 
-    def train(self, memory):
-        state_action_values = self.forward(states)
-        loss = self.lossFunction(state_action_values, expected_state_action_values)
+    def train(self, state_batch, action_batch, reward_batch, next_state_values):
+
+        # Compute Q(s_t, a) - the model computes Q(s_t), then we select the
+        # columns of actions taken
+        state_action_values = self.forward(state_batch).gather(1, action_batch)
+
+        # Compute the expected Q values
+        expected_state_action_values = (next_state_values * self.gamma) + reward_batch
+
+        # Compute Huber loss
+        loss = self.loss_function(state_action_values, expected_state_action_values)
+
+        # Optimize the model
         self.optimizer.zero_grad()
         loss.backward()
-        optimizer.step()
-        print(loss.data)
+        for param in self.parameters():
+            param.grad.data.clamp_(-1, 1)
+        self.optimizer.step()
+        
+        # state_action_values = self.forward(states)
+        # loss = self.lossFunction(state_action_values, expected_state_action_values)
+        # self.optimizer.zero_grad()
+        # loss.backward()
+        # optimizer.step()
+        # print(loss.data)
 
     # helper functions
     def get_cart_location(self):
