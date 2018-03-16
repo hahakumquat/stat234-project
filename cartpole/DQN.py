@@ -37,11 +37,12 @@ class DQN(nn.Module):
                                        lr=self.learning_rate)
         self.loss_function = nn.SmoothL1Loss
 
-    def forward(self, states):
-        states = self.relu1(self.bn1(self.conv1(states)))
-        states = self.relu2(self.bn2(self.conv2(states)))
-        states = self.relu3(self.bn3(self.conv3(states)))
-        return self.out_layer(states.view(states.size(0), -1))
+    def forward(self, state_batch):
+        truncate(state_batch)
+        state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
+        state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
+        state_batch = self.relu3(self.bn3(self.conv3(state_batch)))
+        return self.out_layer(state_batch.view(state_batch.size(0), -1))
 
     def train(self, state_batch, action_batch, reward_batch, next_state_values):
 
@@ -69,19 +70,25 @@ class DQN(nn.Module):
         # optimizer.step()
         # print(loss.data)
 
+    def truncate(self, state_batch):
+        for screen in state_batch:
+            screen = self.cut_screen(screen)
+
     # helper functions
     def get_cart_location(self):
         world_width = self.env.x_threshold * 2
         scale = self.screen_width / world_width
         return int(env.state[0] * scale + self.screen_width / 2.0)  # MIDDLE OF CART
 
-    def get_screen(self):
-        resize = T.Compose([T.ToPILImage(),
-                    T.Scale(40, interpolation=Image.CUBIC),
-                    T.ToTensor()])
+    def resize(self, screen):
+        rsz = T.Compose([T.ToPILImage(),
+                T.Scale(40, interpolation=Image.CUBIC),
+                T.ToTensor()])
+        return rsz(screen)
         
-        screen = self.env.render(mode='rgb_array').transpose(
-            (2, 0, 1))  # transpose into torch order (CHW)
+    def cut_screen(self, screen):
+        
+        screen = screen.transpose((2, 0, 1))  # transpose into torch order (CHW)
         # Strip off the top and bottom of the screen
         screen = screen[:, 160:320]
         view_width = 320 # can be like 60

@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import torch
+from torch.autograd import Variable
 
 # models
 from DQN import DQN
@@ -27,6 +28,7 @@ sys.path.append("../utils")
 from ReplayMemory import ReplayMemory, Transition
 
 memory = ReplayMemory(1000)
+episode_durations = []
 
 env = gym.make('CartPole-v0').unwrapped
 model = None
@@ -47,9 +49,10 @@ if len(sys.argv) == 3:
 else:
     raise Exception("Usage: python main.py <model_name> <agent_name>")
 
-BATCH_SIZE = 128
+BATCH_SIZE = 2
 num_episodes = 1000
 for i_episode in range(num_episodes):
+
     # Initialize the environment and state
     env.reset()
     last_screen = env.render(mode='rgb_array')
@@ -60,7 +63,6 @@ for i_episode in range(num_episodes):
         # action = agent.select_action(state)
         action = env.action_space.sample()
         _, reward, done, _ =  env.step(action) # env.step(action[0, 0])
-        reward = torch.FloatTensor([reward])
 
         # Observe new state
         last_screen = current_screen
@@ -71,7 +73,7 @@ for i_episode in range(num_episodes):
             next_state = None
 
         # Store the transition in memory
-        memory.push(state, action, next_state, reward)
+        memory.push(state, action, reward, next_state)
 
         # Move to the next state
         state = next_state
@@ -79,23 +81,27 @@ for i_episode in range(num_episodes):
         # Perform one step of the optimization (on the target network)
         if len(memory) >= BATCH_SIZE:
             transitions = memory.sample(BATCH_SIZE)
+            # stackoverflow: 
             batch = Transition(*zip(*transitions))
+            for b in batch:
+                print(type(b))
+                print(type(b[0]))
+                
             # Compute a mask of non-final states and concatenate the batch elements
-            non_final_mask = ByteTensor(tuple(map(lambda s: s is not None,
+            non_final_mask = torch.ByteTensor(tuple(map(lambda s: s is not None,
                                                   batch.next_state)))
 
             # We don't want to backprop through the expected action values and volatile
             # will save us on temporarily changing the model parameters'
             # requires_grad to False!
-            non_final_next_states = Variable(torch.cat([s for s in batch.next_state
-                                                        if s is not None]),
-                                             volatile=True)
-            state_batch = Variable(torch.cat(batch.state))
-            action_batch = Variable(torch.cat(batch.action))
-            reward_batch = Variable(torch.cat(batch.reward))
+            non_final_next_states = Variable(torch.cat([torch.FloatTensor(s) for s in batch.next_state
+                                                        if s is not None]), volatile=True)
+            state_batch = Variable(torch.from_numpy(np.array(batch.state)))
+            action_batch = Variable(torch.FloatTensor(batch.action))
+            reward_batch = Variable(torch.FloatTensor(batch.reward))
             # Compute V(s_{t+1}) for all next states.
-            next_state_values = Variable(torch.zeros(len(state_batch)).type(Tensor))
-            next_state_values[non_final_mask] = model(non_final_next_states).max(1)[0]
+            next_state_values = Variable(torch.zeros(len(state_batch)).type(torch.FloatTensor))
+            next_state_values[non_final_mask] = model.forward(non_final_next_states).max(1)[0]
 
             # Now, we don't want to mess up the loss with a volatile flag, so let's
             # clear it. After this, we'll just end up with a Variable that has
