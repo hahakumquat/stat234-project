@@ -108,7 +108,4 @@ class DQN(nn.Module):
         screen = torch.from_numpy(screen)
         # Resize, and add a batch dimension (BCHW)
         # output 1x3x40x80
-        print(resize(screen).unsqueeze(0).type(Tensor).shape)
         return resize(screen).unsqueeze(0).type(Tensor)
-
-
