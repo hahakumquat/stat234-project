@@ -108,5 +108,3 @@ class DQN(nn.Module):
         # Resize, and add a batch dimension (BCHW)
         # output 1x3x40x80
         return resize(screen).unsqueeze(0).type(Tensor)
-
-

@@ -49,7 +49,7 @@ if len(sys.argv) == 3:
 else:
     raise Exception("Usage: python main.py <model_name> <agent_name>")
 
-BATCH_SIZE = 2
+BATCH_SIZE = 128
 num_episodes = 1000
 for i_episode in range(num_episodes):
 
@@ -58,6 +58,7 @@ for i_episode in range(num_episodes):
     last_screen = env.render(mode='rgb_array')
     current_screen = env.render(mode='rgb_array')
     state = current_screen - last_screen
+    other_state = env.state
     for t in count():
         # Select and perform an action
         # action = agent.select_action(state)
@@ -69,23 +70,25 @@ for i_episode in range(num_episodes):
         current_screen = env.render(mode='rgb_array')
         if not done:
             next_state = current_screen - last_screen
+
+            # get OpenAI Gym's 4 state elements
+            next_other_state = env.state
         else:
             next_state = None
+            next_other_state = None
 
         # Store the transition in memory
-        memory.push(state, action, reward, next_state)
+        memory.push(state, action, reward, next_state, other_state, next_other_state)
 
         # Move to the next state
         state = next_state
+        other_state = next_other_state
 
         # Perform one step of the optimization (on the target network)
         if len(memory) >= BATCH_SIZE:
             transitions = memory.sample(BATCH_SIZE)
             # stackoverflow: 
             batch = Transition(*zip(*transitions))
-            for b in batch:
-                print(type(b))
-                print(type(b[0]))
                 
             # Compute a mask of non-final states and concatenate the batch elements
             non_final_mask = torch.ByteTensor(tuple(map(lambda s: s is not None,
