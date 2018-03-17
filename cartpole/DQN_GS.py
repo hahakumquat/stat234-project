@@ -5,13 +5,13 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import matplotlib.pyplot as plt
 
-class DQN(nn.Module):
+class DQNGS(nn.Module):
 
     def __init__(self, env, screen_width=600, batch_sz=128, lr=0.1, gamma=0.999, loss_filename='dqn_cartpole_losses.pdf'):
-        super(DQN, self).__init__()
+        super(DQNGS, self).__init__()
 
         ## DQN architecture
-        self.conv1 = nn.Conv2d(3, 16, kernel_size=5, stride=2)
+        self.conv1 = nn.Conv2d(1, 16, kernel_size=5, stride=2)
         self.bn1 = nn.BatchNorm2d(16)
         self.relu1 = nn.LeakyReLU(0.05)
         
