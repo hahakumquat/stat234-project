@@ -58,7 +58,7 @@ for i_episode in range(num_episodes):
     last_screen = env.render(mode='rgb_array')
     current_screen = env.render(mode='rgb_array')
     state = current_screen - last_screen
-    other_state = env.state
+    state_info = env.state
     for t in count():
         # Select and perform an action
         # action = agent.select_action(state)
@@ -72,17 +72,17 @@ for i_episode in range(num_episodes):
             next_state = current_screen - last_screen
 
             # get OpenAI Gym's 4 state elements
-            next_other_state = env.state
+            next_state_info = env.state
         else:
             next_state = None
-            next_other_state = None
+            next_state_info = None
 
         # Store the transition in memory
-        memory.push(state, action, reward, next_state, other_state, next_other_state)
+        memory.push(state, action, reward, next_state, state_info, next_state_info)
 
         # Move to the next state
         state = next_state
-        other_state = next_other_state
+        state_info = next_state_info
 
         # Perform one step of the optimization (on the target network)
         if len(memory) >= BATCH_SIZE:
