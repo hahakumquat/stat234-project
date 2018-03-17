@@ -43,7 +43,6 @@ class DQN(nn.Module):
         state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
         state_batch = self.relu3(self.bn3(self.conv3(state_batch)))
         state_batch = state_batch.view(state_batch.shape[0], -1)
-        print(state_batch.shape)
         return self.out_layer(state_batch)
 
     def train(self, state_batch, action_batch, reward_batch, next_state_values):
@@ -83,7 +82,7 @@ class DQN(nn.Module):
 
     def resize(self, screen):
         rsz = T.Compose([T.ToPILImage(),
-                T.Scale(40, interpolation=Image.CUBIC),
+                T.Resize(40, interpolation=Image.CUBIC),
                 T.ToTensor()])
         return rsz(screen)
         
