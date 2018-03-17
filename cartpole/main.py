@@ -97,13 +97,13 @@ for i_episode in range(num_episodes):
             # We don't want to backprop through the expected action values and volatile
             # will save us on temporarily changing the model parameters'
             # requires_grad to False!
-            non_final_next_states = torch.from_numpy(np.array([s for s in batch.next_state if s is not None]))
-            state_batch = torch.from_numpy(np.array(batch.state))
-            action_batch = torch.FloatTensor(batch.action)
-            reward_batch = torch.FloatTensor(batch.reward)
+            non_final_next_states = Variable(torch.from_numpy(np.array([s for s in batch.next_state if s is not None])))
+            state_batch = Variable(torch.from_numpy(np.array(batch.state)))
+            action_batch = Variable(torch.LongTensor(batch.action))
+            reward_batch = Variable(torch.FloatTensor(batch.reward))
             # Compute V(s_{t+1}) for all next states.
             next_state_values = Variable(torch.zeros(len(state_batch)).type(torch.FloatTensor))
-            next_state_values[non_final_mask] = model.forward(non_final_next_states).max(1)[0].data
+            next_state_values[non_final_mask] = model.forward(non_final_next_states).max(1)[0]
 
             # Now, we don't want to mess up the loss with a volatile flag, so let's
             # clear it. After this, we'll just end up with a Variable that has

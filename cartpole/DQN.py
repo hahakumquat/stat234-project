@@ -49,13 +49,18 @@ class DQN(nn.Module):
 
         # Compute Q(s_t, a) - the model computes Q(s_t), then we select the
         # columns of actions taken
-        state_action_values = self.forward(state_batch).gather(1, action_batch)
+        state_action_values = self.forward(state_batch)
+        print(state_action_values.shape)
+        print(action_batch.data)
+        action_one_hots = Variable(torch.zeros(len(action_batch), 2).scatter_(1, action_batch.data.unsqueeze(1), 1).type(torch.LongTensor))
+        state_action_values = state_action_values.gather(1, action_one_hots)
 
         # Compute the expected Q values
         expected_state_action_values = (next_state_values * self.gamma) + reward_batch
 
         # Compute Huber loss
-        loss = self.loss_function(state_action_values, expected_state_action_values)
+        # loss = self.loss_function(state_action_values, expected_state_action_values)
+        loss = F.smooth_l1_loss(state_action_values, expected_state_action_values)
 
         # Optimize the model
         self.optimizer.zero_grad()
@@ -72,7 +77,7 @@ class DQN(nn.Module):
         # print(loss.data)
 
     def truncate(self, state_batch):
-        return torch.cat([self.cut_screen(screen) for screen in state_batch])
+        return Variable(torch.cat([self.cut_screen(screen) for screen in state_batch]))
 
     # helper functions
     def get_cart_location(self):
@@ -87,7 +92,7 @@ class DQN(nn.Module):
         return rsz(screen)
         
     def cut_screen(self, screen):
-        screen = Variable(screen).permute((2, 0, 1))  # transpose into torch order (CHW)
+        screen = screen.permute((2, 0, 1))  # transpose into torch order (CHW)
         # Strip off the top and bottom of the screen
         screen = screen[:, 160:320]
         view_width = 320 # can be like 60
@@ -106,4 +111,4 @@ class DQN(nn.Module):
         screen = screen / 255
         # Resize, and add a batch dimension (BCHW)
         # output 1x3x40x80
-        return Variable(self.resize(screen.data).unsqueeze(0).type(torch.FloatTensor))
+        return self.resize(screen.data).unsqueeze(0).type(torch.FloatTensor)
