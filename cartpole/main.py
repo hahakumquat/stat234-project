@@ -14,6 +14,7 @@ from PIL import Image
 from DQN import DQN
 
 # agents
+from EpsilonGreedy import EpsilonGreedy
 
 from itertools import count
 # from copy import deepcopy
@@ -42,10 +43,9 @@ if len(sys.argv) == 3:
     else:
         raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
     if agent_name == 'EpsilonGreedy':
-        agent = EpsilonGreedy(model)
+        agent = EpsilonGreedy(model, env)
     else:
-        print("TODO")
-        # raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
+        raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 else:
     raise Exception("Usage: python main.py <model_name> <agent_name>")
 
@@ -60,7 +60,7 @@ def main(batch_sz, num_episodes):
         state_info = env.state
         for t in count():
             # Select and perform an action
-            action = select_action(state)
+            action = agent.select_action(state)
             _, reward, done, _ =  env.step(action[0, 0])
             reward = torch.FloatTensor([reward])
 
@@ -114,12 +114,15 @@ def main(batch_sz, num_episodes):
 
             if done:
                 episode_durations.append(t + 1)
-                # plot_durations()
+                plot_rewards(episode_durations)
                 break
 
-def select_action(state):
-    return torch.LongTensor([[0]])
-
+def plot_rewards(episode_durations):
+    plt.plot(episode_durations)
+    plt.title("Reward per Episode")
+    plt.savefig("cartpole_rewards.pdf")
+    plt.close()
+            
 def get_screen(env):
     screen = env.render(mode='rgb_array').transpose((2, 0, 1))
 

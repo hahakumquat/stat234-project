@@ -3,11 +3,11 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
-
+import matplotlib.pyplot as plt
 
 class DQN(nn.Module):
 
-    def __init__(self, env, screen_width=600, batch_sz=128, lr=0.1, gamma=0.999):
+    def __init__(self, env, screen_width=600, batch_sz=128, lr=0.1, gamma=0.999, loss_filename='dqn_cartpole_losses.pdf'):
         super(DQN, self).__init__()
 
         ## DQN architecture
@@ -33,7 +33,9 @@ class DQN(nn.Module):
         
         self.optimizer = optim.RMSprop(self.parameters(),
                                        lr=self.learning_rate)
-        self.loss_function = nn.SmoothL1Loss
+        self.loss_function = F.smooth_l1_loss
+        self.losses = []
+        self.loss_filename = loss_filename
 
     def forward(self, state_batch):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
@@ -53,8 +55,9 @@ class DQN(nn.Module):
         expected_state_action_values = (next_state_values * self.gamma) + reward_batch
 
         # Compute Huber loss
-        # loss = self.loss_function(state_action_values, expected_state_action_values)
         loss = F.smooth_l1_loss(state_action_values, expected_state_action_values)
+
+        self.losses.append(loss.data / len(state_action_values))
 
         # Optimize the model
         self.optimizer.zero_grad()
@@ -63,9 +66,11 @@ class DQN(nn.Module):
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
         
-        # state_action_values = self.forward(states)
-        # loss = self.lossFunction(state_action_values, expected_state_action_values)
-        # self.optimizer.zero_grad()
-        # loss.backward()
-        # optimizer.step()
-        # print(loss.data)
+        if len(self.losses) % 10 == 0:
+            self.plot_losses()
+
+    def plot_losses(self):
+        plt.plot(self.losses)
+        plt.title("Per-SARS Huber Loss")
+        plt.savefig(self.loss_filename)
+        plt.close()
