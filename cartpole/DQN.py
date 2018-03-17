@@ -38,7 +38,7 @@ class DQN(nn.Module):
         self.loss_function = nn.SmoothL1Loss
 
     def forward(self, state_batch):
-        truncate(state_batch)
+        state_batch = self.truncate(state_batch)
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
         state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
         state_batch = self.relu3(self.bn3(self.conv3(state_batch)))
@@ -71,8 +71,7 @@ class DQN(nn.Module):
         # print(loss.data)
 
     def truncate(self, state_batch):
-        for screen in state_batch:
-            screen = self.cut_screen(screen)
+        return [self.cut_screen(screen) for screen in state_batch]
 
     # helper functions
     def get_cart_location(self):
@@ -87,28 +86,27 @@ class DQN(nn.Module):
         return rsz(screen)
         
     def cut_screen(self, screen):
-        
+        print(screen.shape)
         screen = screen.transpose((2, 0, 1))  # transpose into torch order (CHW)
         # Strip off the top and bottom of the screen
         screen = screen[:, 160:320]
         view_width = 320 # can be like 60
-        cart_location = get_cart_location()
-        if cart_location < view_width // 2:
-            slice_range = slice(view_width)
-        elif cart_location > (self.screen_width - view_width // 2):
-            slice_range = slice(-view_width, None)
-        else:
-            slice_range = slice(cart_location - view_width // 2,
-                                cart_location + view_width // 2)
+        # cart_location = get_cart_location()
+        # if cart_location < view_width // 2:
+        #     slice_range = slice(view_width)
+        # elif cart_location > (self.screen_width - view_width // 2):
+        #     slice_range = slice(-view_width, None)
+        # else:
+        #     slice_range = slice(cart_location - view_width // 2,
+        #                         cart_location + view_width // 2)
         # Strip off the edges, so that we have a square image centered on a cart
-        screen = screen[:, :, slice_range]
+        # screen = screen[:, :, slice_range]
         # Convert to float, rescale, convert to torch tensor
         # (this doesn't require a copy)
-        screen = np.ascontiguousarray(screen, dtype=np.float32) / 255
+        screen = np.array(screen) / 255
         screen = torch.from_numpy(screen)
         # Resize, and add a batch dimension (BCHW)
         # output 1x3x40x80
-        print(resize(screen).unsqueeze(0).type(Tensor).shape)
         return resize(screen).unsqueeze(0).type(Tensor)
 
 
