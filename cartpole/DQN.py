@@ -25,7 +25,7 @@ class DQN(nn.Module):
         self.bn3 = nn.BatchNorm2d(32)
         self.relu3 = nn.LeakyReLU(0.05)
         
-        self.out_layer = nn.Linear(448, 2)
+        self.out_layer = nn.Linear(1024, 2)
 
         self.env = env
         self.screen_width = 600
@@ -42,7 +42,9 @@ class DQN(nn.Module):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
         state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
         state_batch = self.relu3(self.bn3(self.conv3(state_batch)))
-        return self.out_layer(state_batch.view(state_batch.size(0), -1))
+        state_batch = state_batch.view(state_batch.shape[0], -1)
+        print(state_batch.shape)
+        return self.out_layer(state_batch)
 
     def train(self, state_batch, action_batch, reward_batch, next_state_values):
 
@@ -71,7 +73,7 @@ class DQN(nn.Module):
         # print(loss.data)
 
     def truncate(self, state_batch):
-        return [self.cut_screen(screen) for screen in state_batch]
+        return torch.cat([self.cut_screen(screen) for screen in state_batch])
 
     # helper functions
     def get_cart_location(self):
@@ -86,8 +88,7 @@ class DQN(nn.Module):
         return rsz(screen)
         
     def cut_screen(self, screen):
-        print(screen.shape)
-        screen = screen.transpose((2, 0, 1))  # transpose into torch order (CHW)
+        screen = Variable(screen).permute((2, 0, 1))  # transpose into torch order (CHW)
         # Strip off the top and bottom of the screen
         screen = screen[:, 160:320]
         view_width = 320 # can be like 60
@@ -103,8 +104,7 @@ class DQN(nn.Module):
         # screen = screen[:, :, slice_range]
         # Convert to float, rescale, convert to torch tensor
         # (this doesn't require a copy)
-        screen = np.array(screen) / 255
-        screen = torch.from_numpy(screen)
+        screen = screen / 255
         # Resize, and add a batch dimension (BCHW)
         # output 1x3x40x80
-        return resize(screen).unsqueeze(0).type(Tensor)
+        return Variable(self.resize(screen.data).unsqueeze(0).type(torch.FloatTensor))
