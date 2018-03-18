@@ -71,8 +71,8 @@ def main(batch_sz, num_episodes):
             # Select and perform an action
             action = agent.select_action(state)
             _, reward, done, _ =  env.step(action[0, 0])
-            total_reward += reward
-            # total_reward += env.observation_space.high[2] / 2 - abs(env.state[2])
+            # total_reward += reward
+            total_reward += env.observation_space.high[2] - abs(env.state[2])
             reward = torch.FloatTensor([reward])
 
             # Observe new state
@@ -126,13 +126,18 @@ def main(batch_sz, num_episodes):
             if done:
                 episode_durations.append(t + 1)
                 total_rewards.append(total_reward)
-                plot_rewards(total_rewards)
+                if i_episode % 5 == 0:
+                    plot_rewards(total_rewards)
                 break
 
 def plot_rewards(total_rewards):
     plt.plot(total_rewards)
     plt.title("Reward per Episode")
     plt.savefig("cartpole_rewards.pdf")
+    plt.close()
+    plt.plot(episode_durations)
+    plt.title("Duration per Episode")
+    plt.savefig("cartpole_durations.pdf")
     plt.close()
             
 def get_screen(env):
@@ -150,6 +155,10 @@ def get_screen(env):
         slice_range = slice(cart_location - view_width // 2, cart_location + view_width // 2)
     # Strip off the top and bottom of the screen
     screen = screen[:, 160:320, slice_range]
+    print(screen.shape)
+    plt.imshow(screen[0], cmap='gray')
+    plt.savefig('screen.pdf')
+    plt.close()
     screen = np.ascontiguousarray(screen, dtype=np.float32) / 255
     screen = torch.from_numpy(screen)
     # Resize, and add a batch dimension (BCHW)
