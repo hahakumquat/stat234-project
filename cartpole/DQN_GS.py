@@ -11,19 +11,21 @@ class DQNGS(nn.Module):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
-        self.conv1 = nn.Conv2d(1, 16, kernel_size=8, stride=4)
-        self.bn1 = nn.BatchNorm2d(16)
-        self.relu1 = nn.LeakyReLU(0.05)
+        self.conv1 = nn.Conv2d(1, 8, kernel_size=8, stride=2)
+        self.bn1 = nn.BatchNorm2d(8)
+        self.relu1 = nn.LeakyReLU(0.01)
         
-        self.conv2 = nn.Conv2d(16, 32, kernel_size=4, stride=2)
-        self.bn2 = nn.BatchNorm2d(32)
-        self.relu2 = nn.LeakyReLU(0.05)
+        self.conv2 = nn.Conv2d(8, 8, kernel_size=4, stride=2)
+        self.bn2 = nn.BatchNorm2d(8)
+        self.relu2 = nn.LeakyReLU(0.01)
+
+        self.conv3 = nn.Conv2d(8, 16, kernel_size=4, stride=1)
+        self.bn3 = nn.BatchNorm2d(16)
+        self.relu3 = nn.LeakyReLU(0.01)
         
-        self.conv3 = nn.Conv2d(32, 32, kernel_size=4, stride=2)
-        self.bn3 = nn.BatchNorm2d(32)
-        self.relu3 = nn.LeakyReLU(0.05)
+        self.mp = nn.MaxPool2d(2)
         
-        self.out_layer = nn.Linear(288, 2)
+        self.out_layer = nn.Linear(64, 2)
 
         self.env = env
         self.screen_width = 600
@@ -39,8 +41,8 @@ class DQNGS(nn.Module):
 
     def forward(self, state_batch):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
-        state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
-        state_batch = self.relu3(self.bn3(self.conv3(state_batch)))
+        state_batch = self.mp(self.relu2(self.bn2(self.conv2(state_batch))))
+        state_batch = self.mp(self.relu3(self.bn3(self.conv3(state_batch))))
         state_batch = state_batch.view(state_batch.shape[0], -1)
         return self.out_layer(state_batch)
 
