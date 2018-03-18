@@ -50,6 +50,8 @@ if len(sys.argv) == 3:
         raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
     if agent_name == 'EpsilonGreedy':
         agent = EpsilonGreedy(model, env)
+    elif agent_name == 'Random':
+        agent = Random(model, env)
     else:
         raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 else:
