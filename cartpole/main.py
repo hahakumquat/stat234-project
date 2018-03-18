@@ -12,8 +12,10 @@ from PIL import Image
 
 # models
 from DQN import DQN
+from DQN_GS import DQNGS
 
 # agents
+from EpsilonGreedy import EpsilonGreedy
 
 from itertools import count
 # from copy import deepcopy
@@ -27,10 +29,12 @@ sys.path.append("../utils")
 #import your module stored in '../common'
 from ReplayMemory import ReplayMemory, Transition
 
-memory = ReplayMemory(1000)
+memory = ReplayMemory(10000)
 episode_durations = []
+total_rewards = []
 
 env = gym.make('CartPole-v0').unwrapped
+screen_width = 600
 model = None
 agent = None
 
@@ -39,13 +43,14 @@ if len(sys.argv) == 3:
     agent_name = sys.argv[2]
     if model_name == 'DQN':
         model = DQN(env)
+    elif model_name == 'DQN_GS':
+        model = DQNGS(env)
     else:
         raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
     if agent_name == 'EpsilonGreedy':
-        agent = EpsilonGreedy(model)
+        agent = EpsilonGreedy(model, env)
     else:
-        print("TODO")
-        # raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
+        raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 else:
     raise Exception("Usage: python main.py <model_name> <agent_name>")
 
@@ -58,10 +63,12 @@ def main(batch_sz, num_episodes):
         current_screen = get_screen(env)
         state = current_screen - last_screen
         state_info = env.state
+        total_reward = 0
         for t in count():
             # Select and perform an action
-            action = select_action(state)
+            action = agent.select_action(state)
             _, reward, done, _ =  env.step(action[0, 0])
+            total_reward += reward
             reward = torch.FloatTensor([reward])
 
             # Observe new state
@@ -114,21 +121,40 @@ def main(batch_sz, num_episodes):
 
             if done:
                 episode_durations.append(t + 1)
-                # plot_durations()
+                total_rewards.append(total_reward)
+                plot_rewards(total_rewards)
                 break
 
-def select_action(state):
-    return torch.LongTensor([[0]])
-
+def plot_rewards(total_rewards):
+    plt.plot(total_rewards)
+    plt.title("Reward per Episode")
+    plt.savefig("cartpole_rewards.pdf")
+    plt.close()
+            
 def get_screen(env):
-    screen = env.render(mode='rgb_array').transpose((2, 0, 1))
-
+    if sys.argv[1] == 'DQN':
+        screen = env.render(mode='rgb_array').tranpose((2, 0, 1))
+    elif sys.argv[1] == 'DQN_GS':
+        screen = np.expand_dims(Image.fromarray(env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
+    view_width = 65
+    cart_location = get_cart_location(env)
+    if cart_location < view_width // 2:
+        slice_range = slice(view_width)
+    elif cart_location > (screen_width - view_width // 2):
+        slice_range = slice(-view_width, None)
+    else:
+        slice_range = slice(cart_location - view_width // 2, cart_location + view_width // 2)
     # Strip off the top and bottom of the screen
-    screen = screen[:, 160:320]
+    screen = screen[:, 160:320, slice_range]
     screen = np.ascontiguousarray(screen, dtype=np.float32) / 255
     screen = torch.from_numpy(screen)
     # Resize, and add a batch dimension (BCHW)
     return resize(screen).unsqueeze(0).type(torch.FloatTensor)
+
+def get_cart_location(env):
+    world_width = env.x_threshold * 2
+    scale = screen_width / world_width
+    return int(env.state[0] * scale + screen_width / 2.0)
 
 def resize(screen):
     rsz = T.Compose([T.ToPILImage(),
@@ -136,6 +162,6 @@ def resize(screen):
             T.ToTensor()])
     return rsz(screen)
 
-BATCH_SIZE = 10
+BATCH_SIZE = 128
 num_episodes = 1000
 main(BATCH_SIZE, num_episodes)
