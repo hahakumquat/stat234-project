@@ -11,5 +11,8 @@ OpenAI Gym
 - pip install gym
 - conda install pytorch-cpu torchvision -c pytorch
 - conda install matplotlib
-4. Fix this error (https://github.com/openai/gym/pull/930) if unmerged into master OpenAI Gym branch
+4. Fix errors if unmerged into master OpenAI gym branch
+- https://github.com/openai/gym/pull/930
+- In gym/gym/envs/classic_control/cartpole.py, change "self.observation_space = spaces.Box(-high, high)" to "self.observation_space = spaces.Box(-high, high, dtype=np.float32)" to suppress logger warning
+
 
