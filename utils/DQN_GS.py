@@ -4,6 +4,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
 import matplotlib.pyplot as plt
+from Logger import Logger
 
 class DQNGS(nn.Module):
 
@@ -37,6 +38,7 @@ class DQNGS(nn.Module):
         self.loss_function = F.smooth_l1_loss
         self.losses = []
         self.loss_filename = loss_filename
+        self.loss_log = Logger('losses.csv')
 
     def forward(self, state_batch):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
@@ -59,6 +61,7 @@ class DQNGS(nn.Module):
         loss = F.smooth_l1_loss(state_action_values, expected_state_action_values)
 
         self.losses.append(loss.data / len(state_action_values))
+        self.loss_log.log(loss.data / len(state_action_values))
 
         # Optimize the model
         self.optimizer.zero_grad()
@@ -67,12 +70,12 @@ class DQNGS(nn.Module):
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
         
-        if len(self.losses) % 100 == 0:
-            self.plot_losses()
+    #     if len(self.losses) % 100 == 0:
+    #         self.plot_losses()
 
-    def plot_losses(self):
-        plt.plot(self.losses)
-        plt.title("Per-SARS Huber Loss")
-        plt.savefig(self.loss_filename)
-        plt.close()
+    # def plot_losses(self):
+    #     plt.plot(self.losses)
+    #     plt.title("Per-SARS Huber Loss")
+    #     plt.savefig(self.loss_filename)
+    #     plt.close()
 

@@ -18,8 +18,8 @@ os.chdir(scriptPath)
 # append the relative location you want to import from
 sys.path.append("../utils")
 
-# import your module stored in '../common'
 from ReplayMemory import ReplayMemory, Transition
+from Logger import Logger
 
 # models
 from DQN import DQN
@@ -31,7 +31,9 @@ from Random import Random
 
 memory = ReplayMemory(10000)
 episode_durations = []
+duration_log = Logger('durations.csv')
 total_rewards = []
+reward_log = Logger('rewards.csv')
 
 env = gym.make('CartPole-v0').unwrapped
 screen_width = 600
@@ -124,21 +126,11 @@ def main(batch_sz, num_episodes):
 
             if done:
                 episode_durations.append(t + 1)
+                duration_log.log(t + 1)
                 total_rewards.append(total_reward)
-                if i_episode % 5 == 0:
-                    plot_rewards(total_rewards)
+                reward_log.log(t + 1)
                 break
 
-def plot_rewards(total_rewards):
-    plt.plot(total_rewards)
-    plt.title("Reward per Episode")
-    plt.savefig("cartpole_rewards.pdf")
-    plt.close()
-    plt.plot(episode_durations)
-    plt.title("Duration per Episode")
-    plt.savefig("cartpole_durations.pdf")
-    plt.close()
-            
 def get_screen(env):
     if sys.argv[1] == 'DQN':
         screen = env.render(mode='rgb_array').tranpose((2, 0, 1))
