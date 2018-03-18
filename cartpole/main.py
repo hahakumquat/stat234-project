@@ -1,14 +1,25 @@
 import sys
 import os
 import gym
-import math
 import numpy as np
-import matplotlib
 import matplotlib.pyplot as plt
 import torch
 from torch.autograd import Variable
 import torchvision.transforms as T
 from PIL import Image
+
+from itertools import count
+# from copy import deepcopy
+
+# first change the cwd to the script path
+scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
+os.chdir(scriptPath)
+
+# append the relative location you want to import from
+sys.path.append("../utils")
+
+# import your module stored in '../common'
+from ReplayMemory import ReplayMemory, Transition
 
 # models
 from DQN import DQN
@@ -17,18 +28,6 @@ from DQN_GS import DQNGS
 # agents
 from EpsilonGreedy import EpsilonGreedy
 from Random import Random
-
-from itertools import count
-# from copy import deepcopy
-#first change the cwd to the script path
-scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
-os.chdir(scriptPath)
-
-#append the relative location you want to import from
-sys.path.append("../utils")
-
-#import your module stored in '../common'
-from ReplayMemory import ReplayMemory, Transition
 
 memory = ReplayMemory(10000)
 episode_durations = []
