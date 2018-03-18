@@ -16,6 +16,7 @@ from DQN_GS import DQNGS
 
 # agents
 from EpsilonGreedy import EpsilonGreedy
+from Random import Random
 
 from itertools import count
 # from copy import deepcopy
@@ -69,6 +70,7 @@ def main(batch_sz, num_episodes):
             action = agent.select_action(state)
             _, reward, done, _ =  env.step(action[0, 0])
             total_reward += reward
+            # total_reward += env.observation_space.high[2] / 2 - abs(env.state[2])
             reward = torch.FloatTensor([reward])
 
             # Observe new state
@@ -136,7 +138,7 @@ def get_screen(env):
         screen = env.render(mode='rgb_array').tranpose((2, 0, 1))
     elif sys.argv[1] == 'DQN_GS':
         screen = np.expand_dims(Image.fromarray(env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
-    view_width = 65
+    view_width = 160
     cart_location = get_cart_location(env)
     if cart_location < view_width // 2:
         slice_range = slice(view_width)
@@ -149,6 +151,7 @@ def get_screen(env):
     screen = np.ascontiguousarray(screen, dtype=np.float32) / 255
     screen = torch.from_numpy(screen)
     # Resize, and add a batch dimension (BCHW)
+    # print(resize(screen).unsqueeze(0).type(torch.FloatTensor).shape)
     return resize(screen).unsqueeze(0).type(torch.FloatTensor)
 
 def get_cart_location(env):
@@ -158,7 +161,7 @@ def get_cart_location(env):
 
 def resize(screen):
     rsz = T.Compose([T.ToPILImage(),
-            T.Resize(40, interpolation=Image.CUBIC),
+            T.Resize(80, interpolation=Image.CUBIC),
             T.ToTensor()])
     return rsz(screen)
 

@@ -11,19 +11,19 @@ class DQNGS(nn.Module):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
-        self.conv1 = nn.Conv2d(1, 16, kernel_size=5, stride=2)
+        self.conv1 = nn.Conv2d(1, 16, kernel_size=8, stride=4)
         self.bn1 = nn.BatchNorm2d(16)
         self.relu1 = nn.LeakyReLU(0.05)
         
-        self.conv2 = nn.Conv2d(16, 32, kernel_size=5, stride=2)
+        self.conv2 = nn.Conv2d(16, 32, kernel_size=4, stride=2)
         self.bn2 = nn.BatchNorm2d(32)
         self.relu2 = nn.LeakyReLU(0.05)
         
-        self.conv3 = nn.Conv2d(32, 32, kernel_size=5, stride=2)
+        self.conv3 = nn.Conv2d(32, 32, kernel_size=4, stride=2)
         self.bn3 = nn.BatchNorm2d(32)
         self.relu3 = nn.LeakyReLU(0.05)
         
-        self.out_layer = nn.Linear(576, 2)
+        self.out_layer = nn.Linear(288, 2)
 
         self.env = env
         self.screen_width = 600
