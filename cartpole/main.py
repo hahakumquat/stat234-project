@@ -34,6 +34,7 @@ episode_durations = []
 duration_log = Logger('durations.csv')
 total_rewards = []
 reward_log = Logger('rewards.csv')
+frame_skip = 4
 
 env = gym.make('CartPole-v0').unwrapped
 screen_width = 600
@@ -71,10 +72,12 @@ def main(batch_sz, num_episodes):
         for t in count():
             # Select and perform an action
             action = agent.select_action(state)
-            _, reward, done, _ =  env.step(action[0, 0])
-            reward = env.observation_space.high[2] - abs(env.state[2])
-            total_reward += reward
-            reward = torch.FloatTensor([reward])
+            frame_skip_reward = 0
+            for i_frame_skip in range(frame_skip):
+                _, reward, done, _ =  env.step(action[0, 0])
+                frame_skip_reward += reward
+            total_reward += frame_skip_reward
+            frame_skip_reward = torch.FloatTensor([frame_skip_reward])
 
             # Observe new state
             last_screen = current_screen
@@ -89,7 +92,7 @@ def main(batch_sz, num_episodes):
                 next_state_info = None
 
             # Store the transition in memory
-            memory.push(state, action, reward, next_state, state_info, next_state_info)
+            memory.push(state, action, frame_skip_reward, next_state, state_info, next_state_info)
 
             # Move to the next state
             state = next_state
