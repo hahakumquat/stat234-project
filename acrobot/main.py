@@ -41,9 +41,9 @@ if len(sys.argv) == 3:
     model_name = sys.argv[1]
     agent_name = sys.argv[2]
     if model_name == 'DQN':
-        model = DQN(env)
+        model = DQN(env, loss_filename='dqn_acrobot_losses.pdf')
     elif model_name == 'DQN_GS':
-        model = DQNGS(env)
+        model = DQNGS(env, loss_filename='dqn_gs_acrobot_losses.pdf')
     else:
         raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
     if agent_name == 'EpsilonGreedy':

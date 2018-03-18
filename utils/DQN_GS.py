@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.999, loss_filename='dqn_cartpole_losses.pdf'):
+    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.999, loss_filename='dqn_gs_cartpole_losses.pdf'):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
