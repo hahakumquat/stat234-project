@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 class DQN(nn.Module):
 
-    def __init__(self, env, screen_width=600, batch_sz=128, lr=0.1, gamma=0.999, loss_filename='dqn_cartpole_losses.pdf'):
+    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.999, loss_filename='dqn_cartpole_losses.pdf'):
         super(DQN, self).__init__()
 
         ## DQN architecture
@@ -26,7 +26,6 @@ class DQN(nn.Module):
         self.out_layer = nn.Linear(576, 2)
 
         self.env = env
-        self.screen_width = 600
         self.batch_size = batch_sz
         self.learning_rate = lr
         self.gamma = gamma
