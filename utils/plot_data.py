@@ -10,14 +10,14 @@ data = ['cartpole/durations.csv', 'cartpole/rewards.csv',
 for d in data:
     path = os.path.join(script_dir, d)
     try:
-        reader = csv.reader(open(path, 'r'))
-        xs = [r[0] for r in reader]
-        plt.plot(xs)
-        plt.title(os.path.basename(path).split('.')[0])
-        plt.xtitle('episodes')
-        end_dir = os.path.join(script_dir, os.path.dirname(d), os.path.basename(path).split('.')[0] + '.pdf')
-        plt.savefig(end_dir)
-        plt.close()
-    except:
-        print('error')
-        continue
+    	reader = csv.reader(open(path, 'r'))
+    except FileNotFoundError:
+    	print(path + ' not found')
+    	continue
+    xs = [r[0] for r in reader]
+    plt.plot(xs)
+    plt.title(os.path.basename(path).split('.')[0])
+    plt.xlabel('episodes')
+    end_dir = os.path.join(script_dir, os.path.dirname(d), os.path.basename(path).split('.')[0] + '.pdf')
+    plt.savefig(end_dir)
+    plt.close()
