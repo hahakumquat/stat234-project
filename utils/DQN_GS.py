@@ -25,7 +25,7 @@ class DQNGS(nn.Module):
         
         self.mp = nn.MaxPool2d(2)
         
-        self.out_layer = nn.Linear(64, 2)
+        self.out_layer = nn.Linear(64, env.action_space.n)
 
         self.env = env
         self.batch_size = batch_sz
