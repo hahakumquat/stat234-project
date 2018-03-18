@@ -128,7 +128,7 @@ def main(batch_sz, num_episodes):
                 episode_durations.append(t + 1)
                 duration_log.log(t + 1)
                 total_rewards.append(total_reward)
-                reward_log.log(t + 1)
+                reward_log.log(total_reward)
                 break
 
 def get_screen(env):

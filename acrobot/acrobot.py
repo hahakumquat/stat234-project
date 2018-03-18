@@ -20,6 +20,7 @@ sys.path.append("../utils")
 
 # import your module stored in '../common'
 from ReplayMemory import ReplayMemory, Transition
+from Logger import Logger
 
 # models
 from DQN import DQN
@@ -31,6 +32,9 @@ from Random import Random
 
 memory = ReplayMemory(10000)
 total_rewards = []
+episode_durations = []
+reward_log = Logger('rewards.csv')
+duration_log = Logger('durations.csv')
 
 env = gym.make('Acrobot-v1').unwrapped
 screen_width = 600
@@ -121,15 +125,23 @@ def main(batch_sz, num_episodes):
                 model.train(state_batch, action_batch, reward_batch, next_state_values)
 
             if done:
+                print('finished an episode! It took this many steps:', t + 1)
                 total_rewards.append(total_reward)
+                reward_log.log(total_reward)
+                episode_durations.append(t + 1)
+                duration_log.log(t + 1)
                 if i_episode % 5 == 0:
                     plot_rewards(total_rewards)
                 break
 
 def plot_rewards(total_rewards):
     plt.plot(total_rewards)
-    plt.title("Reward per Episode")
+    plt.title("Episode Rewards")
     plt.savefig("acrobot_rewards.pdf")
+    plt.close()
+    plt.plot(episode_durations)
+    plt.title("Episode Durations")
+    plt.savefig("acrobot_durations.pdf")
     plt.close()
             
 def get_screen(env):
