@@ -66,7 +66,7 @@ class DQNGS(nn.Module):
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
         
-        if len(self.losses) % 10 == 0:
+        if len(self.losses) % 100 == 0:
             self.plot_losses()
 
     def plot_losses(self):

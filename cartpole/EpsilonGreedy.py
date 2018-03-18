@@ -16,7 +16,7 @@ class EpsilonGreedy():
 
     def select_action(self, state):
         sample = random.random()
-        threshold = self.eps_end + (self.eps_start - self.eps_end) * np.exp(-1 * self.steps_done) / self.eps_decay
+        threshold = self.eps_end + (self.eps_start - self.eps_end) * np.exp(-1 * self.steps_done / self.eps_decay)
         self.steps_done += 1
         if sample > threshold:
             return self.model.forward(Variable(state, volatile=True)).data.max(1)[1].view(1, 1)
