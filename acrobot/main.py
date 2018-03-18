@@ -69,7 +69,6 @@ def main(batch_sz, num_episodes):
             # Select and perform an action
             action = agent.select_action(state)
             _, reward, done, _ =  env.step(action[0, 0])
-            reward = env.observation_space.high[2] - abs(env.state[2])
             total_reward += reward
             reward = torch.FloatTensor([reward])
 
