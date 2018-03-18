@@ -30,10 +30,9 @@ from EpsilonGreedy import EpsilonGreedy
 from Random import Random
 
 memory = ReplayMemory(10000)
-episode_durations = []
 total_rewards = []
 
-env = gym.make('CartPole-v0').unwrapped
+env = gym.make('Acrobot-v1').unwrapped
 screen_width = 600
 model = None
 agent = None
@@ -123,7 +122,6 @@ def main(batch_sz, num_episodes):
                 model.train(state_batch, action_batch, reward_batch, next_state_values)
 
             if done:
-                episode_durations.append(t + 1)
                 total_rewards.append(total_reward)
                 if i_episode % 5 == 0:
                     plot_rewards(total_rewards)
@@ -132,11 +130,7 @@ def main(batch_sz, num_episodes):
 def plot_rewards(total_rewards):
     plt.plot(total_rewards)
     plt.title("Reward per Episode")
-    plt.savefig("cartpole_rewards.pdf")
-    plt.close()
-    plt.plot(episode_durations)
-    plt.title("Duration per Episode")
-    plt.savefig("cartpole_durations.pdf")
+    plt.savefig("acrobot_rewards.pdf")
     plt.close()
             
 def get_screen(env):
@@ -144,30 +138,11 @@ def get_screen(env):
         screen = env.render(mode='rgb_array').tranpose((2, 0, 1))
     elif sys.argv[1] == 'DQN_GS':
         screen = np.expand_dims(Image.fromarray(env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
-    view_width = 160
-    cart_location = get_cart_location(env)
-    if cart_location < view_width // 2:
-        slice_range = slice(view_width)
-    elif cart_location > (screen_width - view_width // 2):
-        slice_range = slice(-view_width, None)
-    else:
-        slice_range = slice(cart_location - view_width // 2, cart_location + view_width // 2)
-    # Strip off the top and bottom of the screen
-    screen = screen[:, 160:320, slice_range]
-
-    # plt.imshow(screen[0], cmap='gray')
-    # plt.savefig('screen.pdf')
-    # plt.close()
     screen = np.ascontiguousarray(screen, dtype=np.float32) / 255
     screen = torch.from_numpy(screen)
     # Resize, and add a batch dimension (BCHW)
     # print(resize(screen).unsqueeze(0).type(torch.FloatTensor).shape)
     return resize(screen).unsqueeze(0).type(torch.FloatTensor)
-
-def get_cart_location(env):
-    world_width = env.x_threshold * 2
-    scale = screen_width / world_width
-    return int(env.state[0] * scale + screen_width / 2.0)
 
 def resize(screen):
     rsz = T.Compose([T.ToPILImage(),
