@@ -34,7 +34,7 @@ episode_durations = []
 duration_log = Logger('durations.csv')
 total_rewards = []
 reward_log = Logger('rewards.csv')
-frame_skip = 4
+frame_skip = 2
 
 env = gym.make('CartPole-v0').unwrapped
 screen_width = 600
@@ -76,6 +76,8 @@ def main(batch_sz, num_episodes):
             for i_frame_skip in range(frame_skip):
                 _, reward, done, _ =  env.step(action[0, 0])
                 frame_skip_reward += reward
+                if done:
+                    break
             total_reward += frame_skip_reward
             frame_skip_reward = torch.FloatTensor([frame_skip_reward])
 

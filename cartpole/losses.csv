@@ -1,481 +1,801 @@
 
-1.00000e-03 *
-  1.0245
+1.00000e-02 *
+  1.1853
 [torch.FloatTensor of size 1]
 
 
- 0.1783
+ 0.2209
 [torch.FloatTensor of size 1]
 
 
- 0.2842
+ 0.2176
 [torch.FloatTensor of size 1]
 
 
- 0.5220
+ 0.5320
 [torch.FloatTensor of size 1]
 
 
- 0.2874
+ 0.9508
 [torch.FloatTensor of size 1]
 
 
- 0.6970
+ 0.9091
 [torch.FloatTensor of size 1]
 
 
- 0.5392
+ 1.0486
 [torch.FloatTensor of size 1]
 
 
- 0.5463
+ 1.5577
 [torch.FloatTensor of size 1]
 
 
- 1.0691
+ 1.9828
 [torch.FloatTensor of size 1]
 
 
- 1.0527
+ 1.6727
 [torch.FloatTensor of size 1]
 
 
- 1.0401
+ 1.9802
 [torch.FloatTensor of size 1]
 
 
- 1.1878
+ 2.7555
 [torch.FloatTensor of size 1]
 
 
- 1.6979
+ 3.1448
 [torch.FloatTensor of size 1]
 
 
- 1.5737
+ 3.7146
 [torch.FloatTensor of size 1]
 
 
- 1.5510
+ 4.6565
 [torch.FloatTensor of size 1]
 
 
- 2.7270
+ 4.2382
 [torch.FloatTensor of size 1]
 
 
- 2.3374
+ 4.9461
 [torch.FloatTensor of size 1]
 
 
- 2.3425
+ 5.0434
 [torch.FloatTensor of size 1]
 
 
- 2.7507
+ 4.4643
 [torch.FloatTensor of size 1]
 
 
- 2.9137
+ 5.8907
 [torch.FloatTensor of size 1]
 
 
- 2.9249
+ 6.6654
 [torch.FloatTensor of size 1]
 
 
- 3.9583
+ 6.9340
 [torch.FloatTensor of size 1]
 
 
- 3.2420
+ 7.1956
 [torch.FloatTensor of size 1]
 
 
- 3.3093
+ 7.9347
 [torch.FloatTensor of size 1]
 
 
- 3.9209
+ 8.9179
 [torch.FloatTensor of size 1]
 
 
- 4.9217
+ 8.9222
 [torch.FloatTensor of size 1]
 
 
- 4.4051
+ 8.6933
 [torch.FloatTensor of size 1]
 
 
- 3.8084
+ 9.4701
 [torch.FloatTensor of size 1]
 
 
- 4.6533
+ 9.9856
 [torch.FloatTensor of size 1]
 
 
- 4.8281
+ 10.8056
 [torch.FloatTensor of size 1]
 
 
- 4.3927
+ 11.5554
 [torch.FloatTensor of size 1]
 
 
- 5.0262
+ 12.4479
 [torch.FloatTensor of size 1]
 
 
- 4.6966
+ 13.0383
 [torch.FloatTensor of size 1]
 
 
- 4.0685
+ 12.6393
 [torch.FloatTensor of size 1]
 
 
- 4.9886
+ 14.4546
 [torch.FloatTensor of size 1]
 
 
- 5.1422
+ 13.0880
 [torch.FloatTensor of size 1]
 
 
- 5.3867
+ 13.5191
 [torch.FloatTensor of size 1]
 
 
- 4.4080
+ 13.2837
 [torch.FloatTensor of size 1]
 
 
- 5.5743
+ 13.1756
 [torch.FloatTensor of size 1]
 
 
- 4.8031
+ 13.9574
 [torch.FloatTensor of size 1]
 
 
- 5.9217
+ 16.2658
 [torch.FloatTensor of size 1]
 
 
- 5.2966
+ 14.5485
 [torch.FloatTensor of size 1]
 
 
- 5.6710
+ 12.0449
 [torch.FloatTensor of size 1]
 
 
- 5.4901
+ 15.2187
 [torch.FloatTensor of size 1]
 
 
- 6.1184
+ 15.3653
 [torch.FloatTensor of size 1]
 
 
- 6.3634
+ 16.0631
 [torch.FloatTensor of size 1]
 
 
- 6.0079
+ 14.3803
 [torch.FloatTensor of size 1]
 
 
- 6.9253
+ 14.9748
 [torch.FloatTensor of size 1]
 
 
- 7.2940
+ 15.6502
 [torch.FloatTensor of size 1]
 
 
- 6.3261
+ 16.0067
 [torch.FloatTensor of size 1]
 
 
- 6.7435
+ 15.3216
 [torch.FloatTensor of size 1]
 
 
- 7.0134
+ 15.1338
 [torch.FloatTensor of size 1]
 
 
- 8.1012
+ 17.3210
 [torch.FloatTensor of size 1]
 
 
- 6.5094
+ 16.8672
 [torch.FloatTensor of size 1]
 
 
- 8.1324
+ 17.1567
 [torch.FloatTensor of size 1]
 
 
- 9.4702
+ 16.7528
 [torch.FloatTensor of size 1]
 
 
- 9.4772
+ 20.8599
 [torch.FloatTensor of size 1]
 
 
- 8.6183
+ 16.9865
 [torch.FloatTensor of size 1]
 
 
- 9.0755
+ 16.9525
 [torch.FloatTensor of size 1]
 
 
- 11.4962
+ 19.5041
 [torch.FloatTensor of size 1]
 
 
- 10.5488
+ 20.2904
 [torch.FloatTensor of size 1]
 
 
- 9.2029
+ 15.7538
 [torch.FloatTensor of size 1]
 
 
- 8.8066
+ 18.4034
 [torch.FloatTensor of size 1]
 
 
- 10.5527
+ 17.3536
 [torch.FloatTensor of size 1]
 
 
- 9.8614
+ 17.7281
 [torch.FloatTensor of size 1]
 
 
- 10.1358
+ 20.4105
 [torch.FloatTensor of size 1]
 
 
- 12.0763
+ 20.9209
 [torch.FloatTensor of size 1]
 
 
- 12.5068
+ 18.9268
 [torch.FloatTensor of size 1]
 
 
- 12.3810
+ 17.6391
 [torch.FloatTensor of size 1]
 
 
- 12.2766
+ 20.0688
 [torch.FloatTensor of size 1]
 
 
- 11.9605
+ 20.0086
 [torch.FloatTensor of size 1]
 
 
- 12.1646
+ 22.8762
 [torch.FloatTensor of size 1]
 
 
- 12.5745
+ 16.6252
 [torch.FloatTensor of size 1]
 
 
- 12.7000
+ 20.1237
 [torch.FloatTensor of size 1]
 
 
- 11.8478
+ 17.2692
 [torch.FloatTensor of size 1]
 
 
- 16.2354
+ 20.7841
 [torch.FloatTensor of size 1]
 
 
- 11.8987
+ 18.7396
 [torch.FloatTensor of size 1]
 
 
- 14.3127
+ 19.8527
 [torch.FloatTensor of size 1]
 
 
- 14.2831
+ 17.3082
 [torch.FloatTensor of size 1]
 
 
- 14.7135
+ 19.7283
 [torch.FloatTensor of size 1]
 
 
- 14.0390
+ 17.4912
 [torch.FloatTensor of size 1]
 
 
- 14.8360
+ 19.7896
 [torch.FloatTensor of size 1]
 
 
- 15.1848
+ 18.7511
 [torch.FloatTensor of size 1]
 
 
- 14.2498
+ 21.7154
 [torch.FloatTensor of size 1]
 
 
- 14.6493
+ 18.6249
 [torch.FloatTensor of size 1]
 
 
- 15.6269
+ 22.0365
 [torch.FloatTensor of size 1]
 
 
- 16.8945
+ 20.0889
 [torch.FloatTensor of size 1]
 
 
- 14.4416
+ 18.6684
 [torch.FloatTensor of size 1]
 
 
- 12.6022
+ 17.7928
 [torch.FloatTensor of size 1]
 
 
- 13.3698
+ 17.6304
 [torch.FloatTensor of size 1]
 
 
- 15.4750
+ 23.7469
 [torch.FloatTensor of size 1]
 
 
- 17.7179
+ 17.3709
 [torch.FloatTensor of size 1]
 
 
- 17.6656
+ 20.7389
 [torch.FloatTensor of size 1]
 
 
- 18.1116
+ 17.4515
 [torch.FloatTensor of size 1]
 
 
- 17.0046
+ 16.6517
 [torch.FloatTensor of size 1]
 
 
- 18.8690
+ 19.8342
 [torch.FloatTensor of size 1]
 
 
- 15.2452
+ 17.7156
 [torch.FloatTensor of size 1]
 
 
- 16.1395
+ 17.7821
 [torch.FloatTensor of size 1]
 
 
- 18.1732
+ 18.7000
 [torch.FloatTensor of size 1]
 
 
- 18.6076
+ 18.2675
 [torch.FloatTensor of size 1]
 
 
- 16.1804
+ 20.5508
 [torch.FloatTensor of size 1]
 
 
- 21.6405
+ 23.8278
 [torch.FloatTensor of size 1]
 
 
- 17.6283
+ 23.6690
 [torch.FloatTensor of size 1]
 
 
- 20.0154
+ 20.5090
 [torch.FloatTensor of size 1]
 
 
- 20.7612
+ 23.4134
 [torch.FloatTensor of size 1]
 
 
- 16.7846
+ 24.9652
 [torch.FloatTensor of size 1]
 
 
- 22.8565
+ 25.1865
 [torch.FloatTensor of size 1]
 
 
- 19.7112
+ 21.4291
 [torch.FloatTensor of size 1]
 
 
- 19.8777
+ 26.9763
 [torch.FloatTensor of size 1]
 
 
- 21.2012
+ 30.3299
 [torch.FloatTensor of size 1]
 
 
- 20.1211
+ 26.3758
 [torch.FloatTensor of size 1]
 
 
- 21.1741
+ 24.5043
 [torch.FloatTensor of size 1]
 
 
- 18.9330
+ 26.4957
 [torch.FloatTensor of size 1]
 
 
- 22.2638
+ 27.2546
 [torch.FloatTensor of size 1]
 
 
- 25.4897
+ 31.6542
 [torch.FloatTensor of size 1]
 
 
- 21.7539
+ 26.8383
 [torch.FloatTensor of size 1]
 
 
- 20.1390
+ 27.1486
 [torch.FloatTensor of size 1]
 
 
- 22.1360
+ 30.2247
 [torch.FloatTensor of size 1]
 
 
- 20.3255
+ 29.0070
 [torch.FloatTensor of size 1]
 
 
- 23.7399
+ 34.5864
+[torch.FloatTensor of size 1]
+
+
+ 32.9490
+[torch.FloatTensor of size 1]
+
+
+ 34.5483
+[torch.FloatTensor of size 1]
+
+
+ 34.5682
+[torch.FloatTensor of size 1]
+
+
+ 33.9007
+[torch.FloatTensor of size 1]
+
+
+ 31.6555
+[torch.FloatTensor of size 1]
+
+
+ 34.4993
+[torch.FloatTensor of size 1]
+
+
+ 35.5813
+[torch.FloatTensor of size 1]
+
+
+ 34.3049
+[torch.FloatTensor of size 1]
+
+
+ 33.4845
+[torch.FloatTensor of size 1]
+
+
+ 37.5240
+[torch.FloatTensor of size 1]
+
+
+ 41.2979
+[torch.FloatTensor of size 1]
+
+
+ 34.8338
+[torch.FloatTensor of size 1]
+
+
+ 37.8636
+[torch.FloatTensor of size 1]
+
+
+ 33.9133
+[torch.FloatTensor of size 1]
+
+
+ 38.5892
+[torch.FloatTensor of size 1]
+
+
+ 35.2621
+[torch.FloatTensor of size 1]
+
+
+ 40.2812
+[torch.FloatTensor of size 1]
+
+
+ 33.8882
+[torch.FloatTensor of size 1]
+
+
+ 41.9935
+[torch.FloatTensor of size 1]
+
+
+ 35.9643
+[torch.FloatTensor of size 1]
+
+
+ 40.2555
+[torch.FloatTensor of size 1]
+
+
+ 40.2518
+[torch.FloatTensor of size 1]
+
+
+ 44.4638
+[torch.FloatTensor of size 1]
+
+
+ 35.3563
+[torch.FloatTensor of size 1]
+
+
+ 39.9189
+[torch.FloatTensor of size 1]
+
+
+ 39.2419
+[torch.FloatTensor of size 1]
+
+
+ 43.4266
+[torch.FloatTensor of size 1]
+
+
+ 41.0914
+[torch.FloatTensor of size 1]
+
+
+ 42.8194
+[torch.FloatTensor of size 1]
+
+
+ 43.1854
+[torch.FloatTensor of size 1]
+
+
+ 40.0706
+[torch.FloatTensor of size 1]
+
+
+ 41.7562
+[torch.FloatTensor of size 1]
+
+
+ 43.5581
+[torch.FloatTensor of size 1]
+
+
+ 45.4193
+[torch.FloatTensor of size 1]
+
+
+ 51.4888
+[torch.FloatTensor of size 1]
+
+
+ 50.2957
+[torch.FloatTensor of size 1]
+
+
+ 38.8440
+[torch.FloatTensor of size 1]
+
+
+ 44.7565
+[torch.FloatTensor of size 1]
+
+
+ 45.4081
+[torch.FloatTensor of size 1]
+
+
+ 51.1161
+[torch.FloatTensor of size 1]
+
+
+ 45.9376
+[torch.FloatTensor of size 1]
+
+
+ 46.2381
+[torch.FloatTensor of size 1]
+
+
+ 56.2618
+[torch.FloatTensor of size 1]
+
+
+ 48.5374
+[torch.FloatTensor of size 1]
+
+
+ 43.8124
+[torch.FloatTensor of size 1]
+
+
+ 53.3944
+[torch.FloatTensor of size 1]
+
+
+ 52.8433
+[torch.FloatTensor of size 1]
+
+
+ 55.0768
+[torch.FloatTensor of size 1]
+
+
+ 48.7633
+[torch.FloatTensor of size 1]
+
+
+ 46.4361
+[torch.FloatTensor of size 1]
+
+
+ 49.4877
+[torch.FloatTensor of size 1]
+
+
+ 54.7676
+[torch.FloatTensor of size 1]
+
+
+ 57.6408
+[torch.FloatTensor of size 1]
+
+
+ 55.0346
+[torch.FloatTensor of size 1]
+
+
+ 59.3281
+[torch.FloatTensor of size 1]
+
+
+ 55.7663
+[torch.FloatTensor of size 1]
+
+
+ 55.0794
+[torch.FloatTensor of size 1]
+
+
+ 56.7536
+[torch.FloatTensor of size 1]
+
+
+ 59.4885
+[torch.FloatTensor of size 1]
+
+
+ 53.6874
+[torch.FloatTensor of size 1]
+
+
+ 49.4502
+[torch.FloatTensor of size 1]
+
+
+ 62.3103
+[torch.FloatTensor of size 1]
+
+
+ 53.0862
+[torch.FloatTensor of size 1]
+
+
+ 52.7128
+[torch.FloatTensor of size 1]
+
+
+ 61.1529
+[torch.FloatTensor of size 1]
+
+
+ 65.6177
+[torch.FloatTensor of size 1]
+
+
+ 53.2280
+[torch.FloatTensor of size 1]
+
+
+ 66.8930
+[torch.FloatTensor of size 1]
+
+
+ 65.1352
+[torch.FloatTensor of size 1]
+
+
+ 66.9137
+[torch.FloatTensor of size 1]
+
+
+ 64.7642
+[torch.FloatTensor of size 1]
+
+
+ 54.7572
+[torch.FloatTensor of size 1]
+
+
+ 68.5753
+[torch.FloatTensor of size 1]
+
+
+ 58.9059
+[torch.FloatTensor of size 1]
+
+
+ 57.8601
+[torch.FloatTensor of size 1]
+
+
+ 62.4514
+[torch.FloatTensor of size 1]
+
+
+ 64.4592
+[torch.FloatTensor of size 1]
+
+
+ 73.0697
+[torch.FloatTensor of size 1]
+
+
+ 77.3319
+[torch.FloatTensor of size 1]
+
+
+ 60.9112
 [torch.FloatTensor of size 1]
 
