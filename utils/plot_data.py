@@ -3,7 +3,9 @@ import csv
 import os
 script_dir = os.path.dirname(os.getcwd())
 
-data = ['cartpole/durations_DQN.csv', 'cartpole/rewards.csv']
+data = ['cartpole/durations.csv', 'cartpole/rewards.csv', 
+        'acrobot/durations.csv', 'acrobot/rewards.csv', 
+        'mountaincar/durations.csv', 'mountaincar/rewards.csv', ]
 
 for d in data:
     path = os.path.join(script_dir, d)
@@ -11,7 +13,10 @@ for d in data:
         reader = csv.reader(open(path, 'r'))
         xs = [r[0] for r in reader]
         plt.plot(xs)
+        plt.title(os.path.basename(path).split('.')[0])
         end_dir = os.path.join(script_dir, os.path.dirname(d), os.path.basename(path).split('.')[0] + '.pdf')
         plt.savefig(end_dir)
+        plt.close()
     except:
+        print('error')
         continue
