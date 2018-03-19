@@ -3,13 +3,13 @@ OpenAI Gym
 
 1. Download/Install Anaconda
 2. Set up Conda environment
-- conda env create -n boxcar python=3.5
-- source activate boxcar
+- ``conda env create -n boxcar python=3.5``
+- ``source activate boxcar``
 
 3. Install packages
 - ``conda install -c https://conda.anaconda.org/kne pybox2d``
 - ``pip install gym``
-- ``conda install pytorch-cpu torchvision -c pytorch (but better to build pytorch and torchvision from source)``
+- ``conda install pytorch-cpu torchvision -c pytorch`` (but better to build pytorch and torchvision from source)
 - ``conda install matplotlib``
 4. Fix errors if unmerged into master OpenAI gym branch
 - https://github.com/openai/gym/pull/930
