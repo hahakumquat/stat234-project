@@ -8,6 +8,7 @@ data = ['cartpole/durations.csv', 'cartpole/rewards.csv',
         'mountaincar/durations.csv', 'mountaincar/rewards.csv', ]
 
 for d in data:
+    print(d)
     path = os.path.join(script_dir, d)
     try:
     	reader = csv.reader(open(path, 'r'))

@@ -4,7 +4,9 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
 import matplotlib.pyplot as plt
+
 from Logger import Logger
+from ReplayMemory import Transition
 
 class DQNGS(nn.Module):
 
@@ -47,7 +49,31 @@ class DQNGS(nn.Module):
         state_batch = state_batch.view(state_batch.shape[0], -1)
         return self.out_layer(state_batch)
 
-    def train(self, state_batch, action_batch, reward_batch, next_state_values):
+    def train(self, memory):
+        transitions = memory.sample(self.batch_size)
+        # stackoverflow: 
+        batch = Transition(*zip(*transitions))
+
+        # Compute a mask of non-final states and concatenate the batch elements
+        non_final_mask = torch.ByteTensor(tuple(map(lambda s: s is not None,
+                                              batch.next_state)))
+
+        # We don't want to backprop through the expected action values and volatile
+        # will save us on temporarily changing the model parameters'
+        # requires_grad to False!
+        non_final_next_states = Variable(torch.cat([s for s in batch.next_state if s is not None]), 
+                                         volatile=True)
+        state_batch = Variable(torch.cat(batch.state))
+        action_batch = Variable(torch.cat(batch.action))
+        reward_batch = Variable(torch.cat(batch.reward))
+        # Compute V(s_{t+1}) for all next states.
+        next_state_values = Variable(torch.zeros(len(state_batch)).type(torch.FloatTensor))
+        next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
+
+        # Now, we don't want to mess up the loss with a volatile flag, so let's
+        # clear it. After this, we'll just end up with a Variable that has
+        # requires_grad=False
+        next_state_values.volatile = False
 
         # Compute Q(s_t, a) - the model computes Q(s_t), then we select the
         # columns of actions taken

@@ -100,32 +100,7 @@ def main(batch_sz, num_episodes):
 
             # Perform one step of the optimization (on the target network)
             if len(memory) >= BATCH_SIZE:
-                transitions = memory.sample(BATCH_SIZE)
-                # stackoverflow: 
-                batch = Transition(*zip(*transitions))
-
-                # Compute a mask of non-final states and concatenate the batch elements
-                non_final_mask = torch.ByteTensor(tuple(map(lambda s: s is not None,
-                                                      batch.next_state)))
-
-                # We don't want to backprop through the expected action values and volatile
-                # will save us on temporarily changing the model parameters'
-                # requires_grad to False!
-                non_final_next_states = Variable(torch.cat([s for s in batch.next_state if s is not None]), volatile=True)
-                state_batch = Variable(torch.cat(batch.state))
-                action_batch = Variable(torch.cat(batch.action))
-                reward_batch = Variable(torch.cat(batch.reward))
-                # Compute V(s_{t+1}) for all next states.
-                next_state_values = Variable(torch.zeros(len(state_batch)).type(torch.FloatTensor))
-                next_state_values[non_final_mask] = model.forward(non_final_next_states).max(1)[0]
-                next_state_values.volatile = False
-
-                # Now, we don't want to mess up the loss with a volatile flag, so let's
-                # clear it. After this, we'll just end up with a Variable that has
-                # requires_grad=False
-                # next_state_values.volatile = False
-
-                model.train(state_batch, action_batch, reward_batch, next_state_values)
+                model.train(memory)
 
             if done:
                 print('finished an episode! It took this many steps:', t + 1)
