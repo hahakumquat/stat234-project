@@ -52,6 +52,8 @@ if len(sys.argv) == 4:
         game = CartPoleGame()
     elif game_name == 'AcrobotGame':
         game = AcrobotGame()
+    elif game_name == 'MountainCarGame':
+        game = MountainCarGame()
     else:
         raise Exception('Game does not exist. Ex: For CartPoleGame.py, use CartPoleGame')
     if model_name == 'DQN':
