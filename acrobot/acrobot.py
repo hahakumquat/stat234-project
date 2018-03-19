@@ -8,7 +8,7 @@ from torch.autograd import Variable
 import torchvision.transforms as T
 from PIL import Image
 
-from itertools import count
+# from itertools import count
 # from copy import deepcopy
 
 # first change the cwd to the script path
@@ -73,13 +73,19 @@ def main(batch_sz, num_episodes):
         state = current_screen - last_screen
         state_info = env.state
         total_reward = 0
-        for t in count():
+        t = 0
+        done = False
+        while not done:
             # Select and perform an action
             action = agent.select_action(state)
             frame_skip_reward = 0
             for i_frame_skip in range(frame_skip):
                 _, reward, done, _ =  env.step(action[0, 0])
+                if done:
+                    break
                 frame_skip_reward += reward
+                t += 1
+
             total_reward += frame_skip_reward
             frame_skip_reward = torch.FloatTensor([frame_skip_reward])
 
@@ -107,24 +113,12 @@ def main(batch_sz, num_episodes):
                 model.train(memory)
 
             if done:
-                print('finished an episode! It took this many steps:', t + 1)
+                print('Finished episode with duration ', t + 1)
                 total_rewards.append(total_reward)
                 reward_log.log(total_reward)
                 episode_durations.append(t + 1)
                 duration_log.log(t + 1)
-                # if i_episode % 5 == 0:
-                #     plot_rewards(total_rewards)
                 break
-
-def plot_rewards(total_rewards):
-    plt.plot(total_rewards)
-    plt.title('Episode Rewards')
-    plt.savefig('acrobot_rewards.pdf')
-    plt.close()
-    plt.plot(episode_durations)
-    plt.title('Episode Durations')
-    plt.savefig('acrobot_durations.pdf')
-    plt.close()
             
 def get_screen(env):
     if sys.argv[1] == 'DQN':

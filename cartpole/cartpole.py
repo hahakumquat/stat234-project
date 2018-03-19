@@ -73,7 +73,9 @@ def main(batch_sz, num_episodes):
         state = current_screen - last_screen
         state_info = env.state
         total_reward = 0
-        for t in count():
+        t = 0
+        done = False
+        while not done:
             # Select and perform an action
             action = agent.select_action(state)
             frame_skip_reward = 0
@@ -82,6 +84,8 @@ def main(batch_sz, num_episodes):
                 frame_skip_reward += reward
                 if done:
                     break
+                t += 1
+
             total_reward += frame_skip_reward
             frame_skip_reward = torch.FloatTensor([frame_skip_reward])
 

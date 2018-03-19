@@ -11,10 +11,10 @@ for d in data:
     print(d)
     path = os.path.join(script_dir, d)
     try:
-    	reader = csv.reader(open(path, 'r'))
+        reader = csv.reader(open(path, 'r'))
     except FileNotFoundError:
-    	print(path + ' not found')
-    	continue
+        print(path + ' not found')
+        continue
     xs = [float(r[0]) for r in reader]
     plt.plot(xs)
     plt.title(os.path.dirname(d) + ' ' + os.path.basename(path).split('.')[0])
