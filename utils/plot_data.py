@@ -1,18 +1,23 @@
 import matplotlib.pyplot as plt
 import csv
 import os
+import sys
+
+scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
+os.chdir(scriptPath)
+
 script_dir = os.path.dirname(os.getcwd())
 
-data = ['cartpole', 
-        'acrobot', 
-        'mountaincar', ]
+root = os.path.join(script_dir, 'results')
 
-for directory in data:
-    absolute_directory = os.path.join(script_dir, directory)
-    for file in os.listdir(absolute_directory):
-        if file.endswith('.csv') and 'losses' not in file:
-            path = os.path.join(absolute_directory, file)
-            print(path)
+def plot_all(root):
+    for file in os.listdir(root):
+        if os.path.isdir(os.path.join(root, file)):
+            print(os.path.join(root, file))
+            plot_all(os.path.join(root, file))
+        if file.endswith('.csv'):
+            print(file)
+            path = os.path.join(root, file)
             try:
                 reader = csv.reader(open(path, 'r'))
             except FileNotFoundError:
@@ -20,8 +25,10 @@ for directory in data:
                 continue
             xs = [float(r[0]) for r in reader]
             plt.plot(xs)
-            plt.title(directory + ' ' + file.split('.')[0])
+            plt.title(os.path.dirname(root) + ' ' + file.split('.')[0])
             plt.xlabel('episodes')
             end_dir = path.split('.')[0] + '.pdf'
             plt.savefig(end_dir)
             plt.close()
+
+plot_all(root)

@@ -93,14 +93,7 @@ def main(batch_sz, num_episodes):
             action = agent.select_action(state)
             frame_skip_reward = 0
             for i_frame_skip in range(frame_skip):
-<<<<<<< HEAD:main.py
                 _, reward, done, _ =  game.env.step(action[0, 0])
-                
-=======
-                _, reward, done, _ =  env.step(action[0, 0])
-                if done:
-                    break
->>>>>>> 880491a5e8ce5d8872948cae9c9c2514e62472fc:acrobot/acrobot.py
                 frame_skip_reward += reward
                 t += 1
 
@@ -131,29 +124,12 @@ def main(batch_sz, num_episodes):
                 loss_log.log(model.train(memory))
 
             if done:
-<<<<<<< HEAD:main.py
                 print('Done! Duration:', t + 1)
-=======
-                print('Finished episode with duration ', t + 1)
->>>>>>> 880491a5e8ce5d8872948cae9c9c2514e62472fc:acrobot/acrobot.py
                 total_rewards.append(total_reward)
                 reward_log.log(total_reward)
                 episode_durations.append(t + 1)
                 duration_log.log(t + 1)
                 break
-<<<<<<< HEAD:main.py
-
-def plot_rewards(total_rewards):
-    plt.plot(total_rewards)
-    plt.title('Episode Rewards')
-    plt.savefig(filename + '_rewards.pdf')
-    plt.close()
-    plt.plot(episode_durations)
-    plt.title('Episode Durations')
-    plt.savefig(filename + '_durations.pdf')
-    plt.close()
-=======
->>>>>>> 880491a5e8ce5d8872948cae9c9c2514e62472fc:acrobot/acrobot.py
             
 def get_screen():
     if sys.argv[1] == 'DQN':
