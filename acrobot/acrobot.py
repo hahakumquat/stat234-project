@@ -16,7 +16,7 @@ scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
 os.chdir(scriptPath)
 
 # append the relative location you want to import from
-sys.path.append("../utils")
+sys.path.append('../utils')
 
 # import your module stored in '../common'
 from ReplayMemory import ReplayMemory, Transition
@@ -58,7 +58,7 @@ if len(sys.argv) == 3:
     else:
         raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 else:
-    raise Exception("Usage: python main.py <model_name> <agent_name>")
+    raise Exception('Usage: python main.py <model_name> <agent_name>')
 
 def main(batch_sz, num_episodes):
     for i_episode in range(num_episodes):
@@ -134,18 +134,18 @@ def main(batch_sz, num_episodes):
                 reward_log.log(total_reward)
                 episode_durations.append(t + 1)
                 duration_log.log(t + 1)
-                if i_episode % 5 == 0:
-                    plot_rewards(total_rewards)
+                # if i_episode % 5 == 0:
+                #     plot_rewards(total_rewards)
                 break
 
 def plot_rewards(total_rewards):
     plt.plot(total_rewards)
-    plt.title("Episode Rewards")
-    plt.savefig("acrobot_rewards.pdf")
+    plt.title('Episode Rewards')
+    plt.savefig('acrobot_rewards.pdf')
     plt.close()
     plt.plot(episode_durations)
-    plt.title("Episode Durations")
-    plt.savefig("acrobot_durations.pdf")
+    plt.title('Episode Durations')
+    plt.savefig('acrobot_durations.pdf')
     plt.close()
             
 def get_screen(env):

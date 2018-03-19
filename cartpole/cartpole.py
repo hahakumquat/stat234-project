@@ -16,7 +16,7 @@ scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
 os.chdir(scriptPath)
 
 # append the relative location you want to import from
-sys.path.append("../utils")
+sys.path.append('../utils')
 
 from ReplayMemory import ReplayMemory, Transition
 from Logger import Logger
@@ -57,7 +57,7 @@ if len(sys.argv) == 3:
     else:
         raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 else:
-    raise Exception("Usage: python main.py <model_name> <agent_name>")
+    raise Exception('Usage: python main.py <model_name> <agent_name>')
 
 def main(batch_sz, num_episodes):
     for i_episode in range(num_episodes):
