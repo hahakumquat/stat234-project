@@ -168,7 +168,7 @@ def get_cart_location(env):
 
 def resize(screen):
     rsz = T.Compose([T.ToPILImage(),
-            T.Resize(80, interpolation=Image.CUBIC),
+            T.Resize((80, 80), interpolation=Image.CUBIC),
             T.ToTensor()])
     return rsz(screen)
 

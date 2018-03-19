@@ -16,7 +16,7 @@ for d in data:
     	continue
     xs = [r[0] for r in reader]
     plt.plot(xs)
-    plt.title(os.path.basename(path).split('.')[0])
+    plt.title(os.path.dirname(d) + ' ' + os.path.basename(path).split('.')[0])
     plt.xlabel('episodes')
     end_dir = os.path.join(script_dir, os.path.dirname(d), os.path.basename(path).split('.')[0] + '.pdf')
     plt.savefig(end_dir)

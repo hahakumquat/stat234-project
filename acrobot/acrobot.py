@@ -25,6 +25,7 @@ from Logger import Logger
 # models
 from DQN import DQN
 from DQN_GS import DQNGS
+from NoTraining import NoTraining
 
 # agents
 from EpsilonGreedy import EpsilonGreedy
@@ -33,8 +34,6 @@ from Random import Random
 memory = ReplayMemory(10000)
 total_rewards = []
 episode_durations = []
-reward_log = Logger('rewards.csv')
-duration_log = Logger('durations.csv')
 frame_skip = 4
 
 env = gym.make('Acrobot-v1').unwrapped
@@ -48,6 +47,8 @@ if len(sys.argv) == 3:
         model = DQN(env, loss_filename='dqn_acrobot_losses.pdf')
     elif model_name == 'DQN_GS':
         model = DQNGS(env, loss_filename='dqn_gs_acrobot_losses.pdf')
+    elif model_name == 'NoTraining':
+        model = NoTraining(env)
     else:
         raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
     if agent_name == 'EpsilonGreedy':
@@ -58,6 +59,9 @@ if len(sys.argv) == 3:
         raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 else:
     raise Exception('Usage: python main.py <model_name> <agent_name>')
+
+reward_log = Logger(model_name + '_' + agent_name + '_rewards.csv')
+duration_log = Logger(model_name + '_' + agent_name + '_durations.csv')
 
 def main(batch_sz, num_episodes):
     for i_episode in range(num_episodes):
@@ -118,7 +122,8 @@ def main(batch_sz, num_episodes):
                 # Compute V(s_{t+1}) for all next states.
                 next_state_values = Variable(torch.zeros(len(state_batch)).type(torch.FloatTensor))
                 next_state_values[non_final_mask] = model.forward(non_final_next_states).max(1)[0]
-                next_state_values.volatile = False
+                if model_name != 'NoTraining':
+                    next_state_values.volatile = False
 
                 # Now, we don't want to mess up the loss with a volatile flag, so let's
                 # clear it. After this, we'll just end up with a Variable that has
@@ -152,6 +157,8 @@ def get_screen(env):
         screen = env.render(mode='rgb_array').tranpose((2, 0, 1))
     elif sys.argv[1] == 'DQN_GS':
         screen = np.expand_dims(Image.fromarray(env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
+    else:
+        screen = np.expand_dims(Image.fromarray(env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
     screen = np.ascontiguousarray(screen, dtype=np.float32) / 255
     screen = torch.from_numpy(screen)
     # Resize, and add a batch dimension (BCHW)
@@ -160,7 +167,7 @@ def get_screen(env):
 
 def resize(screen):
     rsz = T.Compose([T.ToPILImage(),
-            T.Resize(80, interpolation=Image.CUBIC),
+            T.Resize((80, 80), interpolation=Image.CUBIC),
             T.ToTensor()])
     return rsz(screen)
 
