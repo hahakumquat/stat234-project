@@ -14,7 +14,7 @@ for d in data:
     except FileNotFoundError:
     	print(path + ' not found')
     	continue
-    xs = [r[0] for r in reader]
+    xs = [float(r[0]) for r in reader]
     plt.plot(xs)
     plt.title(os.path.dirname(d) + ' ' + os.path.basename(path).split('.')[0])
     plt.xlabel('episodes')

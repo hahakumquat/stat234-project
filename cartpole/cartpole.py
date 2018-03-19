@@ -173,6 +173,7 @@ def resize(screen):
     return rsz(screen)
 
 BATCH_SIZE = 128
+
 num_episodes = 1000
 try:
     main(BATCH_SIZE, num_episodes)
