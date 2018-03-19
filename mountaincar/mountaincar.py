@@ -166,4 +166,8 @@ def resize(screen):
 
 BATCH_SIZE = 128
 num_episodes = 1000
-main(BATCH_SIZE, num_episodes)
+try:
+    main(BATCH_SIZE, num_episodes)
+except KeyboardInterrupt:
+    print('Detected KeyboardInterrupt. ')
+    # pickle the neural net
