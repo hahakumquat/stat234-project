@@ -97,6 +97,8 @@ def main(batch_sz, num_episodes):
             for i_frame_skip in range(frame_skip):
                 _, reward, done, _ =  game.env.step(action[0, 0])
                 frame_skip_reward += reward
+                if done:
+                    break
                 t += 1
 
             total_reward += frame_skip_reward
