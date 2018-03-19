@@ -26,7 +26,7 @@ class DQN(nn.Module):
         self.bn3 = nn.BatchNorm2d(32)
         self.relu3 = nn.LeakyReLU(0.05)
         
-        self.out_layer = nn.Linear(576, 2)
+        self.out_layer = nn.Linear(1568, 2)
 
         self.env = env
         self.batch_size = batch_sz
@@ -45,7 +45,7 @@ class DQN(nn.Module):
         state_batch = state_batch.view(state_batch.shape[0], -1)
         return self.out_layer(state_batch)
 
-    def train(self, state_batch, action_batch, reward_batch, next_state_values):
+    def train(self, memory):
         transitions = memory.sample(self.batch_size)
         # stackoverflow: 
         batch = Transition(*zip(*transitions))

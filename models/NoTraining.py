@@ -15,7 +15,8 @@ class NoTraining(nn.Module):
         self.batch_size = batch_size
 
     def forward(self, state_batch):
-        return torch.FloatTensor(np.ones((self.batch_size, self.env.action_space.n)))
+        result = Variable(torch.FloatTensor(np.ones((len(state_batch), self.env.action_space.n))))
+        return result
 
     def train(self, memory):
 

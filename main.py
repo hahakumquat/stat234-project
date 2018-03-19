@@ -136,9 +136,9 @@ def main(batch_sz, num_episodes):
                 break
             
 def get_screen():
-    if sys.argv[1] == 'DQN':
-        screen = game.env.render(mode='rgb_array').tranpose((2, 0, 1))
-    elif sys.argv[1] == 'DQN_GS':
+    if sys.argv[2] == 'DQN':
+        screen = np.array(game.env.render(mode='rgb_array')).transpose((2, 0, 1))
+    elif sys.argv[2] == 'DQN_GS':
         screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
     else:
         screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
