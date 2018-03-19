@@ -101,7 +101,7 @@ class DQNGS(nn.Module):
 
     # def plot_losses(self):
     #     plt.plot(self.losses)
-    #     plt.title("Per-SARS Huber Loss")
+    #     plt.title('Per-SARS Huber Loss')
     #     plt.savefig(self.loss_filename)
     #     plt.close()
 
