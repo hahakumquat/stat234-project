@@ -35,6 +35,7 @@ from Random import Random
 # games
 from CartPoleGame import CartPoleGame
 from AcrobotGame import AcrobotGame
+from MountainCarGame import MountainCarGame
 
 memory = ReplayMemory(10000)
 total_rewards = []
