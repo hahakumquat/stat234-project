@@ -13,10 +13,9 @@ root = os.path.join(script_dir, 'results')
 def plot_all(root):
     for file in os.listdir(root):
         if os.path.isdir(os.path.join(root, file)):
-            print(os.path.join(root, file))
             plot_all(os.path.join(root, file))
         if file.endswith('.csv'):
-            print(file)
+            print("Plotting " + file)
             path = os.path.join(root, file)
             try:
                 reader = csv.reader(open(path, 'r'))
@@ -25,7 +24,7 @@ def plot_all(root):
                 continue
             xs = [float(r[0]) for r in reader]
             plt.plot(xs)
-            plt.title(os.path.dirname(root) + ' ' + file.split('.')[0])
+            plt.title(os.path.basename(root) + ' ' + file.split('_')[-1][:-4])
             plt.xlabel('episodes')
             end_dir = path.split('.')[0] + '.pdf'
             plt.savefig(end_dir)
