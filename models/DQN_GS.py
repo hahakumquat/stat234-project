@@ -92,6 +92,18 @@ class DQNGS(nn.Module):
         for param in self.parameters():
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
+<<<<<<< HEAD:models/DQN_GS.py
 
         return loss.data / len(state_action_values)
+=======
+        
+    #     if len(self.losses) % 100 == 0:
+    #         self.plot_losses()
+
+    # def plot_losses(self):
+    #     plt.plot(self.losses)
+    #     plt.title('Per-SARS Huber Loss')
+    #     plt.savefig(self.loss_filename)
+    #     plt.close()
+>>>>>>> 880491a5e8ce5d8872948cae9c9c2514e62472fc:utils/DQN_GS.py
 
