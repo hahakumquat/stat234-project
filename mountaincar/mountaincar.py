@@ -38,7 +38,6 @@ duration_log = Logger('durations.csv')
 frame_skip = 4
 
 env = gym.make('MountainCar-v0').unwrapped
-screen_width = 600
 model = None
 agent = None
 
