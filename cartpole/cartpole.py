@@ -24,6 +24,7 @@ from Logger import Logger
 # models
 from DQN import DQN
 from DQN_GS import DQNGS
+from NoTraining import NoTraining
 
 # agents
 from EpsilonGreedy import EpsilonGreedy
@@ -31,9 +32,7 @@ from Random import Random
 
 memory = ReplayMemory(10000)
 episode_durations = []
-duration_log = Logger('durations.csv')
 total_rewards = []
-reward_log = Logger('rewards.csv')
 frame_skip = 2
 
 env = gym.make('CartPole-v0').unwrapped
@@ -45,9 +44,11 @@ if len(sys.argv) == 3:
     model_name = sys.argv[1]
     agent_name = sys.argv[2]
     if model_name == 'DQN':
-        model = DQN(env)
+        model = DQN(env, loss_filename='dqn_acrobot_losses.pdf')
     elif model_name == 'DQN_GS':
-        model = DQNGS(env)
+        model = DQNGS(env, loss_filename='dqn_gs_acrobot_losses.pdf')
+    elif model_name == 'NoTraining':
+        model = NoTraining(env)
     else:
         raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
     if agent_name == 'EpsilonGreedy':
@@ -58,6 +59,9 @@ if len(sys.argv) == 3:
         raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 else:
     raise Exception('Usage: python main.py <model_name> <agent_name>')
+
+reward_log = Logger(model_name + '_' + agent_name + '_rewards.csv')
+duration_log = Logger(model_name + '_' + agent_name + '_durations.csv')
 
 def main(batch_sz, num_episodes):
     for i_episode in range(num_episodes):
@@ -105,6 +109,7 @@ def main(batch_sz, num_episodes):
                 model.train(memory)
 
             if done:
+                print('Finished episode with duration ', t + 1)
                 episode_durations.append(t + 1)
                 duration_log.log(t + 1)
                 total_rewards.append(total_reward)
@@ -115,6 +120,8 @@ def get_screen(env):
     if sys.argv[1] == 'DQN':
         screen = env.render(mode='rgb_array').tranpose((2, 0, 1))
     elif sys.argv[1] == 'DQN_GS':
+        screen = np.expand_dims(Image.fromarray(env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
+    else:
         screen = np.expand_dims(Image.fromarray(env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
     view_width = 160
     cart_location = get_cart_location(env)
