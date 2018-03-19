@@ -9,7 +9,7 @@ OpenAI Gym
 3. Install packages
 - ``conda install -c https://conda.anaconda.org/kne pybox2d``
 - ``pip install gym``
-- ``conda install pytorch-cpu torchvision -c pytorch (but better to build pytorch and torchvision from source)``
+- ``conda install pytorch-cpu torchvision -c pytorch`` (but better to build pytorch and torchvision from source)
 - ``conda install matplotlib``
 4. Fix errors if unmerged into master OpenAI gym branch
 - https://github.com/openai/gym/pull/930
