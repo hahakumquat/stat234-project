@@ -19,6 +19,5 @@ class NoTraining(nn.Module):
         return result
 
     def train(self, memory):
-
-        return
+        return -1
 
