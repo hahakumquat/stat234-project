@@ -8,7 +8,9 @@ os.chdir(scriptPath)
 
 script_dir = os.path.dirname(os.getcwd())
 
-root = os.path.join(script_dir, 'results')
+directory = 'data' if len(sys.argv) > 1 and sys.argv[1] == 'data' else 'results'
+
+root = os.path.join(script_dir, directory)
 
 def plot_all(root):
     for file in os.listdir(root):
