@@ -50,6 +50,7 @@ if len(sys.argv) == 4:
     game_name = sys.argv[1]
     model_name = sys.argv[2]
     agent_name = sys.argv[3]
+
     if game_name == 'CartPoleGame':
         game = CartPoleGame()
     elif game_name == 'AcrobotGame':
@@ -73,7 +74,7 @@ if len(sys.argv) == 4:
     else:
         raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 else:
-    raise Exception('Usage: python main.py <game_name> <model_name> <agent_name>')
+    raise Exception('Usage: python main.py game_name [model_name] [agent_name]')
 
 filename = game.file_prefix + model_name + '_' + agent_name
 reward_log = Logger('results/' + game_name + '/' + filename + '_rewards.csv')
