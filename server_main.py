@@ -166,7 +166,7 @@ def get_screen():
 
 def resize(screen):
     rsz = T.Compose([T.ToPILImage(),
-            T.Resize((80, 80), interpolation=Image.CUBIC),
+            T.Scale((80, 80), interpolation=Image.CUBIC),
             T.ToTensor()])
     return rsz(screen)
 
