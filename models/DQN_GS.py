@@ -10,7 +10,7 @@ from ReplayMemory import Transition
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.001, gamma=0.999):
+    def __init__(self, env, batch_sz=128, lr=0.001, gamma=0.99):
         super(DQNGS, self).__init__()
 
         ## DQN architecture

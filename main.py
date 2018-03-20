@@ -37,10 +37,11 @@ from CartPoleGame import CartPoleGame
 from AcrobotGame import AcrobotGame
 from MountainCarGame import MountainCarGame
 
-memory = ReplayMemory(10000)
+memory = ReplayMemory(100000)
 total_rewards = []
 episode_durations = []
 frame_skip = 4
+update_frequency = 4
 
 game = None
 model = None
@@ -126,7 +127,12 @@ def main(batch_sz, num_episodes):
 
             # Perform one step of the optimization (on the target network)
             if len(memory) >= BATCH_SIZE:
-                loss_log.log(model.train(memory))
+
+                # only train every frame_skip * update_frequency time steps, 
+                # i.e., only train after update_frequency different actions 
+                # have been selected. This speeds up training. See DQN paper.
+                if t % (frame_skip * update_frequency) == 0:
+                    loss_log.log(model.train(memory))
 
             if done:
                 print('Done! Duration:', t + 1)

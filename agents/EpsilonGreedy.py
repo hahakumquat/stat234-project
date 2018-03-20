@@ -6,7 +6,7 @@ from torch.autograd import Variable
 
 class EpsilonGreedy():
 
-    def __init__(self, model, env, epsilon_start=0.9, epsilon_end=0.05, epsilon_decay=200):
+    def __init__(self, model, env, epsilon_start=1, epsilon_end=0.05, epsilon_decay=200):
         self.eps_start = epsilon_start
         self.eps_end = epsilon_end
         self.eps_decay = epsilon_decay
