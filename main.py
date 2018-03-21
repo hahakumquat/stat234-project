@@ -37,6 +37,7 @@ from Random import Random
 from CartPoleGame import CartPoleGame
 from AcrobotGame import AcrobotGame
 from MountainCarGame import MountainCarGame
+from CartPoleCroppedGame import CartPoleCroppedGame
 
 memory = ReplayMemory(10000)
 total_rewards = []
@@ -47,35 +48,52 @@ update_frequency = 4
 game = None
 model = None
 agent = None
-if len(sys.argv) == 4:
-    game_name = sys.argv[1]
-    model_name = sys.argv[2]
-    agent_name = sys.argv[3]
 
+if len(sys.argv) >= 2:
+    game_name = sys.argv[1]
     if game_name == 'CartPoleGame':
         game = CartPoleGame()
     elif game_name == 'AcrobotGame':
         game = AcrobotGame()
     elif game_name == 'MountainCarGame':
         game = MountainCarGame()
+    elif game_name == 'CartPoleCroppedGame':
+        game = CartPoleCroppedGame()
     else:
         raise Exception('Game does not exist. Ex: For CartPoleGame.py, use CartPoleGame')
-    if model_name == 'DQN':
-        model = DQN(game.env)
-    elif model_name == 'DQN_GS':
+
+    if len(sys.argv) >= 4:
+        model_name = sys.argv[2]
+        agent_name = sys.argv[3]
+
+        if model_name == 'DQN':
+            model = DQN(game.env)
+        elif model_name == 'DQN_GS':
+            model = DQNGS(game.env)
+        elif model_name == 'NoTraining':
+            model = NoTraining(game.env)
+        else:
+            raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
+        if agent_name == 'EpsilonGreedy':
+            agent = EpsilonGreedy(model, game.env)
+        elif agent_name == 'Random':
+            agent = Random(model, game.env)
+        else:
+            raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
+
+        if len(sys.argv) >= 5:
+            num_episodes = int(sys.argv[4])
+        else:
+            num_episodes = 1000
+    else: 
+        model_name = 'DQN_GS'
         model = DQNGS(game.env)
-    elif model_name == 'NoTraining':
-        model = NoTraining(game.env)
-    else:
-        raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
-    if agent_name == 'EpsilonGreedy':
+        agent_name = 'EpsilonGreedy'
         agent = EpsilonGreedy(model, game.env)
-    elif agent_name == 'Random':
-        agent = Random(model, game.env)
-    else:
-        raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
+        num_episodes = 1000
+
 else:
-    raise Exception('Usage: python main.py game_name [model_name] [agent_name]')
+    raise Exception('Usage: python main.py game_name [model_name] [agent_name] [num_episodes]')
 
 filename = game.file_prefix + model_name + '_' + agent_name
 reward_log = Logger('results/' + game_name + '/' + filename + '_rewards.csv')
@@ -145,9 +163,9 @@ def main(batch_sz, num_episodes):
                 break
             
 def get_screen():
-    if sys.argv[2] == 'DQN':
+    if model_name == 'DQN':
         screen = np.array(game.env.render(mode='rgb_array')).transpose((2, 0, 1))
-    elif sys.argv[2] == 'DQN_GS':
+    elif model_name == 'DQN_GS':
         screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
     else:
         screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
@@ -168,7 +186,7 @@ def resize(screen):
     return rsz(screen)
 
 BATCH_SIZE = 128
-num_episodes = 1000
+# num_episodes = 1000 # defined above with default 1000
 try:
     main(BATCH_SIZE, num_episodes)
 except KeyboardInterrupt:
@@ -176,10 +194,17 @@ except KeyboardInterrupt:
 finally:
     if model_name != 'NoTraining': # then we actually trained a DQN
         # pickle_filename = 'results/' + game_name + '/' + filename + '_network.pkl'
+        # # don't think we're actually going to save this until the end
+        # torch.save(model.state_dict(), pickle_filename)
+
+        # # # Later to restore and evaluate:
+        # # model = DQNGS(game.env)
+        # # model.load_state_dict(torch.load(pickle_filename))
+        # # model.eval()
         pass
     else: # it was random
         pickle_filename = 'results/' + game_name + '/' + filename + '_memory.pkl'
-    if os.path.exists(pickle_filename):
-        os.remove(pickle_filename)
-    with open(pickle_filename, 'wb') as f:
-        pickle.dump(memory, f)
+        if os.path.exists(pickle_filename):
+            os.remove(pickle_filename)
+        with open(pickle_filename, 'wb') as f:
+            pickle.dump(memory, f)
