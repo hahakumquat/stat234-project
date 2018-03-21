@@ -176,10 +176,11 @@ except KeyboardInterrupt:
 finally:
     if model_name != 'NoTraining': # then we actually trained a DQN
         # pickle_filename = 'results/' + game_name + '/' + filename + '_network.pkl'
+        # don't think we're actually going to save this until the end
         pass
     else: # it was random
         pickle_filename = 'results/' + game_name + '/' + filename + '_memory.pkl'
-    if os.path.exists(pickle_filename):
-        os.remove(pickle_filename)
-    with open(pickle_filename, 'wb') as f:
-        pickle.dump(memory, f)
+        if os.path.exists(pickle_filename):
+            os.remove(pickle_filename)
+        with open(pickle_filename, 'wb') as f:
+            pickle.dump(memory, f)
