@@ -7,6 +7,7 @@ import torch
 from torch.autograd import Variable
 import torchvision.transforms as T
 from PIL import Image
+import pickle
 
 # from itertools import count
 # from copy import deepcopy
@@ -172,4 +173,10 @@ try:
     main(BATCH_SIZE, num_episodes)
 except KeyboardInterrupt:
     print('Detected KeyboardInterrupt. ')
-    # pickle the neural net
+finally:
+    if model_name != 'NoTraining': # then we actually trained a DQN
+        with open('results/' + game_name + '/' + filename + '_network.pkl') as f:
+            pickle.dump(model)
+    else: # it was random
+        with open('results/' + game_name + '/' + filename + '_memory.pkl') as f:
+            pickle.dump(memory)
