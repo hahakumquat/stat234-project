@@ -168,7 +168,7 @@ def resize(screen):
     return rsz(screen)
 
 BATCH_SIZE = 128
-num_episodes = 1
+num_episodes = 10000
 try:
     main(BATCH_SIZE, num_episodes)
 except KeyboardInterrupt:
