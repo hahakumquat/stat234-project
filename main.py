@@ -168,15 +168,16 @@ def resize(screen):
     return rsz(screen)
 
 BATCH_SIZE = 128
-num_episodes = 2
+num_episodes = 1
 try:
     main(BATCH_SIZE, num_episodes)
 except KeyboardInterrupt:
     print('Detected KeyboardInterrupt. ')
 finally:
     if model_name != 'NoTraining': # then we actually trained a DQN
-        with open('results/' + game_name + '/' + filename + '_network.pkl') as f:
-            pickle.dump(model)
+        pass
+        # with open('results/' + game_name + '/' + filename + '_network.pkl', 'wb') as f:
+        #     pickle.dump(model, f)
     else: # it was random
-        with open('results/' + game_name + '/' + filename + '_memory.pkl') as f:
-            pickle.dump(memory)
+        with open('results/' + game_name + '/' + filename + '_memory.pkl', 'wb') as f:
+            pickle.dump(memory, f)
