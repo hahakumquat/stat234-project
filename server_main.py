@@ -9,9 +9,13 @@ import torchvision.transforms as T
 from PIL import Image
 import pickle
 
+print("Modules loaded.")
+
 from pyvirtualdisplay import Display
 display = Display(visible=0, size=(400, 600))
 display.start()
+
+print("Display created.")
 
 # from itertools import count
 # from copy import deepcopy
@@ -158,7 +162,7 @@ def get_screen():
 
     screen = game.modify_screen(screen)
     
-    screen = np.ascontiguousarray(screen, dtype=np.float32) / 255
+    screen = np.ascontiguousarray(screen / 255, dtype=np.float32)
     screen = torch.from_numpy(screen)
 
     # Resize, and add a batch dimension (BCHW)
