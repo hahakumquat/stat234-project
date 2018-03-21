@@ -176,7 +176,13 @@ except KeyboardInterrupt:
 finally:
     if model_name != 'NoTraining': # then we actually trained a DQN
         # pickle_filename = 'results/' + game_name + '/' + filename + '_network.pkl'
-        # don't think we're actually going to save this until the end
+        # # don't think we're actually going to save this until the end
+        # torch.save(model.state_dict(), pickle_filename)
+
+        # # # Later to restore and evaluate:
+        # # model = DQNGS(game.env)
+        # # model.load_state_dict(torch.load(pickle_filename))
+        # # model.eval()
         pass
     else: # it was random
         pickle_filename = 'results/' + game_name + '/' + filename + '_memory.pkl'
