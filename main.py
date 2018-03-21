@@ -154,7 +154,7 @@ def get_screen():
 
     screen = game.modify_screen(screen)
     
-    screen = np.ascontiguousarray(screen, dtype=np.float32) / 255
+    screen = np.ascontiguousarray(screen / 255, dtype=np.float32)
     screen = torch.from_numpy(screen)
 
     # Resize, and add a batch dimension (BCHW)
