@@ -7,6 +7,7 @@ import torch
 from torch.autograd import Variable
 import torchvision.transforms as T
 from PIL import Image
+import pickle
 
 from pyvirtualdisplay import Display
 display = Display(visible=0, size=(400, 600))

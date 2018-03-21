@@ -38,7 +38,7 @@ from CartPoleGame import CartPoleGame
 from AcrobotGame import AcrobotGame
 from MountainCarGame import MountainCarGame
 
-memory = ReplayMemory(100000)
+memory = ReplayMemory(10000)
 total_rewards = []
 episode_durations = []
 frame_skip = 4
@@ -168,16 +168,18 @@ def resize(screen):
     return rsz(screen)
 
 BATCH_SIZE = 128
-num_episodes = 10000
+num_episodes = 1000
 try:
     main(BATCH_SIZE, num_episodes)
 except KeyboardInterrupt:
     print('Detected KeyboardInterrupt. ')
 finally:
     if model_name != 'NoTraining': # then we actually trained a DQN
+        # pickle_filename = 'results/' + game_name + '/' + filename + '_network.pkl'
         pass
-        # with open('results/' + game_name + '/' + filename + '_network.pkl', 'wb') as f:
-        #     pickle.dump(model, f)
     else: # it was random
-        with open('results/' + game_name + '/' + filename + '_memory.pkl', 'wb') as f:
-            pickle.dump(memory, f)
+        pickle_filename = 'results/' + game_name + '/' + filename + '_memory.pkl'
+    if os.path.exists(pickle_filename):
+        os.remove(pickle_filename)
+    with open(pickle_filename, 'wb') as f:
+        pickle.dump(memory, f)
