@@ -1,11 +1,7 @@
 import torch
 import torch.nn as nn
-import torch.optim as optim
-import torch.nn.functional as F
 from torch.autograd import Variable
-import matplotlib.pyplot as plt
 import numpy as np
-from Logger import Logger
 
 class NoTraining(nn.Module):
 
