@@ -8,7 +8,6 @@ from torch.autograd import Variable
 import torchvision.transforms as T
 from PIL import Image
 import pickle
-from pyvirtualdisplay import Display
 import argparse
 
 parser = argparse.ArgumentParser(description='Run RL simulation.')
@@ -21,6 +20,7 @@ parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000,
 
 args = parser.parse_args()
 if args.server:
+    from pyvirtualdisplay import Display
     display = Display(visible=0, size=(400, 600))
     display.start()
 
@@ -61,7 +61,6 @@ episode_durations = []
 frame_skip = 3
 update_frequency = 4
 BATCH_SIZE = 128
-# num_episodes = 1000 # defined below with default 1000
 
 game = None
 model = None
@@ -92,6 +91,8 @@ elif model_name == 'DQN_GS':
     model = DQNGS(game.env)
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
+if use_cuda:
+    model.cuda()
 
 if agent_name == 'EpsilonGreedy':
     agent = EpsilonGreedy(model, game.env)
@@ -112,8 +113,7 @@ if model_name != 'NoTraining':
     if os.path.exists(replay_memory_file):
         with open(replay_memory_file, 'rb') as f:
             sample_states = pickle.load(f)
-        sample_states = sample_states.sample(BATCH_SIZE)
-        sample_states = Variable(torch.cat([sample_state.state for sample_state in sample_states]))
+        sample_states = Variable(torch.cat(sample_states))
 
 def main(batch_sz, num_episodes):
     
@@ -177,6 +177,7 @@ def main(batch_sz, num_episodes):
                 if 'DQN_GS' == model_name and sample_states:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
+    game.env.close()
             
 def get_screen():
     if model_name == 'DQN':
@@ -222,4 +223,6 @@ finally:
         if os.path.exists(pickle_filename):
             os.remove(pickle_filename)
         with open(pickle_filename, 'wb') as f:
-            pickle.dump(memory, f)
+            sample_states = memory.sample(BATCH_SIZE)
+            sample_states = [sample_state.state for sample_state in sample_states]
+            pickle.dump(sample_states, f)
