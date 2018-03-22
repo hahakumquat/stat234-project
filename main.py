@@ -51,6 +51,11 @@ from AcrobotGame import AcrobotGame
 from MountainCarGame import MountainCarGame
 from CartPoleCroppedGame import CartPoleCroppedGame
 
+use_cuda = torch.cuda.is_available()
+FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
+LongTensor = torch.cuda.LongTensor if use_cuda else torch.LongTensor
+ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
+
 memory = ReplayMemory(args.nreplay)
 total_rewards = []
 episode_durations = []
@@ -134,7 +139,7 @@ def main(batch_sz, num_episodes):
                 t += 1
 
             total_reward += frame_skip_reward
-            frame_skip_reward = torch.FloatTensor([frame_skip_reward])
+            frame_skip_reward = FloatTensor([frame_skip_reward])
 
             # Observe new state
             last_screen = current_screen
@@ -189,8 +194,8 @@ def get_screen():
     screen = torch.from_numpy(screen)
 
     # Resize, and add a batch dimension (BCHW)
-    # print(resize(screen).unsqueeze(0).type(torch.FloatTensor).shape)
-    return resize(screen).unsqueeze(0).type(torch.FloatTensor)
+    # print(resize(screen).unsqueeze(0).type(FloatTensor).shape)
+    return resize(screen).unsqueeze(0).type(FloatTensor)
 
 def resize(screen):
     rsz = T.Compose([T.ToPILImage(),

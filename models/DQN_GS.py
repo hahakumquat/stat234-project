@@ -9,6 +9,11 @@ import numpy as np
 from Logger import Logger
 from ReplayMemory import Transition
 
+use_cuda = torch.cuda.is_available()
+FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
+LongTensor = torch.cuda.LongTensor if use_cuda else torch.LongTensor
+ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
+
 class DQNGS(nn.Module):
 
     def __init__(self, env, batch_sz=128, lr=0.001, gamma=0.99):
@@ -55,7 +60,7 @@ class DQNGS(nn.Module):
         batch = Transition(*zip(*transitions))
 
         # Compute a mask of non-final states and concatenate the batch elements
-        non_final_mask = torch.ByteTensor(tuple(map(lambda s: s is not None,
+        non_final_mask = ByteTensor(tuple(map(lambda s: s is not None,
                                               batch.next_state)))
 
         # We don't want to backprop through the expected action values and volatile
@@ -67,7 +72,7 @@ class DQNGS(nn.Module):
         action_batch = Variable(torch.cat(batch.action))
         reward_batch = Variable(torch.cat(batch.reward))
         # Compute V(s_{t+1}) for all next states.
-        next_state_values = Variable(torch.zeros(len(state_batch)).type(torch.FloatTensor))
+        next_state_values = Variable(torch.zeros(len(state_batch)).type(FloatTensor))
         next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
 
         # Now, we don't want to mess up the loss with a volatile flag, so let's
