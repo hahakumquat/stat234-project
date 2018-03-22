@@ -111,7 +111,7 @@ Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q.csv')
 
 # get sample states to compute Q function instead of (in addition to) average reward
 if model_name != 'NoTraining':
-    replay_memory_file = 'data/sample_states/' + game.file_prefix + 'NoTraining_Random_memory.pkl'
+    replay_memory_file = 'data/sample_states/' + game.file_prefix + 'NoTraining_Random_memory' + ('' if use_cuda else '_cpu') + '.pkl'
     if os.path.exists(replay_memory_file):
         with open(replay_memory_file, 'rb') as f:
             sample_states = pickle.load(f)
@@ -119,7 +119,7 @@ if model_name != 'NoTraining':
         print('Loaded in sample states.')
 
 if args.base_network and model_name != 'NoTraining':
-    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network.pt'
+    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network' + ('' if use_cuda else '_cpu') + '.pt'
     if os.path.exists(network_file_to_load):
         model.load_state_dict(torch.load(network_file_to_load))
         print('Loaded pre-trained network.')
@@ -218,7 +218,7 @@ except KeyboardInterrupt:
 finally:
     game.env.close()
     if model_name != 'NoTraining' and agent_name == 'Random': # then we actually trained a DQN
-        base_network_filename = 'results/' + game_name + '/' + filename + '_network.pt'
+        base_network_filename = 'results/' + game_name + '/' + filename + '_network' + ('' if use_cuda else '_cpu') + '.pt'
         # don't think we're actually going to save this until the end
         torch.save(model.state_dict(), base_network_filename)
         print('Saved random policy network.')
@@ -229,7 +229,7 @@ finally:
         # model.eval()
         pass
     if agent_name == 'Random' and model_name == 'NoTraining': # it was random
-        pickle_filename = 'results/' + game_name + '/' + filename + '_memory.pkl'
+        pickle_filename = 'results/' + game_name + '/' + filename + '_memory' + ('' if use_cuda else '_cpu') + '.pkl'
         if os.path.exists(pickle_filename):
             os.remove(pickle_filename)
         with open(pickle_filename, 'wb') as f:
