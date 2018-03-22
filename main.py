@@ -232,8 +232,8 @@ finally:
         # model.load_state_dict(torch.load(pickle_filename))
         # model.eval()
         pass
-    if agent_name == 'Random' and model_name == 'NoTraining': # it was random
-        pickle_filename = 'results/' + game_name + '/' + filename + '_memory' + ('' if use_cuda else '_cpu') + '.pkl'
+    if agent_name == 'Random':# and model_name == 'NoTraining': # it was random
+        pickle_filename = 'results/' + game_name + '/' + game.file_prefix + 'NoTraining_Random_memory' + ('' if use_cuda else '_cpu') + '.pkl'
         if os.path.exists(pickle_filename):
             os.remove(pickle_filename)
         with open(pickle_filename, 'wb') as f:
