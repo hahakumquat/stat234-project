@@ -3,6 +3,7 @@
 #SBATCH -N 1
 #SBATCH -t 5-00:00
 #SBATCH -p gpu_requeue
+#SBATCH --gres=gpu
 #SBATCH --mem=4096
 #SBATCH -o acrobot_dqn.out
 #SBATCH -e acrobot_dqn.err
