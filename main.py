@@ -8,7 +8,6 @@ from torch.autograd import Variable
 import torchvision.transforms as T
 from PIL import Image
 import pickle
-from pyvirtualdisplay import Display
 import argparse
 
 parser = argparse.ArgumentParser(description='Run RL simulation.')
@@ -21,6 +20,7 @@ parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000,
 
 args = parser.parse_args()
 if args.server:
+    from pyvirtualdisplay import Display
     display = Display(visible=0, size=(400, 600))
     display.start()
 
@@ -61,7 +61,6 @@ episode_durations = []
 frame_skip = 3
 update_frequency = 4
 BATCH_SIZE = 128
-# num_episodes = 1000 # defined below with default 1000
 
 game = None
 model = None
@@ -222,4 +221,5 @@ finally:
         if os.path.exists(pickle_filename):
             os.remove(pickle_filename)
         with open(pickle_filename, 'wb') as f:
-            pickle.dump(memory, f)
+
+            pickle.dump(memory.sample(BATCH_SIZE), f)
