@@ -10,6 +10,11 @@ from PIL import Image
 import pickle
 import argparse
 
+import time
+import datetime
+
+timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S')
+
 parser = argparse.ArgumentParser(description='Run RL simulation.')
 parser.add_argument('-g', metavar='game', default='CartPoleGame', help='The game name.')
 parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model name.')
@@ -104,10 +109,10 @@ else:
     raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 
 filename = game.file_prefix + model_name + '_' + agent_name
-reward_log = Logger('results/' + game_name + '/' + filename + '_rewards.csv')
-duration_log = Logger('results/' + game_name + '/' + filename + '_durations.csv')
-loss_log = Logger('results/' + game_name + '/' + filename + '_losses.csv')
-Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q.csv')
+reward_log = Logger('results/' + game_name + '/' + filename + '_rewards_' + timestamp + '.csv')
+duration_log = Logger('results/' + game_name + '/' + filename + '_durations_' + timestamp + '.csv')
+loss_log = Logger('results/' + game_name + '/' + filename + '_losses_' + timestamp + '.csv')
+Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q_' + timestamp + '.csv')
 
 # get sample states to compute Q function instead of (in addition to) average reward
 if model_name != 'NoTraining':
@@ -202,7 +207,6 @@ def get_screen():
     screen = torch.from_numpy(screen)
 
     # Resize, and add a batch dimension (BCHW)
-    # print(resize(screen).unsqueeze(0).type(FloatTensor).shape)
     return resize(screen).unsqueeze(0).type(FloatTensor)
 
 def resize(screen):
