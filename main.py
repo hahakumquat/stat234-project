@@ -8,9 +8,21 @@ from torch.autograd import Variable
 import torchvision.transforms as T
 from PIL import Image
 import pickle
+from pyvirtualdisplay import Display
+import argparse
 
-# from itertools import count
-# from copy import deepcopy
+parser = argparse.ArgumentParser(description='Run RL simulation.')
+parser.add_argument('-g', metavar='game', default='CartPoleGame', help='The game name.')
+parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model name.')
+parser.add_argument('-a', metavar='agent', default='EpsilonGreedy', help='The agent name.')
+parser.add_argument('-e', metavar='episodes', type=int, default=1000, help='Number of episodes.')
+parser.add_argument('--server',  action='store_true', help='Creates a fake window for server-side running.')
+parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
+
+args = parser.parse_args()
+if args.server:
+    display = Display(visible=0, size=(400, 600))
+    display.start()
 
 # first change the cwd to the script path
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
@@ -39,7 +51,7 @@ from AcrobotGame import AcrobotGame
 from MountainCarGame import MountainCarGame
 from CartPoleCroppedGame import CartPoleCroppedGame
 
-memory = ReplayMemory(10000)
+memory = ReplayMemory(args.nreplay)
 total_rewards = []
 episode_durations = []
 frame_skip = 4
@@ -51,52 +63,37 @@ game = None
 model = None
 agent = None
 
-if len(sys.argv) >= 2:
-    game_name = sys.argv[1]
-    if game_name == 'CartPoleGame':
-        game = CartPoleGame()
-    elif game_name == 'AcrobotGame':
-        game = AcrobotGame()
-    elif game_name == 'MountainCarGame':
-        game = MountainCarGame()
-    elif game_name == 'CartPoleCroppedGame':
-        game = CartPoleCroppedGame()
-    else:
-        raise Exception('Game does not exist. Ex: For CartPoleGame.py, use CartPoleGame')
+game_name = args.g
+model_name = args.m
+agent_name = args.a
+num_episodes = args.e
 
-    if len(sys.argv) >= 4:
-        model_name = sys.argv[2]
-        agent_name = sys.argv[3]
-
-        if model_name == 'NoTraining':
-            model = NoTraining(game.env)
-        elif model_name == 'DQN':
-            model = DQN(game.env)
-        elif model_name == 'DQN_GS':
-            model = DQNGS(game.env)
-        else:
-            raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
-
-        if agent_name == 'EpsilonGreedy':
-            agent = EpsilonGreedy(model, game.env)
-        elif agent_name == 'Random':
-            agent = Random(model, game.env)
-        else:
-            raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
-
-        if len(sys.argv) >= 5:
-            num_episodes = int(sys.argv[4])
-        else:
-            num_episodes = 1000
-    else: 
-        model_name = 'DQN_GS'
-        model = DQNGS(game.env)
-        agent_name = 'EpsilonGreedy'
-        agent = EpsilonGreedy(model, game.env)
-        num_episodes = 1000
-
+if game_name == 'CartPoleGame':
+    game = CartPoleGame()
+elif game_name == 'AcrobotGame':
+    game = AcrobotGame()
+elif game_name == 'MountainCarGame':
+    game = MountainCarGame()
+elif game_name == 'CartPoleCroppedGame':
+    game = CartPoleCroppedGame()
 else:
-    raise Exception('Usage: python main.py game_name [model_name] [agent_name] [num_episodes]')
+    raise Exception('Game does not exist. Ex: For CartPoleGame.py, use CartPoleGame')
+
+if model_name == 'NoTraining':
+    model = NoTraining(game.env)
+elif model_name == 'DQN':
+    model = DQN(game.env)
+elif model_name == 'DQN_GS':
+    model = DQNGS(game.env)
+else:
+    raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
+
+if agent_name == 'EpsilonGreedy':
+    agent = EpsilonGreedy(model, game.env)
+elif agent_name == 'Random':
+    agent = Random(model, game.env)
+else:
+    raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 
 filename = game.file_prefix + model_name + '_' + agent_name
 reward_log = Logger('results/' + game_name + '/' + filename + '_rewards.csv')
@@ -114,9 +111,8 @@ if model_name != 'NoTraining':
         sample_states = Variable(torch.cat([sample_state.state for sample_state in sample_states]))
 
 def main(batch_sz, num_episodes):
+    
     for i_episode in range(num_episodes):
-
-        # Initialize the environment and state
         game.env.reset()
         last_screen = get_screen()
         current_screen = get_screen()
