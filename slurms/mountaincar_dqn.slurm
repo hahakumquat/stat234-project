@@ -1,9 +1,8 @@
 #!/bin/bash
 #
-#SBATCH -n 1
 #SBATCH -N 1
 #SBATCH -t 5-00:00
-#SBATCH -p general
+#SBATCH -p gpu_requeue
 #SBATCH --mem=4096
 #SBATCH -o mountaincar_dqn.out
 #SBATCH -e mountaincar_dqn.err
