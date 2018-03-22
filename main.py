@@ -62,6 +62,7 @@ BATCH_SIZE = 128
 game = None
 model = None
 agent = None
+sample_states = None
 
 game_name = args.g
 model_name = args.m
@@ -169,7 +170,8 @@ def main(batch_sz, num_episodes):
                 reward_log.log(total_reward)
                 episode_durations.append(t + 1)
                 duration_log.log(t + 1)
-                Q_log.log(model.compute_sample_Q(sample_states))
+                if 'DQN_GS' == model_name and sample_states:
+                    Q_log.log(model.compute_sample_Q(sample_states))
                 break
             
 def get_screen():
