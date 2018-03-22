@@ -181,8 +181,9 @@ def get_screen():
         screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
 
     screen = game.modify_screen(screen)
-    
-    screen = np.ascontiguousarray(screen / 255, dtype=np.float32)
+
+    screen = np.ascontiguousarray(screen, dtype=np.float32)
+    screen /= 255
     screen = torch.from_numpy(screen)
 
     # Resize, and add a batch dimension (BCHW)
