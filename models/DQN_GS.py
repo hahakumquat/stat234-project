@@ -4,6 +4,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
 import matplotlib.pyplot as plt
+import numpy as np
 
 from Logger import Logger
 from ReplayMemory import Transition
@@ -94,3 +95,6 @@ class DQNGS(nn.Module):
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
         return loss.data[0] / len(state_action_values)
+
+    def compute_sample_Q(self, sample_states):
+        return self.forward(sample_states).max(1)[0].mean(0).data[0]
