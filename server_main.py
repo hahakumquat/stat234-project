@@ -51,6 +51,8 @@ total_rewards = []
 episode_durations = []
 frame_skip = 4
 update_frequency = 4
+BATCH_SIZE = 128
+# num_episodes = 1000 # defined above with default 1000
 
 game = None
 model = None
@@ -73,14 +75,15 @@ if len(sys.argv) >= 2:
         model_name = sys.argv[2]
         agent_name = sys.argv[3]
 
-        if model_name == 'DQN':
+        if model_name == 'NoTraining':
+            model = NoTraining(game.env)
+        elif model_name == 'DQN':
             model = DQN(game.env)
         elif model_name == 'DQN_GS':
             model = DQNGS(game.env)
-        elif model_name == 'NoTraining':
-            model = NoTraining(game.env)
         else:
             raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
+
         if agent_name == 'EpsilonGreedy':
             agent = EpsilonGreedy(model, game.env)
         elif agent_name == 'Random':
@@ -106,6 +109,16 @@ filename = game.file_prefix + model_name + '_' + agent_name
 reward_log = Logger('results/' + game_name + '/' + filename + '_rewards.csv')
 duration_log = Logger('results/' + game_name + '/' + filename + '_durations.csv')
 loss_log = Logger('results/' + game_name + '/' + filename + '_losses.csv')
+Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q.csv')
+
+# get sample states to compute Q function instead of (in addition to) average reward
+if model_name != 'NoTraining':
+    replay_memory_file = 'results/' + game_name + '/' + game.file_prefix + 'NoTraining_Random_memory.pkl'
+    if os.path.exists(replay_memory_file):
+        with open(replay_memory_file, 'rb') as f:
+            sample_states = pickle.load(f)
+        sample_states = sample_states.sample(BATCH_SIZE)
+        sample_states = Variable(torch.cat([sample_state.state for sample_state in sample_states]))
 
 def main(batch_sz, num_episodes):
     for i_episode in range(num_episodes):
@@ -167,6 +180,7 @@ def main(batch_sz, num_episodes):
                 reward_log.log(total_reward)
                 episode_durations.append(t + 1)
                 duration_log.log(t + 1)
+                Q_log.log(model.compute_sample_Q(sample_states))
                 break
             
 def get_screen():
@@ -192,8 +206,6 @@ def resize(screen):
             T.ToTensor()])
     return rsz(screen)
 
-BATCH_SIZE = 128
-# num_episodes = 1000 # defined above with default 1000
 try:
     main(BATCH_SIZE, num_episodes)
 except KeyboardInterrupt:
