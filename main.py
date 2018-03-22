@@ -111,8 +111,7 @@ if model_name != 'NoTraining':
     if os.path.exists(replay_memory_file):
         with open(replay_memory_file, 'rb') as f:
             sample_states = pickle.load(f)
-        sample_states = sample_states.sample(BATCH_SIZE)
-        sample_states = Variable(torch.cat([sample_state.state for sample_state in sample_states]))
+        sample_states = Variable(torch.cat(sample_states))
 
 def main(batch_sz, num_episodes):
     
@@ -176,6 +175,7 @@ def main(batch_sz, num_episodes):
                 if 'DQN_GS' == model_name and sample_states:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
+    game.env.close()
             
 def get_screen():
     if model_name == 'DQN':
@@ -221,5 +221,6 @@ finally:
         if os.path.exists(pickle_filename):
             os.remove(pickle_filename)
         with open(pickle_filename, 'wb') as f:
-
-            pickle.dump(memory.sample(BATCH_SIZE), f)
+            sample_states = memory.sample(BATCH_SIZE)
+            sample_states = [sample_state.state for sample_state in sample_states]
+            pickle.dump(sample_states, f)
