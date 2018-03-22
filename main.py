@@ -37,7 +37,6 @@ from ReplayMemory import ReplayMemory, Transition
 from Logger import Logger
 
 # models
-from DQN import DQN
 from DQN_GS import DQNGS
 from NoTraining import NoTraining
 
