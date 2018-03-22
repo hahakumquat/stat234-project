@@ -10,4 +10,5 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=michaelge@college.harvard.edu
 
-python ../main.py -g MountainCarGame -m DQN_GS -a EpsilonGreedy -e 10000 --server
+
+cd ~/stat234-project/ && python main.py -g MountainCarGame -m DQN_GS -a EpsilonGreedy -e 10000 --server
