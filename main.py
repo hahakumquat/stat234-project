@@ -16,6 +16,7 @@ parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model nam
 parser.add_argument('-a', metavar='agent', default='EpsilonGreedy', help='The agent name.')
 parser.add_argument('-e', metavar='episodes', type=int, default=1000, help='Number of episodes.')
 parser.add_argument('--server',  action='store_true', help='Creates a fake window for server-side running.')
+parser.add_argument('--base_network',  action='store_true', help='Starts training from a network with pre-trained weights.')
 parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
 
 args = parser.parse_args()
@@ -93,6 +94,7 @@ else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
     model.cuda()
+    print('Using CUDA.')
 
 if agent_name == 'EpsilonGreedy':
     agent = EpsilonGreedy(model, game.env)
@@ -109,11 +111,18 @@ Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q.csv')
 
 # get sample states to compute Q function instead of (in addition to) average reward
 if model_name != 'NoTraining':
-    replay_memory_file = 'results/' + game_name + '/' + game.file_prefix + 'NoTraining_Random_memory.pkl'
+    replay_memory_file = 'data/sample_states/' + game.file_prefix + 'NoTraining_Random_memory.pkl'
     if os.path.exists(replay_memory_file):
         with open(replay_memory_file, 'rb') as f:
             sample_states = pickle.load(f)
         sample_states = Variable(torch.cat(sample_states))
+        print('Loaded in sample states.')
+
+if args.base_network and model_name != 'NoTraining':
+    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network.pt'
+    if os.path.exists(network_file_to_load):
+        model.load_state_dict(torch.load(network_file_to_load))
+        print('Loaded pre-trained network.')
 
 def main(batch_sz, num_episodes):
     
@@ -174,10 +183,9 @@ def main(batch_sz, num_episodes):
                 reward_log.log(total_reward)
                 episode_durations.append(t + 1)
                 duration_log.log(t + 1)
-                if 'DQN_GS' == model_name and sample_states:
+                if sample_states is not None:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
-    game.env.close()
             
 def get_screen():
     if model_name == 'DQN':
@@ -208,17 +216,19 @@ try:
 except KeyboardInterrupt:
     print('Detected KeyboardInterrupt. ')
 finally:
-    if model_name != 'NoTraining': # then we actually trained a DQN
-        # pickle_filename = 'results/' + game_name + '/' + filename + '_network.pkl'
-        # # don't think we're actually going to save this until the end
-        # torch.save(model.state_dict(), pickle_filename)
+    game.env.close()
+    if model_name != 'NoTraining' and agent_name == 'Random': # then we actually trained a DQN
+        base_network_filename = 'results/' + game_name + '/' + filename + '_network.pt'
+        # don't think we're actually going to save this until the end
+        torch.save(model.state_dict(), base_network_filename)
+        print('Saved random policy network.')
 
-        # # # Later to restore and evaluate:
-        # # model = DQNGS(game.env)
-        # # model.load_state_dict(torch.load(pickle_filename))
-        # # model.eval()
+        # # Later to restore and evaluate:
+        # model = DQNGS(game.env)
+        # model.load_state_dict(torch.load(pickle_filename))
+        # model.eval()
         pass
-    else: # it was random
+    if agent_name == 'Random' and model_name == 'NoTraining': # it was random
         pickle_filename = 'results/' + game_name + '/' + filename + '_memory.pkl'
         if os.path.exists(pickle_filename):
             os.remove(pickle_filename)
@@ -226,3 +236,6 @@ finally:
             sample_states = memory.sample(BATCH_SIZE)
             sample_states = [sample_state.state for sample_state in sample_states]
             pickle.dump(sample_states, f)
+        print('Saved ReplayMemory sample states.')
+    else:
+        pass
