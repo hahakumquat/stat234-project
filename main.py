@@ -91,6 +91,8 @@ elif model_name == 'DQN_GS':
     model = DQNGS(game.env)
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
+if use_cuda:
+    model.cuda()
 
 if agent_name == 'EpsilonGreedy':
     agent = EpsilonGreedy(model, game.env)
