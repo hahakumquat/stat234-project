@@ -7,6 +7,6 @@
 #SBATCH -o mountaincar_dqn_cpu.out
 #SBATCH -e mountaincar_dqn_cpu.err
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=michaelge@college.harvard.edu
+#SBATCH --mail-user=michaelge@college.harvard.edu, rouyang@college.harvard.edu
 
 cd ~/stat234-project/ && python main.py -g MountainCarGame -m DQN_GS -a EpsilonGreedy --server

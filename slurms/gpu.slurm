@@ -9,6 +9,6 @@
 #SBATCH -e gpu.err
 #SBATCH --mail-type=ALL
 #SBATCH --gres=gpu:1
-#SBATCH --mail-user=michaelge@college.harvard.edu
+#SBATCH --mail-user=michaelge@college.harvard.edu, rouyang@college.harvard.edu
 
 python test.py

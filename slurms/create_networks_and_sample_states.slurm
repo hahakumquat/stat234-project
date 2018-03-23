@@ -8,7 +8,7 @@
 #SBATCH -o create.out
 #SBATCH -e create.err
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=rouyang@college.harvard.edu
+#SBATCH --mail-user=michaelge@college.harvard.edu, rouyang@college.harvard.edu
 
 # run each game for 1000 episodes
 cd ~/stat234-project/ && python main.py -g CartPoleGame -m DQN_GS -a Random -e 1000 --server

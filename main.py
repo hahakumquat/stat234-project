@@ -112,7 +112,6 @@ filename = game.file_prefix + model_name + '_' + agent_name
 reward_log = Logger('results/' + game_name + '/' + filename + '_rewards_' + timestamp + '.csv')
 duration_log = Logger('results/' + game_name + '/' + filename + '_durations_' + timestamp + '.csv')
 loss_log = Logger('results/' + game_name + '/' + filename + '_losses_' + timestamp + '.csv')
-Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q_' + timestamp + '.csv')
 
 # get sample states to compute Q function instead of (in addition to) average reward
 if model_name != 'NoTraining':
@@ -122,6 +121,7 @@ if model_name != 'NoTraining':
             sample_states = pickle.load(f)
         sample_states = Variable(torch.cat(sample_states))
         print('Loaded in sample states.')
+        Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q_' + timestamp + '.csv')
 
 if args.base_network and model_name != 'NoTraining':
     network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network' + ('' if use_cuda else '_cpu') + '.pt'
