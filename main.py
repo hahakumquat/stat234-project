@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser(description='Run RL simulation.')
 parser.add_argument('-g', metavar='game', default='CartPoleGame', help='The game name.')
 parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model name.')
 parser.add_argument('-a', metavar='agent', default='EpsilonGreedy', help='The agent name.')
-parser.add_argument('-e', metavar='episodes', type=int, default=1000, help='Number of episodes.')
+parser.add_argument('-e', metavar='ntrains', type=int, default=1000000, help='Number of trains.')
 parser.add_argument('--server',  action='store_true', help='Creates a fake window for server-side running.')
 parser.add_argument('--base_network',  action='store_true', help='Starts training from a network with pre-trained weights.')
 parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
@@ -76,7 +76,7 @@ sample_states = None
 game_name = args.g
 model_name = args.m
 agent_name = args.a
-num_episodes = args.e
+num_trains = args.e
 
 if game_name == 'CartPoleGame':
     game = CartPoleGame()
@@ -129,9 +129,9 @@ if args.base_network and model_name != 'NoTraining':
         model.load_state_dict(torch.load(network_file_to_load))
         print('Loaded pre-trained network.')
 
-def main(batch_sz, num_episodes):
-    
-    for i_episode in range(num_episodes):
+def main(batch_sz, num_trains):
+    num_episodes = 0
+    while model.train_counter < num_trains:
         game.env.reset()
         last_screen = get_screen()
         current_screen = get_screen()
@@ -191,6 +191,7 @@ def main(batch_sz, num_episodes):
                 if sample_states is not None:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
+        num_episodes += 1
             
 def get_screen():
     if model_name == 'DQN':
@@ -216,7 +217,7 @@ def resize(screen):
     return rsz(screen)
 
 try:
-    main(BATCH_SIZE, num_episodes)
+    main(BATCH_SIZE, num_trains)
 except KeyboardInterrupt:
     print('Detected KeyboardInterrupt. ')
 finally:
@@ -231,7 +232,6 @@ finally:
         # model = DQNGS(game.env)
         # model.load_state_dict(torch.load(pickle_filename))
         # model.eval()
-        pass
     if agent_name == 'Random':# and model_name == 'NoTraining': # it was random
         pickle_filename = 'results/' + game_name + '/' + game.file_prefix + 'NoTraining_Random_memory' + ('' if use_cuda else '_cpu') + '.pkl'
         if os.path.exists(pickle_filename):

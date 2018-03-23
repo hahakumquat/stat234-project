@@ -43,8 +43,8 @@ class DQNGS(nn.Module):
         
         self.optimizer = optim.RMSprop(self.parameters(),
                                        lr=self.learning_rate)
-        self.loss_function = F.smooth_l1_loss
-        self.losses = []
+        self.loss_function = nn.MSELoss()
+        self.train_counter = 0
 
     def forward(self, state_batch):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
@@ -88,10 +88,8 @@ class DQNGS(nn.Module):
         # Compute the expected Q values
         expected_state_action_values = (next_state_values * self.gamma) + reward_batch
 
-        # Compute Huber loss
-        loss = F.smooth_l1_loss(state_action_values, expected_state_action_values)
-
-        self.losses.append(loss.data / len(state_action_values))     
+        # Compute loss
+        loss = self.loss_function(state_action_values, expected_state_action_values)
 
         # Optimize the model
         self.optimizer.zero_grad()
@@ -99,6 +97,7 @@ class DQNGS(nn.Module):
         for param in self.parameters():
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
+        self.train_counter += 1
         return loss.data[0] / len(state_action_values)
 
     def compute_sample_Q(self, sample_states):
