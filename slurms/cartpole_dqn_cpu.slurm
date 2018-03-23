@@ -2,11 +2,10 @@
 #
 #SBATCH -N 1
 #SBATCH -t 5-00:00
-#SBATCH -p gpu_requeue
-#SBATCH --gres=gpu
+#SBATCH -p general
 #SBATCH --mem=8192
-#SBATCH -o cartpole_dqn.out
-#SBATCH -e cartpole_dqn.err
+#SBATCH -o cartpole_dqn_cpu.out
+#SBATCH -e cartpole_dqn_cpu.err
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=michaelge@college.harvard.edu
 

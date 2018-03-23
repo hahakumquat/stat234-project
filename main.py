@@ -183,7 +183,6 @@ def main(batch_sz, num_trains):
                     loss_log.log(model.train(memory))
 
             if done:
-                print('Done! Duration:', t + 1)
                 total_rewards.append(total_reward)
                 reward_log.log(total_reward)
                 episode_durations.append(t + 1)

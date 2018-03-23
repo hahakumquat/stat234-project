@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sbatch slurms/cartpole_dqn_cpu.slurm
+sbatch slurms/mountaincar_dqn_cpu.slurm
+sbatch slurms/acrobot_dqn_cpu.slurm
