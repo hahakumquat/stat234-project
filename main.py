@@ -39,6 +39,7 @@ sys.path.append('models')
 sys.path.append('agents')
 sys.path.append('utils')
 
+# utils
 from ReplayMemory import ReplayMemory, Transition
 from Logger import Logger
 
@@ -160,7 +161,7 @@ def main(batch_sz, num_trains):
             if not done:
                 next_state = current_screen - last_screen
 
-                # get OpenAI Gym's 4 state elements
+                # get OpenAI Gym's state elements, in case we need them later
                 next_state_info = game.env.state
             else:
                 next_state = None
@@ -223,7 +224,6 @@ finally:
     game.env.close()
     if model_name != 'NoTraining' and agent_name == 'Random': # then we actually trained a DQN
         base_network_filename = 'results/' + game_name + '/' + filename + '_network' + ('' if use_cuda else '_cpu') + '.pt'
-        # don't think we're actually going to save this until the end
         torch.save(model.state_dict(), base_network_filename)
         print('Saved random policy network.')
 
