@@ -1,17 +1,17 @@
-import sys
-import os
-import gym
-import numpy as np
+import argparse
+import datetime
 import matplotlib.pyplot as plt
+import numpy as np
+import os
+import pickle
+from PIL import Image
+import sys
+import time
+
+import gym
 import torch
 from torch.autograd import Variable
 import torchvision.transforms as T
-from PIL import Image
-import pickle
-import argparse
-
-import time
-import datetime
 
 timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S')
 
@@ -20,8 +20,8 @@ parser.add_argument('-g', metavar='game', default='CartPoleGame', help='The game
 parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model name.')
 parser.add_argument('-a', metavar='agent', default='EpsilonGreedy', help='The agent name.')
 parser.add_argument('-e', metavar='ntrains', type=int, default=1000000, help='Number of trains.')
-parser.add_argument('--server',  action='store_true', help='Creates a fake window for server-side running.')
-parser.add_argument('--base_network',  action='store_true', help='Starts training from a network with pre-trained weights.')
+parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running.')
+parser.add_argument('--base_network', action='store_true', help='Starts training from a network with pre-trained weights.')
 parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
 
 args = parser.parse_args()
