@@ -145,7 +145,7 @@ def main(batch_sz, num_trains):
             action = agent.select_action(state)
             frame_skip_reward = 0
             for i_frame_skip in range(frame_skip):
-                _, reward, done, _ =  game.env.step(action[0, 0])
+                _, reward, done, _ =  game.env.step(action)
                 frame_skip_reward += reward
                 if done:
                     break

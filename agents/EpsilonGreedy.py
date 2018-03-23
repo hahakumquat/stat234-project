@@ -4,11 +4,6 @@ import random
 import torch
 from torch.autograd import Variable
 
-use_cuda = torch.cuda.is_available()
-FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
-LongTensor = torch.cuda.LongTensor if use_cuda else torch.LongTensor
-ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
-
 class EpsilonGreedy():
 
     def __init__(self, model, env, epsilon_start=1, epsilon_end=0.05, epsilon_decay=200):
@@ -24,7 +19,7 @@ class EpsilonGreedy():
         threshold = self.eps_end + (self.eps_start - self.eps_end) * np.exp(-1 * self.steps_done / self.eps_decay)
         self.steps_done += 1
         if sample > threshold:
-            return self.model.forward(Variable(state, volatile=True)).data.max(1)[1].view(1, 1)
+            return self.model.forward(Variable(state, volatile=True)).data.max(1)[1].view(1, 1)[0, 0]
         else:
-            return LongTensor([[self.env.action_space.sample()]])
+            return self.env.action_space.sample()
         
