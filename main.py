@@ -1,17 +1,17 @@
-import sys
-import os
-import gym
-import numpy as np
+import argparse
+import datetime
 import matplotlib.pyplot as plt
+import numpy as np
+import os
+import pickle
+from PIL import Image
+import sys
+import time
+
+import gym
 import torch
 from torch.autograd import Variable
 import torchvision.transforms as T
-from PIL import Image
-import pickle
-import argparse
-
-import time
-import datetime
 
 timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S')
 
@@ -20,8 +20,8 @@ parser.add_argument('-g', metavar='game', default='CartPoleGame', help='The game
 parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model name.')
 parser.add_argument('-a', metavar='agent', default='EpsilonGreedy', help='The agent name.')
 parser.add_argument('-e', metavar='ntrains', type=int, default=1000000, help='Number of trains.')
-parser.add_argument('--server',  action='store_true', help='Creates a fake window for server-side running.')
-parser.add_argument('--base_network',  action='store_true', help='Starts training from a network with pre-trained weights.')
+parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running.')
+parser.add_argument('--base_network', action='store_true', help='Starts training from a network with pre-trained weights.')
 parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
 
 args = parser.parse_args()
@@ -39,6 +39,7 @@ sys.path.append('models')
 sys.path.append('agents')
 sys.path.append('utils')
 
+# utils
 from ReplayMemory import ReplayMemory, Transition
 from Logger import Logger
 
@@ -160,7 +161,7 @@ def main(batch_sz, num_trains):
             if not done:
                 next_state = current_screen - last_screen
 
-                # get OpenAI Gym's 4 state elements
+                # get OpenAI Gym's state elements, in case we need them later
                 next_state_info = game.env.state
             else:
                 next_state = None
@@ -223,7 +224,6 @@ finally:
     game.env.close()
     if model_name != 'NoTraining' and agent_name == 'Random': # then we actually trained a DQN
         base_network_filename = 'results/' + game_name + '/' + filename + '_network' + ('_gpu' if use_cuda else '_cpu') + '.pt'
-        # don't think we're actually going to save this until the end
         torch.save(model.state_dict(), base_network_filename)
         print('Saved random policy network.')
 
