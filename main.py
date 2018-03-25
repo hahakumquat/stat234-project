@@ -101,6 +101,8 @@ else:
 if use_cuda:
     model.cuda()
     print('Using CUDA.', flush=True)
+else:
+    print('No CUDA. Using CPU.', flush=True)
 
 if agent_name == 'EpsilonGreedy':
     agent = EpsilonGreedy(model, game.env)
