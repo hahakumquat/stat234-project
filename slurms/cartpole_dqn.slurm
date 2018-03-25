@@ -4,7 +4,7 @@
 #SBATCH -t 5-00:00
 #SBATCH -p gpu_requeue
 #SBATCH --gres=gpu
-#SBATCH --mem=8192
+#SBATCH --mem=4096
 #SBATCH -o cartpole_dqn.out
 #SBATCH -e cartpole_dqn.err
 #SBATCH --mail-type=ALL
