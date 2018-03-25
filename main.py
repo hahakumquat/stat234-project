@@ -170,7 +170,7 @@ def main(batch_sz, num_trains):
                 next_state_info = None
 
             # Store the transition in memory
-            memory.push(state, action, frame_skip_reward, next_state, state_info, next_state_info)
+            memory.push(state, LongTensor([[action]]), frame_skip_reward, next_state, state_info, next_state_info)
 
             # Move to the next state
             state = next_state
