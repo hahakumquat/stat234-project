@@ -208,6 +208,18 @@ def get_screen():
     screen /= 255
     screen = torch.from_numpy(screen)
 
+    # # save grayscale, processed image
+    # plt.imshow(resize(screen).numpy()[0], cmap='gray')
+    # plt.axis('off')
+    # plt.tight_layout()
+    # plt.savefig(game.file_prefix + 'processed.pdf', bbox_inches='tight')
+
+    # # save original render image
+    # plt.imshow(game.env.render(mode='rgb_array'))
+    # plt.axis('off')
+    # plt.tight_layout()
+    # plt.savefig(game.file_prefix + 'original.pdf', bbox_inches='tight')
+
     # Resize, and add a batch dimension (BCHW)
     return resize(screen).unsqueeze(0).type(FloatTensor)
 
