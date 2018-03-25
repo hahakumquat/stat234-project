@@ -100,7 +100,7 @@ else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
     model.cuda()
-    print('Using CUDA.')
+    print('Using CUDA.', flush=True)
 
 if agent_name == 'EpsilonGreedy':
     agent = EpsilonGreedy(model, game.env)
@@ -121,14 +121,14 @@ if model_name != 'NoTraining':
         with open(replay_memory_file, 'rb') as f:
             sample_states = pickle.load(f)
         sample_states = Variable(torch.cat(sample_states))
-        print('Loaded in sample states.')
+        print('Loaded in sample states.', flush=True)
         Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q_' + timestamp + '.csv')
 
 if args.base_network and model_name != 'NoTraining':
     network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network' + ('_gpu' if use_cuda else '_cpu') + '.pt'
     if os.path.exists(network_file_to_load):
         model.load_state_dict(torch.load(network_file_to_load))
-        print('Loaded pre-trained network.')
+        print('Loaded pre-trained network.', flush=True)
 
 def main(batch_sz, num_trains):
     num_episodes = 0
@@ -219,13 +219,13 @@ def resize(screen):
 try:
     main(BATCH_SIZE, num_trains)
 except KeyboardInterrupt:
-    print('Detected KeyboardInterrupt. ')
+    print('Detected KeyboardInterrupt. ', flush=True)
 finally:
     game.env.close()
     if model_name != 'NoTraining' and agent_name == 'Random': # then we actually trained a DQN
         base_network_filename = 'results/' + game_name + '/' + filename + '_network' + ('_gpu' if use_cuda else '_cpu') + '.pt'
         torch.save(model.state_dict(), base_network_filename)
-        print('Saved random policy network.')
+        print('Saved random policy network.', flush=True)
 
         # # Later to restore and evaluate:
         # model = DQNGS(game.env)
@@ -239,6 +239,6 @@ finally:
             sample_states = memory.sample(BATCH_SIZE)
             sample_states = [sample_state.state for sample_state in sample_states]
             pickle.dump(sample_states, f)
-        print('Saved ReplayMemory sample states.')
+        print('Saved ReplayMemory sample states.', flush=True)
     else:
         pass
