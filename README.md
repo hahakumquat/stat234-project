@@ -14,7 +14,7 @@ OpenAI Gym
 4. Fix errors if unmerged into master OpenAI gym branch
 - https://github.com/openai/gym/pull/930
 - In gym/gym/envs/classic_control/cartpole.py, change ``self.observation_space = spaces.Box(-high, high)`` to ``self.observation_space = spaces.Box(-high, high, dtype=np.float32)`` to suppress logger warning
-5. Run main.py
+5. Run ``main.py``
 - ``python main.py -h`` for command-line argument help
 - ``python main.py -g CartPoleGame -m DQN_GS -a EpsilonGreedy -e 1000 --nreplay 10000`` for training grayscale DQN
 - ``python main.py -g CartPoleGame -m NoTraining -a Random -e 1000 --nreplay 10000`` for random policy
