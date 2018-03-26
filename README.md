@@ -23,7 +23,7 @@ OpenAI Gym
 See ``data`` folder
 - Acrobot Random: average duration 599.73, average reward -598.73
 - CartPole Random: average duration 18.441, average reward 18.441
-- MountainCar Random: average duration 2717.77, average reward 2717.77
+- MountainCar Random: average duration 2717.77, average reward -2717.77
 
 TODO:
 - anneal learning rate
