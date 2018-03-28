@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sbatch slurms/cartpole_dqn.slurm
-sbatch slurms/mountaincar_dqn.slurm
-sbatch slurms/acrobot_dqn.slurm
+sbatch slurms/CartPole_dqn.slurm
+sbatch slurms/MountainCar_dqn.slurm
+sbatch slurms/Acrobot_dqn.slurm
