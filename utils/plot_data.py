@@ -12,10 +12,13 @@ script_dir = os.path.dirname(os.getcwd())
 directory = 'data' if len(sys.argv) > 1 and sys.argv[1] == 'data' else 'results'
 y_lo = float("-inf")
 y_hi = float("inf")
+res = 20
 if len(sys.argv) >= 3:
     y_lo = float(sys.argv[2])
 if len(sys.argv) >= 4:
     y_hi = float(sys.argv[3])
+if len(sys.argv) >= 5:
+    res = float(sys.argv[4])
     
 root = os.path.join(script_dir, directory)
  
@@ -39,10 +42,17 @@ def plot_all(root):
                 continue
             xs = np.clip([float(r[0]) for r in reader], y_lo, y_hi)
             plt.plot(xs, label='raw')
-            resolution = int(len(xs) / 10)
+            resolution = int(len(xs) / res)
             means = running_mean(xs, resolution)
             plt.plot(range(resolution, len(means) + resolution), means, label='rolling mean over ' + str(resolution))
-            plt.title(os.path.basename(root) + ' ' + file.split('_')[-1][:-4])
+
+            # title
+            try:
+                plot_type = file[:file.index('_cpu')]
+            except ValueError:
+                plot_type = file[:file.index('.csv')]
+            
+            plt.title(plot_type)
             plt.xlabel('episodes')
             plt.legend()
             end_dir = path.split('.')[0] + '.pdf'
