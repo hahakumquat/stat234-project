@@ -1,17 +1,30 @@
+import numpy as np
 import matplotlib.pyplot as plt
 import csv
 import os
 import sys
-
+ 
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
 os.chdir(scriptPath)
-
+ 
 script_dir = os.path.dirname(os.getcwd())
-
+ 
 directory = 'data' if len(sys.argv) > 1 and sys.argv[1] == 'data' else 'results'
-
+y_lo = float("-inf")
+y_hi = float("inf")
+if len(sys.argv) >= 3:
+    y_lo = float(sys.argv[2])
+if len(sys.argv) >= 4:
+    y_hi = float(sys.argv[3])
+    
 root = os.path.join(script_dir, directory)
-
+ 
+def running_mean(lst, k):
+    cumsum = np.cumsum(np.insert(lst, 0, 0)) 
+    res = (cumsum[k:] - cumsum[:-k]) / float(k)
+    print(len(res))
+    return res
+ 
 def plot_all(root):
     for file in os.listdir(root):
         if os.path.isdir(os.path.join(root, file)):
@@ -24,12 +37,16 @@ def plot_all(root):
             except FileNotFoundError:
                 print(path + ' not found')
                 continue
-            xs = [float(r[0]) for r in reader]
-            plt.plot(xs)
+            xs = np.clip([float(r[0]) for r in reader], y_lo, y_hi)
+            plt.plot(xs, label='raw')
+            resolution = int(len(xs) / 10)
+            means = running_mean(xs, resolution)
+            plt.plot(range(resolution, len(means) + resolution), means, label='rolling mean over ' + str(resolution))
             plt.title(os.path.basename(root) + ' ' + file.split('_')[-1][:-4])
             plt.xlabel('episodes')
+            plt.legend()
             end_dir = path.split('.')[0] + '.pdf'
             plt.savefig(end_dir)
             plt.close()
-
+ 
 plot_all(root)
