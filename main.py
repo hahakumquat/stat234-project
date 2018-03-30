@@ -18,7 +18,7 @@ parser = argparse.ArgumentParser(description='Run RL simulation.')
 parser.add_argument('-g', metavar='game', default='CartPoleGame', help='The game name.')
 parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model name.')
 parser.add_argument('-a', metavar='agent', default='EpsilonGreedy', help='The agent name.')
-parser.add_argument('-e', metavar='ntrains', type=int, default=100000, help='Number of trains.')
+parser.add_argument('-e', metavar='ntrains', type=int, default=50000, help='Number of trains.')
 parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running.')
 parser.add_argument('--base_network', action='store_true', help='Starts training from a network with pre-trained weights.')
 parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
@@ -181,7 +181,7 @@ def main(batch_sz, num_trains):
                 # only train every frame_skip * update_frequency time steps, 
                 # i.e., only train after update_frequency different actions 
                 # have been selected. This speeds up training. See DQN paper.
-                if t % (frame_skip * update_frequency) == 0:
+                if model.train_counter % (frame_skip * update_frequency) == 0:
                     loss_log.log(model.train(memory))
 
             if done:

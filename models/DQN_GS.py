@@ -16,7 +16,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.0005, gamma=0.99):
+    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
@@ -44,9 +44,9 @@ class DQNGS(nn.Module):
         self.optimizer = optim.RMSprop(self.parameters(),
                                        lr=self.learning_rate)
 
-        # self.lr_annealer = lambda epoch: max(np.exp(-epoch / 8 - 2), 0.00025)
-        # self.scheduler = optim.LambdaLR(self.optimizer, 
-        #              lr_lambda=self.lr_annealer)
+        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 1000 - 2.3), 0.001)
+        self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
+                     lr_lambda=self.lr_annealer)
         
         self.loss_function = nn.MSELoss()
         self.train_counter = 0
@@ -76,7 +76,7 @@ class DQNGS(nn.Module):
         state_batch = Variable(torch.cat(batch.state))
         action_batch = Variable(torch.cat(batch.action))
         reward_batch = Variable(torch.cat(batch.reward))
-        # Compute V(s_{t+1}) for all next states.
+        # Compute max_{a'} Q(s_{t+1}, a') for all next states.
         next_state_values = Variable(torch.zeros(len(state_batch)).type(FloatTensor))
         next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
 
@@ -102,7 +102,7 @@ class DQNGS(nn.Module):
         for param in self.parameters():
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
-        # self.scheduler.step()
+        self.scheduler.step()
         self.train_counter += 1
         return loss.data[0] / len(state_action_values)
 
