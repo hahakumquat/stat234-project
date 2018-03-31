@@ -182,7 +182,7 @@ def main(batch_sz, num_trains):
                     loss_log.log(model.train_model(memory, target_network))
                 if total_frames % (frame_skip * update_frequency * target_update) == 0:
                     target_network.load_state_dict(model.state_dict())
-                    print('Updated target network!', flush=True)
+                    # print('Updated target network!', flush=True)
 
             if done:
                 total_rewards.append(total_reward)
@@ -253,5 +253,3 @@ finally:
             sample_states = [sample_state.state for sample_state in sample_states]
             pickle.dump(sample_states, f)
         print('Saved ReplayMemory sample states.', flush=True)
-    else:
-        pass
