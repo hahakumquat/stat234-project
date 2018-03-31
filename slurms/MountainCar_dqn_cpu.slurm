@@ -9,4 +9,4 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=michaelge@college.harvard.edu, rouyang@college.harvard.edu
 
-cd ~/stat234-project/ && python main.py -g MountainCarGame -m DQN_GS -a EpsilonGreedy --server
+cd ~/stat234-project/ && python main.py -g MountainCar-v0 -m DQN_GS -a EpsilonGreedy --server

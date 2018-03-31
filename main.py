@@ -51,9 +51,7 @@ from EpsilonGreedy import EpsilonGreedy
 from Random import Random
 
 # games
-from CartPoleGame import CartPoleGame
-from AcrobotGame import AcrobotGame
-from MountainCarGame import MountainCarGame
+from Game import Game
 from CartPoleCroppedGame import CartPoleCroppedGame
 
 use_cuda = torch.cuda.is_available()
@@ -79,16 +77,10 @@ model_name = args.m
 agent_name = args.a
 num_trains = args.e
 
-if game_name == 'CartPoleGame':
-    game = CartPoleGame()
-elif game_name == 'AcrobotGame':
-    game = AcrobotGame()
-elif game_name == 'MountainCarGame':
-    game = MountainCarGame()
-elif game_name == 'CartPoleCroppedGame':
+if game_name == 'CartPoleCroppedGame':
     game = CartPoleCroppedGame()
 else:
-    raise Exception('Game does not exist. Ex: For CartPoleGame.py, use CartPoleGame')
+    game = Game(game_name)
 
 if model_name == 'NoTraining':
     model = NoTraining(game.env)
