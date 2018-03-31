@@ -132,6 +132,7 @@ if args.base_network and model_name != 'NoTraining':
     network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network' + ('_gpu' if use_cuda else '_cpu') + '.pt'
     if os.path.exists(network_file_to_load):
         model.load_state_dict(torch.load(network_file_to_load))
+        target_network.load_state_dict(model.state_dict())
         print('Loaded pre-trained network.', flush=True)
 
 def main(batch_sz, num_trains):
