@@ -1,5 +1,6 @@
 import argparse
 import datetime
+# import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pickle
@@ -111,7 +112,8 @@ else:
 filename = 'results/' + game_name + '/' + game.file_prefix + model_name + '_' + agent_name
 reward_log = Logger(filename + '_rewards_' + cuda_label + '_' + timestamp + '.csv')
 duration_log = Logger(filename + '_durations_' + cuda_label + '_' + timestamp + '.csv')
-loss_log = Logger(filename + '_losses_' + cuda_label + '_' + timestamp + '.csv')
+if model_name != 'NoTraining':
+    loss_log = Logger(filename + '_losses_' + cuda_label + '_' + timestamp + '.csv')
 
 # get sample states to compute Q function instead of (in addition to) average reward
 if model_name != 'NoTraining':
@@ -121,7 +123,7 @@ if model_name != 'NoTraining':
             sample_states = pickle.load(f)
         sample_states = Variable(torch.cat(sample_states))
         print('Loaded in sample states.', flush=True)
-        Q_log = Logger(filename + '_sample_Q_' + timestamp + '.csv')
+        Q_log = Logger(filename + '_sample_Q_' + cuda_label + timestamp + '.csv')
 
 if args.base_network and model_name != 'NoTraining':
     network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network_' + cuda_label + '.pt'
@@ -181,7 +183,7 @@ def main(batch_sz, num_trains):
                 # only train every frame_skip * update_frequency time steps, 
                 # i.e., only train after update_frequency different actions 
                 # have been selected. This speeds up training. See DQN paper.
-                if total_frames % (frame_skip * update_frequency) == 0:
+                if total_frames % (frame_skip * update_frequency) == 0 and model_name != 'NoTraining':
                     loss_log.log(model.train_model(memory, target_network))
                 if total_frames % (frame_skip * update_frequency * target_update) == 0 and target_network is not None:
                     target_network.load_state_dict(model.state_dict())
