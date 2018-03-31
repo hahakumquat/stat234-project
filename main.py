@@ -84,6 +84,7 @@ else:
 
 if model_name == 'NoTraining':
     model = NoTraining(game.env)
+    target_network = None
 elif model_name == 'DQN_GS':
     model = DQNGS(game.env)
     target_network = DQNGS(game.env)
@@ -95,8 +96,10 @@ if use_cuda:
     model.cuda()
     target_network.cuda()
     print('Using CUDA.', flush=True)
+    cuda_label = 'gpu'
 else:
     print('No CUDA. Using CPU.', flush=True)
+    cuda_label = 'cpu'
 
 if agent_name == 'EpsilonGreedy':
     agent = EpsilonGreedy(model, game.env)
@@ -105,23 +108,23 @@ elif agent_name == 'Random':
 else:
     raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 
-filename = game.file_prefix + model_name + '_' + agent_name
-reward_log = Logger('results/' + game_name + '/' + filename + '_rewards_' + ('gpu_' if use_cuda else 'cpu_') + timestamp + '.csv')
-duration_log = Logger('results/' + game_name + '/' + filename + '_durations_' + ('gpu_' if use_cuda else 'cpu_') + timestamp + '.csv')
-loss_log = Logger('results/' + game_name + '/' + filename + '_losses_' + ('gpu_' if use_cuda else 'cpu_') + timestamp + '.csv')
+filename = 'results/' + game_name + '/' + game.file_prefix + model_name + '_' + agent_name
+reward_log = Logger(filename + '_rewards_' + cuda_label + '_' + timestamp + '.csv')
+duration_log = Logger(filename + '_durations_' + cuda_label + '_' + timestamp + '.csv')
+loss_log = Logger(filename + '_losses_' + cuda_label + '_' + timestamp + '.csv')
 
 # get sample states to compute Q function instead of (in addition to) average reward
 if model_name != 'NoTraining':
-    replay_memory_file = 'data/sample_states/' + game.file_prefix + 'NoTraining_Random_memory' + ('_gpu' if use_cuda else '_cpu') + '.pkl'
+    replay_memory_file = 'data/sample_states/' + game.file_prefix + 'NoTraining_Random_memory_' + cuda_label + '.pkl'
     if os.path.exists(replay_memory_file):
         with open(replay_memory_file, 'rb') as f:
             sample_states = pickle.load(f)
         sample_states = Variable(torch.cat(sample_states))
         print('Loaded in sample states.', flush=True)
-        Q_log = Logger('results/' + game_name + '/' + filename + '_sample_Q_' + timestamp + '.csv')
+        Q_log = Logger(filename + '_sample_Q_' + timestamp + '.csv')
 
 if args.base_network and model_name != 'NoTraining':
-    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network' + ('_gpu' if use_cuda else '_cpu') + '.pt'
+    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network_' + cuda_label + '.pt'
     if os.path.exists(network_file_to_load):
         model.load_state_dict(torch.load(network_file_to_load))
         target_network.load_state_dict(model.state_dict())
@@ -180,7 +183,7 @@ def main(batch_sz, num_trains):
                 # have been selected. This speeds up training. See DQN paper.
                 if total_frames % (frame_skip * update_frequency) == 0:
                     loss_log.log(model.train_model(memory, target_network))
-                if total_frames % (frame_skip * update_frequency * target_update) == 0:
+                if total_frames % (frame_skip * update_frequency * target_update) == 0 and target_network is not None:
                     target_network.load_state_dict(model.state_dict())
                     # print('Updated target network!', flush=True)
 
@@ -236,7 +239,7 @@ except KeyboardInterrupt:
 finally:
     game.env.close()
     if model_name != 'NoTraining' and agent_name == 'Random': # then we actually trained a DQN
-        base_network_filename = 'results/' + game_name + '/' + filename + '_network' + ('_gpu' if use_cuda else '_cpu') + '.pt'
+        base_network_filename = filename + '_network_' + cuda_label + '.pt'
         torch.save(model.state_dict(), base_network_filename)
         print('Saved random policy network.', flush=True)
 
@@ -245,7 +248,7 @@ finally:
         # model.load_state_dict(torch.load(pickle_filename))
         # model.eval()
     if agent_name == 'Random':# and model_name == 'NoTraining': # it was random
-        pickle_filename = 'results/' + game_name + '/' + game.file_prefix + 'NoTraining_Random_memory' + ('_gpu' if use_cuda else '_cpu') + '.pkl'
+        pickle_filename = 'results/' + game_name + '/' + game.file_prefix + 'NoTraining_Random_memory_' + cuda_label + '.pkl'
         if os.path.exists(pickle_filename):
             os.remove(pickle_filename)
         with open(pickle_filename, 'wb') as f:

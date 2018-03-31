@@ -59,7 +59,7 @@ class DQNGS(nn.Module):
         result = self.out_layer(state_batch)
         return result
 
-    def train_model(self, memory, target_network=None):
+    def train_model(self, memory, target_network):
         transitions = memory.sample(self.batch_size)
         # stackoverflow: 
         batch = Transition(*zip(*transitions))

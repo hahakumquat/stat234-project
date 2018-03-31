@@ -20,7 +20,7 @@ class NoTraining(nn.Module):
         result = Variable(FloatTensor(np.ones((len(state_batch), self.env.action_space.n))))
         return result
 
-    def train_model(self, memory):
+    def train_model(self, memory, target_network):
         self.train_counter += 1
         return -1
 
