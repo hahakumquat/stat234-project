@@ -190,12 +190,14 @@ def main(batch_sz, num_trains):
                     # print('Updated target network!', flush=True)
 
             if done:
-                total_rewards.append(total_reward)
+                # total_rewards.append(total_reward)
                 reward_log.log(total_reward)
-                episode_durations.append(t + 1)
+                # episode_durations.append(t + 1)
                 duration_log.log(t + 1)
                 if sample_states is not None:
                     Q_log.log(model.compute_sample_Q(sample_states))
+                break
+            elif t > 10000:
                 break
         num_episodes += 1
             
