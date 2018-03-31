@@ -9,7 +9,7 @@ os.chdir(scriptPath)
  
 script_dir = os.path.dirname(os.getcwd())
  
-directory = 'data' if len(sys.argv) > 1 and sys.argv[1] == 'data' else 'results'
+directory = sys.argv[1] if len(sys.argv) > 1 else 'results'
 y_lo = float("-inf")
 y_hi = float("inf")
 res = 20
