@@ -42,7 +42,7 @@ def plot_all(root):
                 continue
             xs = np.clip([float(r[0]) for r in reader], y_lo, y_hi)
             plt.plot(xs, label='raw')
-            resolution = int(len(xs) / res)
+            resolution = max(int(len(xs) / res), 1)
             means = running_mean(xs, resolution)
             plt.plot(range(resolution, len(means) + resolution), means, label='rolling mean over ' + str(resolution))
 
