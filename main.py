@@ -67,6 +67,7 @@ episode_durations = []
 frame_skip = 3
 update_frequency = 4
 BATCH_SIZE = 128
+target_update = 100
 
 game = None
 model = None
@@ -91,14 +92,16 @@ else:
 
 if model_name == 'NoTraining':
     model = NoTraining(game.env)
-elif model_name == 'DQN':
-    model = DQN(game.env)
 elif model_name == 'DQN_GS':
     model = DQNGS(game.env)
+    target_network = DQNGS(game.env)
+    target_network.load_state_dict(model.state_dict())
+    target_network.eval() # can't train target_network again
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
     model.cuda()
+    target_network.cuda()
     print('Using CUDA.', flush=True)
 else:
     print('No CUDA. Using CPU.', flush=True)
@@ -133,6 +136,7 @@ if args.base_network and model_name != 'NoTraining':
 
 def main(batch_sz, num_trains):
     num_episodes = 0
+    total_frames = 0
     while model.train_counter < num_trains:
         game.env.reset()
         last_screen = get_screen()
@@ -152,6 +156,7 @@ def main(batch_sz, num_trains):
                 if done:
                     break
                 t += 1
+                total_frames += 1
 
             total_reward += frame_skip_reward
             frame_skip_reward = FloatTensor([frame_skip_reward])
@@ -177,12 +182,14 @@ def main(batch_sz, num_trains):
 
             # Perform one step of the optimization (on the target network)
             if len(memory) >= BATCH_SIZE:
-
                 # only train every frame_skip * update_frequency time steps, 
                 # i.e., only train after update_frequency different actions 
                 # have been selected. This speeds up training. See DQN paper.
-                if model.train_counter % (frame_skip * update_frequency) == 0:
-                    loss_log.log(model.train(memory))
+                if total_frames % (frame_skip * update_frequency) == 0:
+                    loss_log.log(model.train_model(memory, target_network))
+                if total_frames % (frame_skip * update_frequency * target_update) == 0:
+                    target_network.load_state_dict(model.state_dict())
+                    print('Updated target network!', flush=True)
 
             if done:
                 total_rewards.append(total_reward)

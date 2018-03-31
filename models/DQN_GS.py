@@ -16,7 +16,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99):
+    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99, target_network=None):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
@@ -59,7 +59,7 @@ class DQNGS(nn.Module):
         result = self.out_layer(state_batch)
         return result
 
-    def train(self, memory):
+    def train_model(self, memory, target_network=None):
         transitions = memory.sample(self.batch_size)
         # stackoverflow: 
         batch = Transition(*zip(*transitions))
@@ -76,22 +76,29 @@ class DQNGS(nn.Module):
         state_batch = Variable(torch.cat(batch.state))
         action_batch = Variable(torch.cat(batch.action))
         reward_batch = Variable(torch.cat(batch.reward))
-        # Compute max_{a'} Q(s_{t+1}, a') for all next states.
-        next_state_values = Variable(torch.zeros(len(state_batch)).type(FloatTensor))
-        next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
-
-        # Now, we don't want to mess up the loss with a volatile flag, so let's
-        # clear it. After this, we'll just end up with a Variable that has
-        # requires_grad=False
-        next_state_values.volatile = False
 
         # Compute Q(s_t, a) - the model computes Q(s_t), then we select the
         # columns of actions taken
         state_action_values = self.forward(state_batch)
         state_action_values = state_action_values.gather(1, action_batch)
 
+        # Compute max_{a'} Q(s_{t+1}, a') for all next states.
+        next_state_values = Variable(torch.zeros(len(state_batch)).type(FloatTensor))
+        if target_network is not None:
+            next_state_values[non_final_mask] = target_network.forward(non_final_next_states).max(1)[0]
+        else:
+            next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
+        
+        # Now, we don't want to mess up the loss with a volatile flag, so let's
+        # clear it. After this, we'll just end up with a Variable that has
+        # requires_grad=False
+        # next_state_values.volatile = False
+
         # Compute the expected Q values
         expected_state_action_values = (next_state_values * self.gamma) + reward_batch
+
+        # The below line can replace next_state_values.volatile = False. See PyTorch DQN tutorial.
+        expected_state_action_values = Variable(expected_state_action_values.data)
 
         # Compute loss
         loss = self.loss_function(state_action_values, expected_state_action_values)

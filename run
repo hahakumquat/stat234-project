@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python main.py -g CartPoleGame -m DQN_GS -a EpsilonGreedy -e 1000
+python main.py -g CartPoleGame -m DQN_GS -a EpsilonGreedy -e 250
