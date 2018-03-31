@@ -16,7 +16,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99, target_network=None):
+    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
