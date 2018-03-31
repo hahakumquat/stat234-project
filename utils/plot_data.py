@@ -53,7 +53,7 @@ def plot_all(root):
                 plot_type = file[:file.index('.csv')]
             
             plt.title(plot_type)
-            plt.xlabel('episodes')
+            plt.xlabel('episodes' if 'losses' not in plot_type else 'number of trains')
             plt.legend()
             end_dir = path.split('.')[0] + '.pdf'
             plt.savefig(end_dir)
