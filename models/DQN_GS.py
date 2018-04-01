@@ -44,7 +44,7 @@ class DQNGS(nn.Module):
         self.optimizer = optim.RMSprop(self.parameters(),
                                        lr=self.learning_rate)
 
-        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 500 - 2.3), 0.0005)
+        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 1000 - 4.6), 0.0005)
         self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
                      lr_lambda=self.lr_annealer)
         
