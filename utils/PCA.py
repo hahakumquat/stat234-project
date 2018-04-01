@@ -3,8 +3,8 @@ from sklearn.decomposition import IncrementalPCA as sklPCA
 
 class PCA():
 
-    def __init__(self, states, n = 100):
-        self.pca = sklPCA(n_components = n)
+    def __init__(self, states, n = 100, batch_size=10):
+        self.pca = sklPCA(n_components = n, batch_size=10)
         X = states.reshape((len(states), -1))
         self.original_dim = states[0].shape
         self.pca.fit(X)
