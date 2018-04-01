@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.decomposition import PCA as sklPCA
+from sklearn.decomposition import IncrementalPCA as sklPCA
 
 class PCA():
 
