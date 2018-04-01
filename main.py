@@ -143,6 +143,7 @@ def main(batch_sz, num_trains):
         total_reward = 0
         t = 0
         done = False
+        update_target = False
         while not done:
             # Select and perform an action
             action = agent.select_action(state)
@@ -178,11 +179,12 @@ def main(batch_sz, num_trains):
                 if update_frequency_counter % update_frequency == 0:
                     loss_log.log(model.train_model(memory, target_network))
                 if update_frequency_counter % (update_frequency * target_update) == 0 and target_network is not None:
-                    target_network.load_state_dict(model.state_dict())
-                    # print('Updated target network!', flush=True)
+                    update_target = True
                 update_frequency_counter += 1
 
             if done or t > 10000:
+                target_network.load_state_dict(model.state_dict())
+                # print('Updated target network!', flush=True)
                 # total_rewards.append(total_reward)
                 reward_log.log(total_reward)
                 # episode_durations.append(t + 1)
