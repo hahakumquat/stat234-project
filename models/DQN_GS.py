@@ -114,4 +114,5 @@ class DQNGS(nn.Module):
         return loss.data[0] / len(state_action_values)
 
     def compute_sample_Q(self, sample_states):
-        return self.forward(sample_states).max(1)[0].mean(0).data[0]
+        res = self.forward(sample_states).max(1)[0].mean(0).data[0]
+        return float(res)
