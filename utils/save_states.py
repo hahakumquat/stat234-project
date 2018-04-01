@@ -1,26 +1,33 @@
+import csv
 import gym
 import numpy as np
 import os
 import pickle
+from PIL import Image
 import sys
 import torch
+import torchvision.transforms as T
+
+from Logger import Logger
 
 # first change the cwd to the script path
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
 os.chdir(scriptPath)
-
-num_frames = sys.argv[2] if len(sys.argv) > 2 else 100
+ 
+script_dir = os.path.dirname(os.getcwd())
 
 game_name = sys.argv[1] if len(sys.argv) > 1 else 'CartPole-v0'
 env = gym.make(game_name).unwrapped
 frame_skip = 3
+
+num_states = int(sys.argv[2]) if len(sys.argv) > 2 else 100
 
 use_cuda = torch.cuda.is_available()
 FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
 
 def get_screen():
     # we gotta do the grayscaled version
-    screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
+    screen = np.expand_dims(Image.fromarray(env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
 
     screen = np.ascontiguousarray(screen, dtype=np.float32)
     screen /= 255
@@ -35,15 +42,17 @@ def resize(screen):
             T.ToTensor()])
     return rsz(screen)
 
-states = []
-i_episode = 0
-i_frame = 0
-while i_frame < num_frames:
+states_log = Logger(os.path.join(script_dir, 'data/states/' + game_name.split('-')[0] + '_states.csv'))
+
+f = open(os.path.join(script_dir, 'data/states/' + game_name.split('-')[0] + '_states.csv'), 'w')
+writer = csv.writer(f)
+
+i_state = 0
+while i_state < num_states:
     env.reset()
     last_screen = get_screen()
     current_screen = get_screen()
     state = current_screen - last_screen
-    total_reward = 0
     t = 0
     done = False
     while not done:
@@ -53,7 +62,6 @@ while i_frame < num_frames:
             if done:
                 break
             t += 1
-            i_frame += 1
 
         # Observe new state
         last_screen = current_screen
@@ -64,19 +72,15 @@ while i_frame < num_frames:
             next_state = None
 
         # Store the transition in memory
-        states.append(state)
+        writer.writerow(state.view(-1))
+        i_state += 1
 
         # Move to the next state
         state = next_state
 
         if done or t > 10000:
             break
-    i_episode += 1
 
 env.close()
-pickle_filename = '../data/states/' + game_name.split('-')[0] + '_states.pkl'
-if os.path.exists(pickle_filename):
-    os.remove(pickle_filename)
-with open(pickle_filename, 'wb') as f:
-    pickle.dump(states, f)
+f.close()
 print('Saved states for PCA.', flush=True)
