@@ -115,4 +115,5 @@ class DQNGS(nn.Module):
 
     def compute_sample_Q(self, sample_states):
         res = self.forward(sample_states).max(1)[0].mean(0).data[0]
+        print(res.shape)
         return float(res)

@@ -66,7 +66,7 @@ episode_durations = []
 frame_skip = 3
 update_frequency = 4
 BATCH_SIZE = 128
-target_update = 100
+target_update = 1000
 
 game = None
 model = None
@@ -91,6 +91,7 @@ elif model_name == 'DQN_GS':
     target_network = DQNGS(game.env)
     target_network.load_state_dict(model.state_dict())
     target_network.eval() # can't train target_network again
+    target_network = None
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
@@ -183,7 +184,8 @@ def main(batch_sz, num_trains):
                 update_frequency_counter += 1
 
             if done or t > 10000:
-                target_network.load_state_dict(model.state_dict())
+                if update_target:
+                    target_network.load_state_dict(model.state_dict())
                 # print('Updated target network!', flush=True)
                 # total_rewards.append(total_reward)
                 reward_log.log(total_reward)
