@@ -189,6 +189,7 @@ def main(batch_sz, num_trains):
                 reward_log.log(total_reward)
                 # episode_durations.append(t + 1)
                 duration_log.log(t + 1)
+                print(t + 1)
                 if sample_states is not None:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
