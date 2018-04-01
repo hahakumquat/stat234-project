@@ -55,7 +55,7 @@ while i_state < num_states:
     state = current_screen - last_screen
     t = 0
     done = False
-    while not done:
+    while not done and i_state < num_states:
         # Select and perform an action
         for i_frame_skip in range(frame_skip):
             _, _, done, _ =  env.step(env.action_space.sample())
@@ -72,7 +72,7 @@ while i_state < num_states:
             next_state = None
 
         # Store the transition in memory
-        writer.writerow(state.view(-1))
+        writer.writerow(np.uint8(state.view(-1) * 255))
         i_state += 1
 
         # Move to the next state
