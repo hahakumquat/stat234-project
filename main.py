@@ -173,19 +173,16 @@ def main(batch_sz, num_trains):
 
             # Perform one step of the optimization (on the target network)
             if len(memory) >= BATCH_SIZE and model_name != 'NoTraining':
-                # only train every frame_skip * update_frequency time steps, 
-                # i.e., only train after update_frequency different actions 
+                # only train after update_frequency different actions 
                 # have been selected. This speeds up training. See DQN paper.
                 if update_frequency_counter % update_frequency == 0:
                     loss_log.log(model.train_model(memory, target_network))
-                    print('trained', update_frequency_counter)
                 if update_frequency_counter % (update_frequency * target_update) == 0 and target_network is not None:
                     target_network.load_state_dict(model.state_dict())
                     # print('Updated target network!', flush=True)
                 update_frequency_counter += 1
 
             if done or t > 10000:
-                print('done', t)
                 # total_rewards.append(total_reward)
                 reward_log.log(total_reward)
                 # episode_durations.append(t + 1)
