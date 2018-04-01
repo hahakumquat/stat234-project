@@ -140,7 +140,6 @@ def main(batch_sz, num_trains):
         last_screen = get_screen()
         current_screen = get_screen()
         state = current_screen - last_screen
-        state_info = game.env.state
         total_reward = 0
         t = 0
         done = False
@@ -164,19 +163,14 @@ def main(batch_sz, num_trains):
             current_screen = get_screen()
             if not done:
                 next_state = current_screen - last_screen
-
-                # get OpenAI Gym's state elements, in case we need them later
-                next_state_info = game.env.state
             else:
                 next_state = None
-                next_state_info = None
 
             # Store the transition in memory
-            memory.push(state, LongTensor([[action]]), frame_skip_reward, next_state, state_info, next_state_info)
+            memory.push(state, LongTensor([[action]]), frame_skip_reward, next_state)
 
             # Move to the next state
             state = next_state
-            state_info = next_state_info
 
             # Perform one step of the optimization (on the target network)
             if len(memory) >= BATCH_SIZE:
