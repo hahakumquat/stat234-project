@@ -123,7 +123,7 @@ if model_name != 'NoTraining':
             sample_states = pickle.load(f)
         sample_states = Variable(torch.cat(sample_states))
         print('Loaded in sample states.', flush=True)
-        Q_log = Logger(filename + '_sample_Q_' + cuda_label + timestamp + '.csv')
+        Q_log = Logger(filename + '_sample_Q_' + cuda_label + '_' + timestamp + '.csv')
 
 if args.base_network and model_name != 'NoTraining':
     network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network_' + cuda_label + '.pt'
