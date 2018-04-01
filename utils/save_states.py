@@ -13,15 +13,14 @@ num_frames = sys.argv[2] if len(sys.argv) > 2 else 100
 
 game_name = sys.argv[1] if len(sys.argv) > 1 else 'CartPole-v0'
 env = gym.make(game_name).unwrapped
-frame_skip = 4
+frame_skip = 3
 
 use_cuda = torch.cuda.is_available()
 FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
-LongTensor = torch.cuda.LongTensor if use_cuda else torch.LongTensor
-ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 def get_screen():
-    screen = np.array(env.render(mode='rgb_array')).transpose((2, 0, 1))
+    # we gotta do the grayscaled version
+    screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
 
     screen = np.ascontiguousarray(screen, dtype=np.float32)
     screen /= 255
@@ -31,11 +30,10 @@ def get_screen():
     return resize(screen).unsqueeze(0).type(FloatTensor)
 
 def resize(screen):
-    # rsz = T.Compose([T.ToPILImage(),
-    #         T.Resize((80, 80), interpolation=Image.CUBIC),
-    #         T.ToTensor()])
-    # return rsz(screen)
-    return screen
+    rsz = T.Compose([T.ToPILImage(),
+            T.Resize((80, 80), interpolation=Image.CUBIC),
+            T.ToTensor()])
+    return rsz(screen)
 
 states = []
 i_episode = 0
