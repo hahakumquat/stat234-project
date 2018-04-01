@@ -133,8 +133,8 @@ if args.base_network and model_name != 'NoTraining':
         print('Loaded pre-trained network.', flush=True)
 
 def main(batch_sz, num_trains):
-    num_episodes = 0
-    total_frames = 0
+    # num_episodes = 0
+    update_frequency_counter = 0
     while model.train_counter < num_trains:
         game.env.reset()
         last_screen = get_screen()
@@ -150,10 +150,9 @@ def main(batch_sz, num_trains):
             for i_frame_skip in range(frame_skip):
                 _, reward, done, _ =  game.env.step(action)
                 frame_skip_reward += reward
+                t += 1
                 if done:
                     break
-                t += 1
-                total_frames += 1
 
             total_reward += frame_skip_reward
             frame_skip_reward = FloatTensor([frame_skip_reward])
@@ -173,15 +172,15 @@ def main(batch_sz, num_trains):
             state = next_state
 
             # Perform one step of the optimization (on the target network)
-            if len(memory) >= BATCH_SIZE:
-                # only train every frame_skip * update_frequency time steps, 
-                # i.e., only train after update_frequency different actions 
+            if len(memory) >= BATCH_SIZE and model_name != 'NoTraining':
+                # only train after update_frequency different actions 
                 # have been selected. This speeds up training. See DQN paper.
-                if total_frames % (frame_skip * update_frequency) == 0 and model_name != 'NoTraining':
+                if update_frequency_counter % update_frequency == 0:
                     loss_log.log(model.train_model(memory, target_network))
-                if total_frames % (frame_skip * update_frequency * target_update) == 0 and target_network is not None:
+                if update_frequency_counter % (update_frequency * target_update) == 0 and target_network is not None:
                     target_network.load_state_dict(model.state_dict())
                     # print('Updated target network!', flush=True)
+                update_frequency_counter += 1
 
             if done or t > 10000:
                 # total_rewards.append(total_reward)
@@ -191,7 +190,7 @@ def main(batch_sz, num_trains):
                 if sample_states is not None:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
-        num_episodes += 1
+        # num_episodes += 1
             
 def get_screen():
     if model_name == 'DQN':
