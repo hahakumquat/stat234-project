@@ -16,7 +16,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99):
+    def __init__(self, env, batch_sz=128, lr=0.01, gamma=0.99):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
@@ -44,7 +44,7 @@ class DQNGS(nn.Module):
         self.optimizer = optim.RMSprop(self.parameters(),
                                        lr=self.learning_rate)
 
-        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 1000 - 4.6), 0.0005)
+        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 2000), 0.0005 / lr)
         self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
                      lr_lambda=self.lr_annealer)
         
@@ -92,13 +92,13 @@ class DQNGS(nn.Module):
         # Now, we don't want to mess up the loss with a volatile flag, so let's
         # clear it. After this, we'll just end up with a Variable that has
         # requires_grad=False
-        # next_state_values.volatile = False
+        next_state_values.volatile = False
 
         # Compute the expected Q values
         expected_state_action_values = (next_state_values * self.gamma) + reward_batch
 
         # The below line can replace next_state_values.volatile = False. See PyTorch DQN tutorial.
-        expected_state_action_values = Variable(expected_state_action_values.data)
+        # expected_state_action_values = Variable(expected_state_action_values.data)
 
         # Compute loss
         loss = self.loss_function(state_action_values, expected_state_action_values)

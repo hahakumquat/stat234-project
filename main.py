@@ -183,7 +183,7 @@ def main(batch_sz, num_trains):
                     update_target = True
                 update_frequency_counter += 1
 
-            if done or t > 10000:
+            if done or t > 20000:
                 if update_target:
                     target_network.load_state_dict(model.state_dict())
                 # print('Updated target network!', flush=True)
