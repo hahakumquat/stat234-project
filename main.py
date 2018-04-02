@@ -16,7 +16,7 @@ import torchvision.transforms as T
 timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S')
 
 parser = argparse.ArgumentParser(description='Run RL simulation.')
-parser.add_argument('-g', metavar='game', default='CartPoleGame', help='The game name.')
+parser.add_argument('-g', metavar='game', default='CartPole-v0', help='The game name.')
 parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model name.')
 parser.add_argument('-a', metavar='agent', default='EpsilonGreedy', help='The agent name.')
 parser.add_argument('-e', metavar='ntrains', type=int, default=50000, help='Number of trains.')
