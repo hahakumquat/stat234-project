@@ -3,7 +3,7 @@ OpenAI Gym
 
 1. Download/Install Anaconda
 2. Set up Conda environment
-- ``conda env create -n boxcar python=3.5``
+- ``conda create -n boxcar python=3.5``
 - ``source activate boxcar``
 
 3. Install packages
