@@ -1,3 +1,7 @@
+def pu(c):
+    print(c, flush=True)
+    return c + 1
+
 import argparse
 import datetime
 # import matplotlib.pyplot as plt
@@ -54,6 +58,8 @@ from Random import Random
 # games
 from Game import Game
 from CartPoleCroppedGame import CartPoleCroppedGame
+
+ctr = 0
 
 use_cuda = torch.cuda.is_available()
 FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
@@ -124,18 +130,23 @@ if model_name != 'NoTraining':
             sample_states = pickle.load(f)
         sample_states = Variable(torch.cat(sample_states))
         print('Loaded in sample states.', flush=True)
+        ctr = pu(ctr)
         Q_log = Logger(filename + '_sample_Q_' + cuda_label + '_' + timestamp + '.csv')
 
+ctr = pu(ctr)
 if args.base_network and model_name != 'NoTraining':
     network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network_' + cuda_label + '.pt'
     if os.path.exists(network_file_to_load):
         model.load_state_dict(torch.load(network_file_to_load))
         target_network.load_state_dict(model.state_dict())
         print('Loaded pre-trained network.', flush=True)
+ctr = pu(ctr)
 
 def main(batch_sz, num_trains):
+    global ctr
     # num_episodes = 0
     update_frequency_counter = 0
+    ctr = pu(ctr)
     while model.train_counter < num_trains:
         game.env.reset()
         last_screen = get_screen()
@@ -145,6 +156,8 @@ def main(batch_sz, num_trains):
         t = 0
         done = False
         update_target = False
+        ctr = pu(ctr)
+        print("LET'S DO THIS")
         while not done:
             # Select and perform an action
             action = agent.select_action(state)
@@ -155,6 +168,7 @@ def main(batch_sz, num_trains):
                 t += 1
                 if done:
                     break
+            ctr = pu(ctr)
 
             total_reward += frame_skip_reward
             frame_skip_reward = FloatTensor([frame_skip_reward])
@@ -167,12 +181,13 @@ def main(batch_sz, num_trains):
             else:
                 next_state = None
 
+            ctr = pu(ctr)
             # Store the transition in memory
             memory.push(state, LongTensor([[action]]), frame_skip_reward, next_state)
 
             # Move to the next state
             state = next_state
-
+            print("GONNA DO THIS THING")
             # Perform one step of the optimization (on the target network)
             if len(memory) >= BATCH_SIZE and model_name != 'NoTraining':
                 # only train after update_frequency different actions 
@@ -182,8 +197,10 @@ def main(batch_sz, num_trains):
                 if update_frequency_counter % (update_frequency * target_update) == 0 and target_network is not None:
                     update_target = True
                 update_frequency_counter += 1
+            
+            ctr = pu(ctr)
 
-            if done or t > 20000:
+            if done or t > 10000:
                 if update_target:
                     target_network.load_state_dict(model.state_dict())
                 # print('Updated target network!', flush=True)
@@ -195,6 +212,9 @@ def main(batch_sz, num_trains):
                 if sample_states is not None:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
+
+            print("DONE WITH LOOP")
+            ctr = pu(ctr)
         # num_episodes += 1
             
 def get_screen():
