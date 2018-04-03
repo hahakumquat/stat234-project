@@ -71,6 +71,8 @@ game = None
 model = None
 agent = None
 sample_states = None
+target_network = None
+enable_target_network = False
 
 game_name = args.g
 model_name = args.m
@@ -83,14 +85,13 @@ else:
     game = Game(game_name)
 
 if model_name == 'NoTraining':
-    model = NoTraining(game.env)
-    target_network = None
+    model = NoTraining(game.env)    
 elif model_name == 'DQN_GS':
     model = DQNGS(game.env)
-    target_network = DQNGS(game.env)
-    target_network.load_state_dict(model.state_dict())
-    target_network.eval() # can't train target_network again
-    target_network = None
+    if enable_target_network:
+        target_network = DQNGS(game.env)
+        target_network.load_state_dict(model.state_dict())
+        target_network.eval() # can't train target_network again
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
@@ -114,6 +115,27 @@ reward_log = Logger(filename + '_rewards_' + cuda_label + '_' + timestamp + '.cs
 duration_log = Logger(filename + '_durations_' + cuda_label + '_' + timestamp + '.csv')
 if model_name != 'NoTraining':
     loss_log = Logger(filename + '_losses_' + cuda_label + '_' + timestamp + '.csv')
+
+notes_log = Logger(filename + '_notes_' + cuda_label + '_' + timestamp + '.txt')
+
+notes_log.log('GAME PARAMETERS')
+notes_log.log('Game: ' + game_name)
+notes_log.log('Model: ' + model_name)
+notes_log.log('Agent: ' + agent_name)
+notes_log.log('N Trains: ' + str(num_trains))
+notes_log.log('Processing: ' + cuda_label)
+notes_log.log('Has target network: ' + str(target_network is not None))
+notes_log.log('Frame skip: ' + str(frame_skip))
+notes_log.log('Update frequency: ' + str(update_frequency))
+notes_log.log('NETWORK PARAMETERS')
+notes_log.log('batch size: ' + str(model.batch_size))
+notes_log.log('gamma: ' + str(model.gamma))
+notes_log.log('Initial learning rate: ' + str(model.learning_rate))
+notes_log.log('learning rate annealing: ' + str(model.lr_annealer is not None))
+notes_log.log('Optimizer: ' + model.optim_name)
+notes_log.log('Loss Function: ' + model.loss_name)
+notes_log.log('weight decay: ' + str(model.regularization))
+notes_log.close()
 
 # get sample states to compute Q function instead of (in addition to) average reward
 if model_name != 'NoTraining':
