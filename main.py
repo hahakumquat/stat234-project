@@ -12,7 +12,7 @@ import torch
 from torch.autograd import Variable
 import torchvision.transforms as T
 
-timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S')
+timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y__%H_%M_%S')
 
 parser = argparse.ArgumentParser(description='Run RL simulation.')
 parser.add_argument('-g', metavar='game', default='CartPole-v0', help='The game name.')
@@ -110,11 +110,28 @@ elif agent_name == 'Random':
 else:
     raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 
-filename = 'results/' + game_name + '/' + game.file_prefix + model_name + '_' + agent_name
-reward_log = Logger(filename + '_rewards_' + cuda_label + '_' + timestamp + '.csv')
-duration_log = Logger(filename + '_durations_' + cuda_label + '_' + timestamp + '.csv')
+filename = 'results/' + game_name + '/' + timestamp + '/' + game.file_prefix + model_name + '_' + agent_name
+reward_log = Logger(filename + '_rewards_' + cuda_label + '.csv')
+duration_log = Logger(filename + '_durations_' + cuda_label + '.csv')
 if model_name != 'NoTraining':
-    loss_log = Logger(filename + '_losses_' + cuda_label + '_' + timestamp + '.csv')
+    loss_log = Logger(filename + '_losses_' + cuda_label + '.csv')
+
+# get sample states to compute Q function instead of (in addition to) average reward
+if model_name != 'NoTraining':
+    replay_memory_file = 'data/sample_states/' + game.file_prefix + 'NoTraining_Random_memory_' + cuda_label + '.pkl'
+    if os.path.exists(replay_memory_file):
+        with open(replay_memory_file, 'rb') as f:
+            sample_states = pickle.load(f)
+        sample_states = Variable(torch.cat(sample_states))
+        print('Loaded in sample states.', flush=True)
+        Q_log = Logger(filename + '_sample_Q_' + cuda_label + '_' + timestamp + '.csv')
+
+if args.base_network and model_name != 'NoTraining':
+    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network_' + cuda_label + '.pt'
+    if os.path.exists(network_file_to_load):
+        model.load_state_dict(torch.load(network_file_to_load))
+        target_network.load_state_dict(model.state_dict())
+        print('Loaded pre-trained network.', flush=True)
 
 notes_log = Logger(filename + '_notes_' + cuda_label + '_' + timestamp + '.txt')
 
@@ -136,24 +153,7 @@ notes_log.log('Optimizer: ' + model.optim_name)
 notes_log.log('Loss Function: ' + model.loss_name)
 notes_log.log('weight decay: ' + str(model.regularization))
 notes_log.close()
-
-# get sample states to compute Q function instead of (in addition to) average reward
-if model_name != 'NoTraining':
-    replay_memory_file = 'data/sample_states/' + game.file_prefix + 'NoTraining_Random_memory_' + cuda_label + '.pkl'
-    if os.path.exists(replay_memory_file):
-        with open(replay_memory_file, 'rb') as f:
-            sample_states = pickle.load(f)
-        sample_states = Variable(torch.cat(sample_states))
-        print('Loaded in sample states.', flush=True)
-        Q_log = Logger(filename + '_sample_Q_' + cuda_label + '_' + timestamp + '.csv')
-
-if args.base_network and model_name != 'NoTraining':
-    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network_' + cuda_label + '.pt'
-    if os.path.exists(network_file_to_load):
-        model.load_state_dict(torch.load(network_file_to_load))
-        target_network.load_state_dict(model.state_dict())
-        print('Loaded pre-trained network.', flush=True)
-
+        
 def main(batch_sz, num_trains):
     # num_episodes = 0
     update_frequency_counter = 0

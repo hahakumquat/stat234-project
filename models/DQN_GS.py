@@ -15,7 +15,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.01, gamma=0.99):
+    def __init__(self, env, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
@@ -36,17 +36,22 @@ class DQNGS(nn.Module):
 
         self.env = env
         self.batch_size = batch_sz
+        
         self.learning_rate = lr
+        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 2000), 0.0005 / lr)
+        
         self.gamma = gamma
+        self.regularization = regularization
         
         self.optimizer = optim.RMSprop(self.parameters(),
-                                       lr=self.learning_rate, weight_decay=0.0001)
-
-        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 2000), 0.0005 / lr)
+                                       lr=self.learning_rate, weight_decay=regularization)
+        self.optim_name = 'RMSprop'
+        
         self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
                      lr_lambda=self.lr_annealer)
         
         self.loss_function = F.smooth_l1_loss
+        self.loss_name = 'Huber Loss'
         self.train_counter = 0
 
     def forward(self, state_batch):
