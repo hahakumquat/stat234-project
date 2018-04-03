@@ -21,15 +21,14 @@ class DQNGS(nn.Module):
         ## DQN architecture
         self.conv1 = nn.Conv2d(1, 8, kernel_size=8, stride=4)
         self.bn1 = nn.BatchNorm2d(8)
-        self.relu1 = nn.LeakyReLU(0.1)
-        
+        self.relu1 = nn.LeakyReLU(0.0001)
         self.conv2 = nn.Conv2d(8, 16, kernel_size=4, stride=2)
         self.bn2 = nn.BatchNorm2d(16)
-        self.relu2 = nn.LeakyReLU(0.01)
+        self.relu2 = nn.LeakyReLU(0.0001)
 
         self.conv3 = nn.Conv2d(16, 16, kernel_size=4, stride=1)
         self.bn3 = nn.BatchNorm2d(16)
-        self.relu3 = nn.LeakyReLU(0.01)
+        self.relu3 = nn.LeakyReLU(0.0001)
         
         self.mp = nn.MaxPool2d(2)
         
@@ -41,13 +40,13 @@ class DQNGS(nn.Module):
         self.gamma = gamma
         
         self.optimizer = optim.RMSprop(self.parameters(),
-                                       lr=self.learning_rate)
+                                       lr=self.learning_rate, weight_decay=0.0001)
 
         self.lr_annealer = lambda epoch: max(np.exp(-epoch / 2000), 0.0005 / lr)
         self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
                      lr_lambda=self.lr_annealer)
         
-        self.loss_function = nn.MSELoss()
+        self.loss_function = F.smooth_l1_loss
         self.train_counter = 0
 
     def forward(self, state_batch):
