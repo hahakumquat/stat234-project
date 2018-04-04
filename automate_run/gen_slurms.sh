@@ -5,7 +5,7 @@ target_update=(0 100 1000)
 weight_decay=(0.001 0.1)
 batch_sizes=(128)
 losses=(Huber MSE)
-anneals=("" --anneal)
+anneals=(--noanneal --anneal)
 lrs=(0.001 0.0001)
 models=(DQN_GS DDQN_GS)
 games=(CartPole-v0 Acrobot-v1 MountainCar-v0)
@@ -32,7 +32,7 @@ do
                                     cat slurm.template > tmp.slurm
                                     sed -i s/_name_/$g$m$e$targ$lr$batch$anl$loss$reg/ tmp.slurm
                                     cat tmp.txt >> tmp.slurm
-                                    sbatch tmp.slurm
+                                    cat tmp.slurm
                                 done
                             done
                         done

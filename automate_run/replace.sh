@@ -7,5 +7,5 @@ cat python.template > tmp.txt
 for i in ${!params[@]}
 do
     ibash=$((i+1))
-    sed -i s/"${params[$i]}"/${!ibash}/ tmp.txt
+    sed -i "s/${params[$i]}/${!ibash}/" tmp.txt
 done
