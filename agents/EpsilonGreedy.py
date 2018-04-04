@@ -1,5 +1,4 @@
 import numpy as np
-import random
 
 import torch
 from torch.autograd import Variable
@@ -21,7 +20,7 @@ class EpsilonGreedy():
         self.steps_done = 0
 
     def select_action(self, state):
-        sample = random.random()
+        sample = np.random.random()
         threshold = self.eps_end + (self.eps_start - self.eps_end) * np.exp(-1 * self.steps_done / self.eps_decay)
         self.steps_done += 1
         if sample > threshold:

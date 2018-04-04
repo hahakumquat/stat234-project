@@ -22,6 +22,7 @@ class DQNGS(nn.Module):
         self.conv1 = nn.Conv2d(1, 8, kernel_size=8, stride=4)
         self.bn1 = nn.BatchNorm2d(8)
         self.relu1 = nn.LeakyReLU(0.0001)
+        
         self.conv2 = nn.Conv2d(8, 16, kernel_size=4, stride=2)
         self.bn2 = nn.BatchNorm2d(16)
         self.relu2 = nn.LeakyReLU(0.0001)
