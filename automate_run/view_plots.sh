@@ -6,6 +6,7 @@ do
     cd $game
     for result in $(ls)
     do
+        echo $game/$result
         cd $result
         cat $(ls | grep "notes")
         plots=$(find . -name "*.pdf")
