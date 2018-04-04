@@ -28,6 +28,7 @@ parser.add_argument('--target', metavar='target_update', type=int, default=0, he
 parser.add_argument('--lr', metavar='learning_rate', type=float, default=10000, help='learning rate.')
 parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='batch size.')
 parser.add_argument('--anneal', action='store_true', help='Anneals learning rate.')
+parser.add_argument('--noanneal', action='store_true', help='Anneals learning rate.')
 parser.add_argument('--loss', metavar='loss', type=str, default='Huber', help='Loss function.')
 parser.add_argument('--regularization', metavar='regularization', type=float, default=0.001, help='L2 regularization.')
 
