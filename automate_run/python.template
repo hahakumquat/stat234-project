@@ -1,1 +1,1 @@
-cd ~/stat234-project/ && python main.py -g _game_ -m _model_ -a EpsilonGreedy -e _ntrains_ --target _target_ --lr _lr_ --batch _batch_ _anneal_ --loss _loss_ --regularization _reg_
+cd ~/stat234-project/ && python main.py -g _game_ -m _model_ -a EpsilonGreedy -e _ntrains_ --target _target_ --lr _lr_ --batch _batch_ _anneal_ --loss _loss_ --regularization _reg_ --server
