@@ -161,7 +161,7 @@ def main(batch_sz, num_trains):
         total_reward = 0
         t = 0
         done = False
-        update_target = False
+
         while not done:
             # Select and perform an action
             action = agent.select_action(state)
