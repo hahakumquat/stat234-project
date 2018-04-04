@@ -44,6 +44,7 @@ from Logger import Logger
 
 # models
 from DQN_GS import DQNGS
+from DDQN_GS import DDQNGS
 from NoTraining import NoTraining
 
 # agents
@@ -71,7 +72,6 @@ game = None
 model = None
 agent = None
 sample_states = None
-target_network = None
 enable_target_network = False
 
 game_name = args.g
@@ -87,16 +87,13 @@ else:
 if model_name == 'NoTraining':
     model = NoTraining(game.env)    
 elif model_name == 'DQN_GS':
-    model = DQNGS(game.env, target_update=target_update)
-    if enable_target_network:
-        target_network = DQNGS(game.env)
-        target_network.load_state_dict(model.state_dict())
-        target_network.eval() # can't train target_network again
+    model = DQNGS(game.env, use_target_network=enable_target_network, target_update=target_update)
+elif model_name == 'DDQN_GS':
+    model = DDQNGS(game.env)
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
     model.cuda()
-    target_network.cuda()
     print('Using CUDA.', flush=True)
     cuda_label = 'gpu'
 else:
@@ -130,7 +127,6 @@ if args.base_network and model_name != 'NoTraining':
     network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network_' + cuda_label + '.pt'
     if os.path.exists(network_file_to_load):
         model.load_state_dict(torch.load(network_file_to_load))
-        target_network.load_state_dict(model.state_dict())
         print('Loaded pre-trained network.', flush=True)
 
 notes_log = Logger(filename + '_notes_' + cuda_label + '_' + timestamp + '.txt')
@@ -194,23 +190,16 @@ def main(batch_sz, num_trains):
             # Move to the next state
             state = next_state
 
-            # Perform one step of the optimization (on the target network)
+            # Perform one step of the optimization
             if len(memory) >= BATCH_SIZE and model_name != 'NoTraining':
                 # only train after update_frequency different actions 
                 # have been selected. This speeds up training. See DQN paper.
                 if update_frequency_counter % update_frequency == 0:
-                    loss_log.log(model.train_model(memory, target_network))
-                if update_frequency_counter % (update_frequency * target_update) == 0 and target_network is not None:
-                    update_target = True
+                    loss_log.log(model.train_model(memory))
                 update_frequency_counter += 1
 
             if done or t > 20000:
-                if update_target:
-                    target_network.load_state_dict(model.state_dict())
-                # print('Updated target network!', flush=True)
-                # total_rewards.append(total_reward)
                 reward_log.log(total_reward)
-                # episode_durations.append(t + 1)
                 duration_log.log(t + 1)
                 print(t + 1)
                 if sample_states is not None:
