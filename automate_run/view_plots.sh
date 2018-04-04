@@ -10,7 +10,15 @@ do
         cd $result
         cat $(ls | grep "notes")
         plots=$(find . -name "*.pdf")
-        evince -f $plots
+        evince -f $plots 
+        # evince -f $plots & echo "[g]ood or [b]ad?" & read res
+        # if [ $res = "b" ]
+        # then
+        #     echo "Deleting PDFs."
+        #     rm *.pdf
+        # else
+        #     echo "Continuing."
+        # fi
         cd ..
         echo " "
     done
