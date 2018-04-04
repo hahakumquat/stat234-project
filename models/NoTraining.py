@@ -15,6 +15,7 @@ class NoTraining(nn.Module):
         self.env = env
         self.batch_size = batch_size
         self.train_counter = 0
+        self.use_target_network = 'n/a'
 
     def forward(self, state_batch):
         result = Variable(FloatTensor(np.ones((len(state_batch), self.env.action_space.n))))

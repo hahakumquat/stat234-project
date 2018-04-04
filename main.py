@@ -87,7 +87,7 @@ else:
 if model_name == 'NoTraining':
     model = NoTraining(game.env)    
 elif model_name == 'DQN_GS':
-    model = DQNGS(game.env)
+    model = DQNGS(game.env, target_update=target_update)
     if enable_target_network:
         target_network = DQNGS(game.env)
         target_network.load_state_dict(model.state_dict())
@@ -141,7 +141,7 @@ notes_log.log('Model: ' + model_name)
 notes_log.log('Agent: ' + agent_name)
 notes_log.log('N Trains: ' + str(num_trains))
 notes_log.log('Processing: ' + cuda_label)
-notes_log.log('Has target network: ' + str(target_network is not None))
+notes_log.log('Has target network: ' + str(model.use_target_network))
 notes_log.log('Frame skip: ' + str(frame_skip))
 notes_log.log('Update frequency: ' + str(update_frequency))
 notes_log.log('NETWORK PARAMETERS')

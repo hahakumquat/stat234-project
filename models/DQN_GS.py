@@ -15,7 +15,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001):
+    def __init__(self, env, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, use_target_network=False, target_update=100):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
@@ -54,6 +54,11 @@ class DQNGS(nn.Module):
         self.loss_name = 'Huber Loss'
         self.train_counter = 0
 
+        self.use_target_network = use_target_network
+        if use_target_network:
+            self.create_target_network()
+            self.target_update = target_update
+
     def forward(self, state_batch):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
         state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
@@ -62,7 +67,7 @@ class DQNGS(nn.Module):
         result = self.out_layer(state_batch)
         return result
 
-    def train_model(self, memory, target_network):
+    def train_model(self, memory):
         transitions = memory.sample(self.batch_size)
         # stackoverflow: 
         batch = Transition(*zip(*transitions))
@@ -87,8 +92,8 @@ class DQNGS(nn.Module):
 
         # Compute max_{a'} Q(s_{t+1}, a') for all next states.
         next_state_values = Variable(torch.zeros(len(state_batch)).type(FloatTensor))
-        if target_network is not None:
-            next_state_values[non_final_mask] = target_network.forward(non_final_next_states).max(1)[0]
+        if self.use_target_network:
+            next_state_values[non_final_mask] = self.target_network.forward(non_final_next_states).max(1)[0]
         else:
             next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
         
@@ -114,8 +119,30 @@ class DQNGS(nn.Module):
         self.optimizer.step()
         self.scheduler.step()
         self.train_counter += 1
+
+        if self.use_target_network and self.train_counter % self.target_update == 0:
+            self.sync_target_network()
+
         return loss.data[0] / len(state_action_values)
 
     def compute_sample_Q(self, sample_states):
         res = self.forward(sample_states).max(1)[0].mean(0).data[0]
         return float(res)
+
+    def create_target_network(self):
+        self.target_network = DQNGS(env=env, batch_sz=self.batch_size, lr=self.learning_rate, gamma=self.gamma, regularization=self.regularization, use_target_network=False)
+        self.target_network.load_state_dict(self.state_dict())
+        self.target_network.eval() # can't train target_network again
+
+    def cuda(self):
+        super(DQNGS, self).cuda()
+        if self.use_target_network:
+            self.target_network.cuda()
+
+    def load_state_dict(self, state_dict):
+        super(DQNGS, self).load_state_dict(state_dict)
+        if self.use_target_network:
+            self.target_network.load_state_dict(state_dict)
+
+    def sync_target_network(self):
+        self.target_network.load_state_dict(self.state_dict())
