@@ -1,22 +1,10 @@
-# import torch
-# import torch.nn as nn
-# import torch.optim as optim
-# import torch.nn.functional as F
-# from torch.autograd import Variable
-# import matplotlib.pyplot as plt
 import numpy as np
 
-# from ReplayMemory import Transition
+from DQN_GS import DQNGS
 
-# use_cuda = torch.cuda.is_available()
-# FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
-# LongTensor = torch.cuda.LongTensor if use_cuda else torch.LongTensor
-# ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
-
-class DDQNGS(nn.Module):
+class DDQNGS():
 
     def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99):
-        super(DQNGS, self).__init__()
         self.env = env
         self.batch_size = batch_sz
         self.lr = lr
