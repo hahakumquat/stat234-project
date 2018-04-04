@@ -13,11 +13,11 @@ class DDQNGS():
         self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, 
                             lr=self.learning_rate, gamma=self.gamma, 
                             regularization=0.0001, target_update=0,
-                            anneal=anneal, loss=loss_function)
+                            anneal=anneal, loss=loss)
         self.modelB = DQNGS(env=self.env, batch_sz=self.batch_size, 
                             lr=self.learning_rate, gamma=self.gamma, 
                             regularization=0.0001, target_update=0,
-                            anneal=anneal, loss=loss_function)
+                            anneal=anneal, loss=loss)
 
         # figure out my parameters
         self.lr_annealer = self.modelA.lr_annealer

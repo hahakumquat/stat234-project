@@ -34,6 +34,7 @@ parser.add_argument('--regularization', metavar='regularization', type=float, de
 
 args = parser.parse_args()
 if args.server:
+    print("Server enabled.", flush=True)
     from pyvirtualdisplay import Display
     display = Display(visible=0, size=(400, 600))
     display.start()
