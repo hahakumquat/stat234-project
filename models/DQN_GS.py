@@ -55,7 +55,7 @@ class DQNGS(nn.Module):
         
         self.use_target_network = (target_update > 0)
         self.target_update = target_update
-        
+
         if self.use_target_network:
             self.create_target_network()
             
@@ -78,7 +78,7 @@ class DQNGS(nn.Module):
         result = self.out_layer(state_batch)
         return result
 
-    def train_model(self, memory):
+    def train_model(self, memory, target_network=None):
         transitions = memory.sample(self.batch_size)
         # stackoverflow: 
         batch = Transition(*zip(*transitions))
@@ -147,7 +147,7 @@ class DQNGS(nn.Module):
                                     regularization = self.regularization,
                                     target_update = 0,
                                     anneal = self.anneal, loss = self.loss_name)]
-        # self.target_network[0].load_state_dict(self.state_dict())
+        self.target_network[0].load_state_dict(self.state_dict())
         self.target_network[0].eval() # can't train target_network again
 
     def cuda(self):

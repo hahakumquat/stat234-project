@@ -14,11 +14,11 @@ import torchvision.transforms as T
 
 timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y__%H_%M_%S')
 
-parser = argparse.ArgumentParser(description='Run RL simulation.')
-parser.add_argument('-g', metavar='game', default='CartPole-v0', help='The game name.')
-parser.add_argument('-m', metavar='model', default='DQN_GS', help='The model name.')
-parser.add_argument('-a', metavar='agent', default='EpsilonGreedy', help='The agent name.')
-parser.add_argument('-e', metavar='ntrains', type=int, default=50000, help='Number of trains.')
+parser = argparse.ArgumentParser(description='Run reinforcement learning simulation.')
+parser.add_argument('-g', metavar='game_name', default='CartPole-v0', help='One of 3 classic control games (CartPole-v0, Acrobot-v1, MountainCar-v0).')
+parser.add_argument('-m', metavar='model_name', default='DQN_GS', help='The model type (NoTraining, DQN_GS, DDQN_GS).')
+parser.add_argument('-a', metavar='agent_name', default='EpsilonGreedy', help='The agent type (EpsilonGreedy, Random).')
+parser.add_argument('-e', metavar='num_trains', type=int, default=50000, help='Number of minibatch trains.')
 parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running.')
 parser.add_argument('--base_network', action='store_true', help='Starts training from a network with pre-trained weights.')
 parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
