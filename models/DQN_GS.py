@@ -55,7 +55,7 @@ class DQNGS(nn.Module):
         self.train_counter = 0
 
         self.use_target_network = use_target_network
-        if use_target_network:
+        if self.use_target_network:
             self.create_target_network()
             self.target_update = target_update
 
@@ -67,7 +67,7 @@ class DQNGS(nn.Module):
         result = self.out_layer(state_batch)
         return result
 
-    def train_model(self, memory):
+    def train_model(self, memory, target_network=None):
         transitions = memory.sample(self.batch_size)
         # stackoverflow: 
         batch = Transition(*zip(*transitions))
@@ -94,6 +94,8 @@ class DQNGS(nn.Module):
         next_state_values = Variable(torch.zeros(len(state_batch)).type(FloatTensor))
         if self.use_target_network:
             next_state_values[non_final_mask] = self.target_network.forward(non_final_next_states).max(1)[0]
+        elif target_network is not None:
+            next_state_values[non_final_mask] = target_network.forward(non_final_next_states).max(1)[0]
         else:
             next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
         
@@ -130,7 +132,10 @@ class DQNGS(nn.Module):
         return float(res)
 
     def create_target_network(self):
-        self.target_network = DQNGS(env=env, batch_sz=self.batch_size, lr=self.learning_rate, gamma=self.gamma, regularization=self.regularization, use_target_network=False)
+        self.target_network = DQNGS(env=env, batch_sz=self.batch_size, 
+                                    lr=self.learning_rate, gamma=self.gamma, 
+                                    regularization=self.regularization, 
+                                    use_target_network=False)
         self.target_network.load_state_dict(self.state_dict())
         self.target_network.eval() # can't train target_network again
 

@@ -10,8 +10,12 @@ class DDQNGS():
         self.learning_rate = lr
         self.gamma = gamma
         self.regularization = regularization
-        self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, lr=self.learning_rate, gamma=self.gamma, regularization=0.0001)
-        self.modelB = DQNGS(env=self.env, batch_sz=self.batch_size, lr=self.learning_rate, gamma=self.gamma, regularization=0.0001)
+        self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, 
+                            lr=self.learning_rate, gamma=self.gamma, 
+                            regularization=0.0001)
+        self.modelB = DQNGS(env=self.env, batch_sz=self.batch_size, 
+                            lr=self.learning_rate, gamma=self.gamma, 
+                            regularization=0.0001)
 
         # figure out my parameters
         self.lr_annealer = self.modelA.lr_annealer
@@ -26,7 +30,7 @@ class DDQNGS():
         result = (self.modelA.forward(state_batch) + self.modelB.forward(state_batch)) / 2
         return result
 
-    def train_model(self, memory, target_network):
+    def train_model(self, memory):
         self.train_counter += 1
         if np.random.random() < 0.5:
             return self.modelA.train_model(memory, self.modelB)
