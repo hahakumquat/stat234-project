@@ -22,6 +22,14 @@ parser.add_argument('-e', metavar='ntrains', type=int, default=50000, help='Numb
 parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running.')
 parser.add_argument('--base_network', action='store_true', help='Starts training from a network with pre-trained weights.')
 parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
+parser.add_argument('--target', metavar='target_update', type=int, default=0, help='Target network update.')
+
+# Neural Network Parameters
+parser.add_argument('--lr', metavar='learning_rate', type=float, default=10000, help='learning rate.')
+parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='batch size.')
+parser.add_argument('--anneal', action='store_true', help='Anneals learning rate.')
+parser.add_argument('--loss', metavar='loss', type=str, default='Huber', help='Loss function.')
+parser.add_argument('--regularization', metavar='regularization', type=float, default=0.001, help='L2 regularization.')
 
 args = parser.parse_args()
 if args.server:
@@ -65,19 +73,24 @@ total_rewards = []
 episode_durations = []
 frame_skip = 3
 update_frequency = 4
-BATCH_SIZE = 128
-target_update = 1000
+BATCH_SIZE = args.batch
+target_update = args.target
 
 game = None
 model = None
 agent = None
 sample_states = None
-enable_target_network = False
 
 game_name = args.g
 model_name = args.m
 agent_name = args.a
 num_trains = args.e
+
+lr = args.lr
+batch = args.batch
+anneal = args.anneal
+loss_function = args.loss
+reg = args.regularization
 
 if game_name == 'CartPoleCroppedGame':
     game = CartPoleCroppedGame()
@@ -87,7 +100,10 @@ else:
 if model_name == 'NoTraining':
     model = NoTraining(game.env)    
 elif model_name == 'DQN_GS':
-    model = DQNGS(game.env, use_target_network=enable_target_network, target_update=target_update)
+    model = DQNGS(game.env, batch_sz=batch,
+                  lr=lr, gamma=0.99,
+                  regularization=reg, target_update=target_update,
+                  anneal=anneal, loss=loss_function)
 elif model_name == 'DDQN_GS':
     model = DDQNGS(game.env)
 else:

@@ -14,7 +14,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, use_target_network=False, target_update=100):
+    def __init__(self, env, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss='Huber'):
         super(DQNGS, self).__init__()
 
         ## DQN architecture
@@ -38,26 +38,37 @@ class DQNGS(nn.Module):
         self.batch_size = batch_sz
         
         self.learning_rate = lr
-        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 2000), 0.0005 / lr)
         
         self.gamma = gamma
-        self.regularization = regularization
+        self.regularization = regularization        
         
-        self.optimizer = optim.RMSprop(self.parameters(),
-                                       lr=self.learning_rate, weight_decay=regularization)
-        self.optim_name = 'RMSprop'
-        
-        self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
-                     lr_lambda=self.lr_annealer)
-        
-        self.loss_function = F.smooth_l1_loss
-        self.loss_name = 'Huber Loss'
+        self.loss_name = loss
+        self.loss_function = None
+        if loss == 'Huber':
+            self.loss_function = F.smooth_l1_loss
+        elif loss == 'MSE':
+            self.loss_function = nn.MSELoss()
+            
         self.train_counter = 0
 
-        self.use_target_network = use_target_network
-        if use_target_network:
+        self.anneal = anneal
+        
+        self.use_target_network = (target_update > 0)
+        self.target_update = target_update
+        
+        if self.use_target_network:
             self.create_target_network()
-            self.target_update = target_update
+            
+        self.optim_name = 'RMSprop'
+        self.optimizer = optim.RMSprop(self.parameters(),
+                                       lr=self.learning_rate,
+                                       weight_decay=regularization)
+        self.lr_annealer = None
+        self.scheduler = None
+        if self.anneal:
+            self.lr_annealer = lambda epoch: max(np.exp(-epoch / 2000), 0.0005 / lr)
+            self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
+                                                         lr_lambda=self.lr_annealer)
 
     def forward(self, state_batch):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
@@ -93,7 +104,7 @@ class DQNGS(nn.Module):
         # Compute max_{a'} Q(s_{t+1}, a') for all next states.
         next_state_values = Variable(torch.zeros(len(state_batch)).type(FloatTensor))
         if self.use_target_network:
-            next_state_values[non_final_mask] = self.target_network.forward(non_final_next_states).max(1)[0]
+            next_state_values[non_final_mask] = self.target_network[0].forward(non_final_next_states).max(1)[0]
         else:
             next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
         
@@ -117,7 +128,8 @@ class DQNGS(nn.Module):
         for param in self.parameters():
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
-        self.scheduler.step()
+        if self.anneal:
+            self.scheduler.step()
         self.train_counter += 1
 
         if self.use_target_network and self.train_counter % self.target_update == 0:
@@ -130,19 +142,24 @@ class DQNGS(nn.Module):
         return float(res)
 
     def create_target_network(self):
-        self.target_network = DQNGS(env=env, batch_sz=self.batch_size, lr=self.learning_rate, gamma=self.gamma, regularization=self.regularization, use_target_network=False)
-        self.target_network.load_state_dict(self.state_dict())
-        self.target_network.eval() # can't train target_network again
+        self.target_network = [DQNGS(env = self.env, batch_sz = self.batch_size,
+                                    lr = self.learning_rate, gamma = self.gamma,
+                                    regularization = self.regularization,
+                                    target_update = 0,
+                                    anneal = self.anneal, loss = self.loss_name)]
+        # self.target_network[0].load_state_dict(self.state_dict())
+        self.target_network[0].eval() # can't train target_network again
 
     def cuda(self):
         super(DQNGS, self).cuda()
+        print(self.use_target_network)
         if self.use_target_network:
-            self.target_network.cuda()
+            self.target_network[0].cuda()
 
-    def load_state_dict(self, state_dict):
-        super(DQNGS, self).load_state_dict(state_dict)
+    def load_state_dict(self, state_dict):        
         if self.use_target_network:
-            self.target_network.load_state_dict(state_dict)
+            super(DQNGS, self).load_state_dict(state_dict)
+            self.target_network[0].load_state_dict(state_dict)
 
     def sync_target_network(self):
-        self.target_network.load_state_dict(self.state_dict())
+        self.target_network[0].load_state_dict(self.state_dict())
