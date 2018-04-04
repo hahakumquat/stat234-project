@@ -19,8 +19,8 @@ OpenAI Gym
 - ``python main.py -g CartPole-v0 -m DQN_GS -a EpsilonGreedy -e 1000 --nreplay 10000`` for training grayscale DQN
 - ``python main.py -g CartPole-v0 -m NoTraining -a Random -e 1000 --nreplay 10000`` for random policy
 
-## Baselines over 1000 trials
-See ``data`` folder
+## Random baselines over 1000 trials
+See ``data/random`` folder
 - Acrobot Random: average duration 599.73, average reward -598.73
 - CartPole Random: average duration 18.441, average reward 18.441
 - MountainCar Random: average duration 2717.77, average reward -2717.77
