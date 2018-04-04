@@ -5,7 +5,6 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
 
-from Logger import Logger
 from ReplayMemory import Transition
 
 use_cuda = torch.cuda.is_available()
