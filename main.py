@@ -105,7 +105,10 @@ elif model_name == 'DQN_GS':
                   regularization=reg, target_update=target_update,
                   anneal=anneal, loss=loss_function)
 elif model_name == 'DDQN_GS':
-    model = DDQNGS(game.env)
+    model = DDQNGS(game.env, batch_sz=batch,
+                   lr=lr, gamma=0.99,
+                   regularization=reg, target_update=0,
+                   anneal=anneal, loss=loss_function)
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
