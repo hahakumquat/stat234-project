@@ -3,8 +3,8 @@ import numpy as np
 from DQN_GS import DQNGS
 
 class DDQNGS():
+    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber"):
 
-    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001):
         self.env = env
         self.batch_size = batch_sz
         self.learning_rate = lr
@@ -12,10 +12,12 @@ class DDQNGS():
         self.regularization = regularization
         self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, 
                             lr=self.learning_rate, gamma=self.gamma, 
-                            regularization=0.0001)
+                            regularization=0.0001, target_update=0,
+                            anneal=anneal, loss=loss_function)
         self.modelB = DQNGS(env=self.env, batch_sz=self.batch_size, 
                             lr=self.learning_rate, gamma=self.gamma, 
-                            regularization=0.0001)
+                            regularization=0.0001, target_update=0,
+                            anneal=anneal, loss=loss_function)
 
         # figure out my parameters
         self.lr_annealer = self.modelA.lr_annealer
