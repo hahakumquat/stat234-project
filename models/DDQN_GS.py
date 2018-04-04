@@ -4,13 +4,19 @@ from DQN_GS import DQNGS
 
 class DDQNGS():
 
-    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99):
+    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001):
         self.env = env
         self.batch_size = batch_sz
-        self.lr = lr
+        self.learning_rate = lr
         self.gamma = gamma
-        self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, lr=self.lr, gamma=self.gamma)
-        self.modelB = DQNGS(env=self.env, batch_sz=self.batch_size, lr=self.lr, gamma=self.gamma)
+        self.regularization = regularization
+        self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, lr=self.learning_rate, gamma=self.gamma, regularization=0.0001)
+        self.modelB = DQNGS(env=self.env, batch_sz=self.batch_size, lr=self.learning_rate, gamma=self.gamma, regularization=0.0001)
+
+        # figure out my parameters
+        self.lr_annealer = self.modelA.lr_annealer
+        self.optim_name = self.modelA.optim_name
+        self.loss_name = self.modelA.loss_name
 
     def forward(self, state_batch):
         result = (self.modelA.forward(state_batch) + self.modelB.forward(state_batch)) / 2
