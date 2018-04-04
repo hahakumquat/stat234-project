@@ -32,7 +32,7 @@ do
                                     cat slurm.template > tmp.slurm
                                     sed -i s/_name_/$g$m$e$targ$lr$batch$anl$loss$reg/ tmp.slurm
                                     cat tmp.txt >> tmp.slurm
-                                    cat tmp.slurm
+                                    sbatch tmp.slurm
                                 done
                             done
                         done
