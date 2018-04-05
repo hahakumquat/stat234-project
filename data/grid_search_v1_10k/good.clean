@@ -3,7 +3,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -12,7 +11,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -21,7 +19,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -30,7 +27,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -39,7 +35,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -48,7 +43,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -57,7 +51,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -66,7 +59,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -75,7 +67,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -84,7 +75,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -93,7 +83,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -102,7 +91,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -111,7 +99,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -120,7 +107,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -129,7 +115,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -138,7 +123,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -147,7 +131,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -156,7 +139,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -165,7 +147,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -174,7 +155,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -183,7 +163,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -192,7 +171,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -201,7 +179,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -210,7 +187,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -219,7 +195,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -228,7 +203,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -237,7 +211,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -246,7 +219,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -255,7 +227,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -264,7 +235,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -273,7 +243,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -282,7 +251,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -291,7 +259,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -300,7 +267,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -309,7 +275,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -318,7 +283,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -327,7 +291,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -336,7 +299,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -345,7 +307,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -354,7 +315,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -363,7 +323,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -372,7 +331,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -381,7 +339,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -390,7 +347,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -399,7 +355,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -408,7 +363,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -417,7 +371,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -426,7 +379,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -435,7 +387,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -444,7 +395,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -453,7 +403,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -462,7 +411,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -471,7 +419,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -480,7 +427,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -489,7 +435,6 @@ Model: DQN_GS
 Has target network: False
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -498,7 +443,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -507,7 +451,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -516,7 +459,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -525,7 +467,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -534,7 +475,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -543,7 +483,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -552,7 +491,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -561,7 +499,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -570,7 +507,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -579,7 +515,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -588,7 +523,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -597,7 +531,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.001
  
@@ -606,7 +539,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.001
  
@@ -615,7 +547,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -624,7 +555,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -633,7 +563,6 @@ Model: DDQN_GS
 Has target network: sort of. this is a DDQN
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: Huber
 weight decay: 0.1
  
@@ -642,7 +571,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.001
 learning rate annealing: False
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -651,7 +579,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
@@ -660,7 +587,6 @@ Model: DQN_GS
 Has target network: True
 Initial learning rate: 0.0001
 learning rate annealing: True
-Optimizer: RMSprop
 Loss Function: MSE
 weight decay: 0.1
  
