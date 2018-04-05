@@ -1,0 +1,1102 @@
+CartPole-v0/04-04-2018__01_31_29_367790
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_31_37_376853
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_32_04_738041
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_32_15_103779
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_45_08_635063
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_45_08_661479
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_50_32_397513
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_50_35_596107
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__01_50_35_596772
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_47_52_521818
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_50_31_873297
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__02_53_30_559394
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_07_46_366904
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_30_42_876196
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_39_09_003277
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_50_39_227038
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_28_44_865505
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_29_05_267023
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__05_07_18_507934
+GAME PARAMETERS
+Game: CartPole-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__01_31_49_328394
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__01_32_04_868805
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__01_32_05_116475
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__01_32_47_428333
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__01_32_54_155213
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__01_45_08_643754
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__01_50_35_595499
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__01_50_35_596772
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__02_30_48_020246
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__02_36_32_841783
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__02_46_29_376336
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__02_50_31_873293
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__03_07_53_788827
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__03_23_45_058742
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_49_27_709592
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_55_23_966959
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_28_44_865577
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__05_09_20_441669
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__01_31_34_708520
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_32_08_327194
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_32_40_184115
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_32_54_155213
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__02_01_41_792923
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_28_30_334596
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_50_17_096090
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__02_50_17_098092
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__02_50_31_453351
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__03_09_10_360410
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__03_22_02_760845
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__03_47_04_930730
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__03_57_18_976556
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_06_00_538516
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_07_26_152937
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DDQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: sort of. this is a DDQN
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_11_40_176234
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_19_41_437358
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_28_44_865505
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__04_28_54_262344
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__04_28_55_171171
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__04_38_44_903216
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: True
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 

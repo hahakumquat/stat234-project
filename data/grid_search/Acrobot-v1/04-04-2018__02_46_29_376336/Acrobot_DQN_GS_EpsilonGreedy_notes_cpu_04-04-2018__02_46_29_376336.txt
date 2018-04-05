@@ -1,0 +1,17 @@
+GAME PARAMETERS
+Game: Acrobot-v1
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1

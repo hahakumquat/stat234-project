@@ -1,0 +1,17 @@
+GAME PARAMETERS
+Game: MountainCar-v0
+Model: DQN_GS
+Agent: EpsilonGreedy
+N Trains: 10000
+Processing: cpu
+Has target network: False
+Frame skip: 3
+Update frequency: 4
+NETWORK PARAMETERS
+batch size: 128
+gamma: 0.99
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
