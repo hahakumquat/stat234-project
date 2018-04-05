@@ -11,8 +11,9 @@ import gym
 import torch
 from torch.autograd import Variable
 import torchvision.transforms as T
-
-timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y__%H_%M_%S')
+import random
+# timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y__%H_%M_%S')
+timestamp = str(random.random())[2:]
 
 parser = argparse.ArgumentParser(description='Run reinforcement learning simulation.')
 parser.add_argument('-g', metavar='game_name', default='CartPole-v0', help='One of 3 classic control games (CartPole-v0, Acrobot-v1, MountainCar-v0).')
