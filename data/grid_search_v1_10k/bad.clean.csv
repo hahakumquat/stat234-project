@@ -1,4 +1,4 @@
-game,model,target_update,learning_rate,anneal,optimizer,loss_function,weight_decay
+game,model,target_update,learning_rate,anneal,loss_function,weight_decay
 CartPole-v0,DQN_GS,False,0.0001,False,Huber,0.001
 CartPole-v0,DQN_GS,False,0.001,False,MSE,0.001
 CartPole-v0,DQN_GS,False,0.0001,False,MSE,0.001

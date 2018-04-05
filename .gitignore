@@ -1,3 +1,6 @@
+ipython
+ipython/*
+
 .~lock*
 .DS_Store
 
