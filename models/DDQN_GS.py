@@ -26,7 +26,7 @@ class DDQNGS():
 
         self.train_counter = 0
 
-        self.use_target_network = 'sort of. this is a DDQN'
+        self.use_target_network = -1
         self.target_update = 0
 
     def forward(self, state_batch):
