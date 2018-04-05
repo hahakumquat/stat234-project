@@ -27,6 +27,7 @@ class DDQNGS():
         self.train_counter = 0
 
         self.use_target_network = 'sort of. this is a DDQN'
+        self.target_update = 0
 
     def forward(self, state_batch):
         result = (self.modelA.forward(state_batch) + self.modelB.forward(state_batch)) / 2
