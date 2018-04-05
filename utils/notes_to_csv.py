@@ -22,7 +22,7 @@ with open(sys.argv[1], 'r') as f:
 
 with open(sys.argv[1] + '.csv', 'w') as fw:
     writer = csv.writer(fw, delimiter=',')
-    writer.writerow("game,model,target_update,learning_rate,anneal,loss_function,weight_decay".split(','))
+    writer.writerow('game,model,target_update,learning_rate,anneal,loss_function,weight_decay'.split(','))
     for r in res:
         writer.writerow(r)
 

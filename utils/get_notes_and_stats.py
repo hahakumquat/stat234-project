@@ -5,20 +5,25 @@ import os
 # stat234-project
 root = os.path.dirname(os.getcwd())
 
-results_folder = os.path.join(root, 'results')
+results_folder = os.path.join(root, 'data/grid_search_v1_10k')
+header = None
+final_lines = []
 
 def stat_all(root):
+    global header
     rd = {}
     rd['durations'] = {}
-    rd['rewards'] = {}
-    rd['losses'] = {}
-    rd['sample_Q'] = {}
+    # rd['rewards'] = {}
+    # rd['losses'] = {}
+    # rd['sample_Q'] = {}
+    keys = []
+    values = []
     print('ROOT IS', root)
     for file in os.listdir(root):                
         if os.path.isdir(os.path.join(root, file)):
             stat_all(os.path.join(root, file))
-        if file.endswith('.csv'):
-            print('Getting stats of ' + file)
+        if file.endswith('.csv') and 'clean' not in file:
+            # print('Getting stats of ' + file)
             path = os.path.join(root, file)
             try:
                 reader = csv.reader(open(path, 'r'))
@@ -36,15 +41,28 @@ def stat_all(root):
                     rd[key]['max'] = round(np.max(xs), 2)
                     rd[key]['min'] = round(np.min(xs), 2)
                     rd[key]['quantiles'] = [round(x, 2) for x in np.percentile(xs, [25, 50, 75])]
+        if 'notes' in file:
+            with open(os.path.join(root, file), 'r') as f:
+                for line in f:
+                    if ':' in line:
+                        pair = line[:-1].split(':')
+                        keys.append(pair[0].strip())
+                        values.append(pair[1].strip())
 
     notes_file = [x for x in os.listdir(root) if 'notes' in x]
     if len(notes_file) == 0:
         return
-    notes_file = notes_file[0].replace('notes', 'stats')
-    with open(os.path.join(root, notes_file), 'w') as f:
-        f.write('key,mean,std,max,min,25,50,75\n')
-        for key in rd:
-            data = [key, str(rd[key]['mean']), str(rd[key]['std']), str(rd[key]['max']), str(rd[key]['min']), str(rd[key]['quantiles'][0]), str(rd[key]['quantiles'][1]), str(rd[key]['quantiles'][2])]
-            f.write(','.join(data)+'\n')
-        
+    data = []
+    for key in rd: # only key will be duration
+        data += [notes_file[0].split('.')[0], rd[key]['mean'], rd[key]['std'], rd[key]['max'], rd[key]['min']] + rd[key]['quantiles']
+    data += values
+    data = [str(datum) for datum in data]
+    final_lines.append(','.join(data)+'\n')
+    header = 'key,mean,std,max,min,25,50,75,' + ','.join(keys) + '\n'
+    
 stat_all(results_folder)
+
+with open(os.path.join(results_folder, 'notes_and_data.csv'), 'w') as f:
+    f.write(header)
+    for line in final_lines:
+        f.write(line)

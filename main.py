@@ -215,7 +215,8 @@ def main(batch_sz, num_trains):
             if done or t > 20000:
                 reward_log.log(total_reward)
                 duration_log.log(t + 1)
-                print(t + 1)
+                if not args.server:
+                    print(t + 1)
                 if sample_states is not None:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
