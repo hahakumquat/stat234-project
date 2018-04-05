@@ -1,0 +1,1377 @@
+CartPole-v0/04-04-2018__01_31_49_954971
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_32_39_138236
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_32_49_180551
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_45_08_635201
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_45_08_643032
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__01_50_32_397792
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_28_30_341178
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_29_34_145853
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_32_27_103439
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_35_36_871663
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_39_26_231498
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_44_09_992932
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_50_17_097537
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__02_50_17_097644
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__02_50_17_097919
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__02_50_17_098010
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__02_50_17_098462
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__02_50_17_098636
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_50_17_098677
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__02_50_34_743906
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__02_58_24_554426
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__02_58_24_564755
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_03_49_257477
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_08_10_979126
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_09_50_369465
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_16_25_994002
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_21_25_385597
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_23_33_490838
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_29_04_658099
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_33_19_630773
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_43_36_332558
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_47_14_729124
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_47_55_069538
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_48_26_429018
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_49_27_709593
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_49_35_444470
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_50_47_816436
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_53_39_024082
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_55_22_832628
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__03_56_57_449860
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__03_57_19_828419
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_04_01_185255
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_09_29_066655
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_11_40_176234
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_14_24_633611
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_16_53_284480
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_18_25_374510
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_19_41_045496
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_21_27_649958
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+CartPole-v0/04-04-2018__04_28_44_862724
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_28_44_865079
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_28_53_959684
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_28_54_334210
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_29_04_388331
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_29_06_855724
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_30_26_229986
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_36_08_290668
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_47_32_499991
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__04_47_32_500409
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__05_21_18_402392
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+CartPole-v0/04-04-2018__05_25_16_931389
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__02_40_08_384638
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__02_50_17_097303
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__02_50_17_097539
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__02_50_17_098010
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__02_50_17_098084
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__02_50_17_098455
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__02_51_26_702981
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__02_58_24_600196
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__02_58_32_370072
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__03_04_11_946991
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__03_08_48_131502
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__03_16_47_197142
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_20_44_458273
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_22_02_757322
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_29_11_529661
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_33_41_315769
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_43_59_613847
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_47_10_846843
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_47_14_953677
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_48_15_858968
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_49_08_600440
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__03_49_47_469738
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__03_51_45_076181
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__03_57_18_455769
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__03_57_19_722056
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__04_04_09_860514
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__04_11_40_135661
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__04_14_54_878268
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__04_17_22_715048
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__04_19_25_676011
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__04_22_28_653617
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+Acrobot-v1/04-04-2018__04_28_44_861246
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_28_44_865072
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_28_52_816695
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_28_53_635701
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_29_05_335624
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_29_07_498523
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_37_30_067188
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_47_32_498670
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__04_47_32_501843
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+Acrobot-v1/04-04-2018__05_23_16_568839
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__01_31_42_420250
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_31_49_414331
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_32_43_132603
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_32_47_839715
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_45_08_635064
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_45_08_648555
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_45_08_661486
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_50_32_394696
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_50_32_433248
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__01_50_35_595805
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__01_50_35_596107
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_18_48_047761
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_31_11_757120
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_34_31_984454
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_38_36_530291
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_40_25_266781
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_47_31_360288
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_48_28_288184
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_50_17_097303
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__02_50_17_097917
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__02_50_17_098607
+Model: DQN_GS
+Has target network: False
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_50_17_098921
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__02_50_37_595627
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__02_51_47_855335
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__02_55_32_864889
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__02_58_24_600187
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__03_03_46_477650
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__03_05_58_752026
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__03_08_04_735456
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__03_12_51_971056
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__03_20_44_458268
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__03_24_30_536583
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__03_41_48_837922
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__03_47_10_847316
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__03_48_11_940186
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__03_49_29_238302
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__03_53_32_859599
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__03_55_02_517828
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__04_00_30_667684
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_03_49_384505
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_13_56_042821
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_16_53_283772
+Model: DQN_GS
+Has target network: True
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_17_27_012055
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_21_28_296434
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_28_44_865572
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.001
+ 
+MountainCar-v0/04-04-2018__04_28_52_359092
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__04_28_54_885098
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: Huber
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__04_35_29_321813
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__04_47_32_498673
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: False
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__05_15_31_540856
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
+MountainCar-v0/04-04-2018__05_27_18_020612
+Model: DDQN_GS
+Has target network: sort of. this is a DDQN
+Initial learning rate: 0.0001
+learning rate annealing: True
+Optimizer: RMSprop
+Loss Function: MSE
+weight decay: 0.1
+ 
