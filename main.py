@@ -57,6 +57,7 @@ from Logger import Logger
 # models
 from DQN_GS import DQNGS
 from DDQN_GS import DDQNGS
+from DQN_PCA import DQNPCA
 from NoTraining import NoTraining
 
 # agents
@@ -113,6 +114,14 @@ elif model_name == 'DDQN_GS':
                    lr=lr, gamma=0.99,
                    regularization=reg, target_update=0,
                    anneal=anneal, loss=loss_function)
+elif model_name == 'DQN_PCA':
+    model = DQNPCA(game.env, pca_path='data/states/' + game.file_prefix + 'states.csv', 
+                   batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
+                   anneal=anneal, loss=loss_function)
+elif model_name == 'DDQN_PCA':
+    model = DDQNGS(game.env, model='DQN_PCA', pca_path='data/states/' + game.file_prefix + 'states.csv', 
+                   batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
+                   anneal=anneal, loss=loss_function)  
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
