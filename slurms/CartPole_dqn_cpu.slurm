@@ -2,7 +2,7 @@
 #
 #SBATCH -N 1
 #SBATCH -t 5-00:00
-#SBATCH -p general
+#SBATCH -p shared
 #SBATCH --mem=8192
 #SBATCH -o cartpole_dqn_cpu.out
 #SBATCH -e cartpole_dqn_cpu.err

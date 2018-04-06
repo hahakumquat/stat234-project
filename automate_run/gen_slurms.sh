@@ -29,10 +29,10 @@ do
                                 for g in "${games[@]}"
                                 do
                                     ./replace.sh $g $m $e $targ $lr $batch $anl $loss $reg
-                                    cat slurm.template > tmp.slurm
-                                    sed -i s/_name_/$g$m$e$targ$lr$batch$anl$loss$reg/ tmp.slurm
-                                    cat tmp.txt >> tmp.slurm
-                                    sbatch tmp.slurm
+                                    cat slurm.template > tmp2.slurm
+                                    sed -i s/_name_/$g$m$e$targ$lr$batch$anl$loss$reg/ tmp2.slurm
+                                    cat tmp.txt >> tmp2.slurm
+                                    sbatch tmp2.slurm
                                 done
                             done
                         done
