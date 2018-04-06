@@ -20,12 +20,12 @@ def stat_all(root):
     keys = []
     values = []
     print('ROOT IS', root)
-    for file in os.listdir(root):                
-        if os.path.isdir(os.path.join(root, file)):
-            stat_all(os.path.join(root, file))
+    for file in os.listdir(root):  
+        path = os.path.join(root, file)              
+        if os.path.isdir(path):
+            stat_all(path)
         if file.endswith('.csv') and 'clean' not in file and 'notes_and_data' not in file:
             # print('Getting stats of ' + file)
-            path = os.path.join(root, file)
             try:
                 reader = csv.reader(open(path, 'r'))
             except FileNotFoundError:
