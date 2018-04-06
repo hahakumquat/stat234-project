@@ -1,23 +1,32 @@
 import numpy as np
 
 from DQN_GS import DQNGS
+from DQN_PCA import DQNPCA
 
 class DDQNGS():
-    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber"):
+    def __init__(self, env, model='DQN_GS', batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber", pca_path=None):
 
         self.env = env
         self.batch_size = batch_sz
         self.learning_rate = lr
         self.gamma = gamma
         self.regularization = regularization
-        self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, 
-                            lr=self.learning_rate, gamma=self.gamma, 
-                            regularization=0.0001, target_update=0,
-                            anneal=anneal, loss=loss)
-        self.modelB = DQNGS(env=self.env, batch_sz=self.batch_size, 
-                            lr=self.learning_rate, gamma=self.gamma, 
-                            regularization=0.0001, target_update=0,
-                            anneal=anneal, loss=loss)
+        if model = 'DQN_PCA':
+            self.modelA = DQNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
+                                 lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
+                                 target_update=0, anneal=anneal, loss=loss)
+            self.modelB = DQNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
+                                 lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
+                                 target_update=0, anneal=anneal, loss=loss)
+        else:
+            self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, 
+                                lr=self.learning_rate, gamma=self.gamma, 
+                                regularization=0.0001, target_update=0,
+                                anneal=anneal, loss=loss)
+            self.modelB = DQNGS(env=self.env, batch_sz=self.batch_size, 
+                                lr=self.learning_rate, gamma=self.gamma, 
+                                regularization=0.0001, target_update=0,
+                                anneal=anneal, loss=loss)
 
         # figure out my parameters
         self.lr_annealer = self.modelA.lr_annealer
