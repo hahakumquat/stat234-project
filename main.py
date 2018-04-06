@@ -12,8 +12,9 @@ import torch
 from torch.autograd import Variable
 import torchvision.transforms as T
 import random
-# timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y__%H_%M_%S')
+
 timestamp = str(random.random())[2:]
+print(timestamp)
 
 parser = argparse.ArgumentParser(description='Run reinforcement learning simulation.')
 parser.add_argument('-g', metavar='game_name', default='CartPole-v0', help='One of 3 classic control games (CartPole-v0, Acrobot-v1, MountainCar-v0).')
@@ -130,6 +131,7 @@ else:
     raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 
 filename = 'results/' + game_name + '/' + timestamp + '/' + game.file_prefix + model_name + '_' + agent_name
+print('filename: ', filename)
 reward_log = Logger(filename + '_rewards_' + cuda_label + '.csv')
 duration_log = Logger(filename + '_durations_' + cuda_label + '.csv')
 if model_name != 'NoTraining':
