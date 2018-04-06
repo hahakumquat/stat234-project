@@ -63,12 +63,21 @@ class DQNGS(nn.Module):
         self.optimizer = optim.RMSprop(self.parameters(),
                                        lr=self.learning_rate,
                                        weight_decay=regularization)
+        
         self.lr_annealer = None
         self.scheduler = None
         if self.anneal:
             self.lr_annealer = lambda epoch: max(np.exp(-epoch / 10000), 0.0005 / lr)
             self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
                                                          lr_lambda=self.lr_annealer)
+            
+        total_parameters = 0
+        for p in self.parameters():
+            tmp = 1
+            for a in p.shape:
+                tmp *= a
+            total_parameters += tmp
+        print("The number of parameters is: ", total_parameters)
 
     def forward(self, state_batch):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))

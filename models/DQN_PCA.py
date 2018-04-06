@@ -13,7 +13,7 @@ FloatTensor = torch.cuda.FloatTensor if use_cuda else torch.FloatTensor
 LongTensor = torch.cuda.LongTensor if use_cuda else torch.LongTensor
 ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
-class DQNGS(nn.Module):
+class DQNPCA(nn.Module):
 
     def __init__(self, env, pca_path, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss='Huber'):
         super(DQNGS, self).__init__()
@@ -68,6 +68,13 @@ class DQNGS(nn.Module):
             self.lr_annealer = lambda epoch: max(np.exp(-epoch / 10000), 0.0005 / lr)
             self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
                                                          lr_lambda=self.lr_annealer)
+        total_parameters = 0
+        for p in self.parameters():
+            tmp = 1
+            for a in p.shape:
+                tmp *= a
+            total_parameters += tmp
+        print("The number of parameters is: ", total_parameters)        
 
     def forward(self, state_batch):
         state_batch = self.pca.transform(state_batch)

@@ -11,7 +11,7 @@ class DDQNGS():
         self.learning_rate = lr
         self.gamma = gamma
         self.regularization = regularization
-        if model = 'DQN_PCA':
+        if model == 'DQN_PCA':
             self.modelA = DQNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                  lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                  target_update=0, anneal=anneal, loss=loss)
