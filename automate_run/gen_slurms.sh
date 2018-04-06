@@ -6,7 +6,7 @@ weight_decay=(0.1)
 batch_sizes=(32 128)
 losses=(Huber)
 anneals=(--anneal)
-lrs=(0.01, 0.005, 0.001)
+lrs=(0.01 0.005 0.001)
 models=(DDQN_GS)
 games=(CartPole-v0 Acrobot-v1 MountainCar-v0)
 
