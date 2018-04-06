@@ -151,11 +151,11 @@ class DQNGS(nn.Module):
         return float(res)
 
     def create_target_network(self):
-        self.target_network = [DQNGS(env = self.env, batch_sz = self.batch_size,
-                                    lr = self.learning_rate, gamma = self.gamma,
-                                    regularization = self.regularization,
-                                    target_update = 0,
-                                    anneal = self.anneal, loss = self.loss_name)]
+        self.target_network = [DQNGS(env=self.env, batch_sz=self.batch_size,
+                                     lr=self.learning_rate, gamma=self.gamma,
+                                     regularization=self.regularization,
+                                     target_update=0,
+                                     anneal=self.anneal, loss=self.loss_name)]
         self.target_network[0].load_state_dict(self.state_dict())
         self.target_network[0].eval() # can't train target_network again
 

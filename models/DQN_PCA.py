@@ -16,7 +16,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 class DQNPCA(nn.Module):
 
     def __init__(self, env, pca_path, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss='Huber'):
-        super(DQNGS, self).__init__()
+        super(DQNPCA, self).__init__()
 
         with open(pca_path, 'rb') as f:
             self.pca = pickle.load(f)
@@ -150,23 +150,23 @@ class DQNPCA(nn.Module):
         return float(res)
 
     def create_target_network(self):
-        self.target_network = [DQNGS(env = self.env, batch_sz = self.batch_size,
-                                    lr = self.learning_rate, gamma = self.gamma,
-                                    regularization = self.regularization,
-                                    target_update = 0,
-                                    anneal = self.anneal, loss = self.loss_name)]
+        self.target_network = [DQNPCA(env=self.env, batch_sz=self.batch_size,
+                                      lr=self.learning_rate, gamma=self.gamma,
+                                      regularization=self.regularization,
+                                      target_update=0, anneal=self.anneal, 
+                                      loss=self.loss_name)]
         self.target_network[0].load_state_dict(self.state_dict())
         self.target_network[0].eval() # can't train target_network again
 
     def cuda(self):
-        super(DQNGS, self).cuda()
+        super(DQNPCA, self).cuda()
         print(self.use_target_network)
         if self.use_target_network:
             self.target_network[0].cuda()
 
     def load_state_dict(self, state_dict):        
         if self.use_target_network:
-            super(DQNGS, self).load_state_dict(state_dict)
+            super(DQNPCA, self).load_state_dict(state_dict)
             self.target_network[0].load_state_dict(state_dict)
 
     def sync_target_network(self):
