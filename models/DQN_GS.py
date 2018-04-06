@@ -66,7 +66,7 @@ class DQNGS(nn.Module):
         self.lr_annealer = None
         self.scheduler = None
         if self.anneal:
-            self.lr_annealer = lambda epoch: max(np.exp(-epoch / 2000), 0.0005 / lr)
+            self.lr_annealer = lambda epoch: max(np.exp(-epoch / 10000), 0.0005 / lr)
             self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
                                                          lr_lambda=self.lr_annealer)
 
