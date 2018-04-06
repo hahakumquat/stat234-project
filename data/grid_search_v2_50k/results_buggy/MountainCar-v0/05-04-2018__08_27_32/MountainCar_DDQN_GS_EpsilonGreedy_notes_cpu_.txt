@@ -1,0 +1,9 @@
+GAME PARAMETERS
+game: MountainCar-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 1.0
