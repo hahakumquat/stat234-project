@@ -22,7 +22,7 @@ def stat_all(root):
     for file in os.listdir(root):                
         if os.path.isdir(os.path.join(root, file)):
             stat_all(os.path.join(root, file))
-        if file.endswith('.csv') and 'clean' not in file:
+        if file.endswith('.csv') and 'clean' not in file and 'notes_and_data' not in file:
             # print('Getting stats of ' + file)
             path = os.path.join(root, file)
             try:
@@ -41,7 +41,7 @@ def stat_all(root):
                     rd[key]['max'] = round(np.max(xs), 2)
                     rd[key]['min'] = round(np.min(xs), 2)
                     rd[key]['quantiles'] = [round(x, 2) for x in np.percentile(xs, [25, 50, 75])]
-        if 'notes' in file:
+        if 'notes' in file and file.endswith('.txt'):
             with open(os.path.join(root, file), 'r') as f:
                 for line in f:
                     if ':' in line:
@@ -49,7 +49,7 @@ def stat_all(root):
                         keys.append(pair[0].strip())
                         values.append(pair[1].strip())
 
-    notes_file = [x for x in os.listdir(root) if 'notes' in x]
+    notes_file = [x for x in os.listdir(root) if 'notes' in x and x.endswith('.txt')]
     if len(notes_file) == 0:
         return
     data = []
