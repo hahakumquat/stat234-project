@@ -4,8 +4,8 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
+import pickle
 
-from Logger import Logger
 from ReplayMemory import Transition
 
 use_cuda = torch.cuda.is_available()
@@ -15,50 +15,71 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNGS(nn.Module):
 
-    def __init__(self, env, batch_sz=128, lr=0.1, gamma=0.99):
+    def __init__(self, env, pca_path, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss='Huber'):
         super(DQNGS, self).__init__()
 
-        ## DQN architecture
-        self.conv1 = nn.Conv2d(1, 8, kernel_size=8, stride=4)
-        self.bn1 = nn.BatchNorm2d(8)
-        self.relu1 = nn.LeakyReLU(0.1)
-        
-        self.conv2 = nn.Conv2d(8, 16, kernel_size=4, stride=2)
-        self.bn2 = nn.BatchNorm2d(16)
-        self.relu2 = nn.LeakyReLU(0.01)
+        with open(pca_path, 'rb') as f:
+            self.pca = pickle.load(f)
 
-        self.conv3 = nn.Conv2d(16, 16, kernel_size=4, stride=1)
-        self.bn3 = nn.BatchNorm2d(16)
-        self.relu3 = nn.LeakyReLU(0.01)
-        
-        self.mp = nn.MaxPool2d(2)
-        
-        self.out_layer = nn.Linear(64, env.action_space.n)
+        ## DQN architecture
+        self.linear1 = nn.Linear(self.pca.n_pixels, 128)
+        self.relu1 = nn.LeakyReLU(0.0001)
+
+        self.linear2 = nn.Linear(128, 256)
+        self.relu2 = nn.LeakyReLU(0.0001)
+
+        self.linear3 = nn.Linear(256, 256)
+        self.relu3 = nn.LeakyReLU(0.0001)
+                
+        self.out_layer = nn.Linear(256, env.action_space.n)
 
         self.env = env
         self.batch_size = batch_sz
+        
         self.learning_rate = lr
+        
         self.gamma = gamma
+        self.regularization = regularization        
         
-        self.optimizer = optim.RMSprop(self.parameters(),
-                                       lr=self.learning_rate)
-
-        self.lr_annealer = lambda epoch: max(np.exp(-epoch / 500 - 2.3), 0.0005)
-        self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
-                     lr_lambda=self.lr_annealer)
-        
-        self.loss_function = nn.MSELoss()
+        self.loss_name = loss
+        self.loss_function = None
+        if loss == 'Huber':
+            self.loss_function = F.smooth_l1_loss
+        elif loss == 'MSE':
+            self.loss_function = nn.MSELoss()
+            
         self.train_counter = 0
 
+        self.anneal = anneal
+        
+        self.use_target_network = (target_update > 0)
+        self.target_update = target_update
+
+        if self.use_target_network:
+            self.create_target_network()
+            
+        self.optim_name = 'RMSprop'
+        self.optimizer = optim.RMSprop(self.parameters(),
+                                       lr=self.learning_rate,
+                                       weight_decay=regularization)
+        self.lr_annealer = None
+        self.scheduler = None
+        if self.anneal:
+            self.lr_annealer = lambda epoch: max(np.exp(-epoch / 10000), 0.0005 / lr)
+            self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
+                                                         lr_lambda=self.lr_annealer)
+
     def forward(self, state_batch):
-        state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
-        state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
-        state_batch = self.mp(self.relu3(self.bn3(self.conv3(state_batch))))
-        state_batch = state_batch.view(len(state_batch), -1)
+        state_batch = self.pca.transform(state_batch)
+
+        # FIX THIS
+        state_batch = self.relu1(self.linear1(state_batch))
+        state_batch = self.relu2(self.linear2(state_batch))
+        state_batch = self.relu3(self.linear3(state_batch))
         result = self.out_layer(state_batch)
         return result
 
-    def train_model(self, memory, target_network):
+    def train_model(self, memory, target_network=None):
         transitions = memory.sample(self.batch_size)
         # stackoverflow: 
         batch = Transition(*zip(*transitions))
@@ -83,21 +104,21 @@ class DQNGS(nn.Module):
 
         # Compute max_{a'} Q(s_{t+1}, a') for all next states.
         next_state_values = Variable(torch.zeros(len(state_batch)).type(FloatTensor))
-        if target_network is not None:
-            next_state_values[non_final_mask] = target_network.forward(non_final_next_states).max(1)[0]
+        if self.use_target_network:
+            next_state_values[non_final_mask] = self.target_network[0].forward(non_final_next_states).max(1)[0]
         else:
             next_state_values[non_final_mask] = self.forward(non_final_next_states).max(1)[0]
         
         # Now, we don't want to mess up the loss with a volatile flag, so let's
         # clear it. After this, we'll just end up with a Variable that has
         # requires_grad=False
-        # next_state_values.volatile = False
+        next_state_values.volatile = False
 
         # Compute the expected Q values
         expected_state_action_values = (next_state_values * self.gamma) + reward_batch
 
         # The below line can replace next_state_values.volatile = False. See PyTorch DQN tutorial.
-        expected_state_action_values = Variable(expected_state_action_values.data)
+        # expected_state_action_values = Variable(expected_state_action_values.data)
 
         # Compute loss
         loss = self.loss_function(state_action_values, expected_state_action_values)
@@ -108,11 +129,38 @@ class DQNGS(nn.Module):
         for param in self.parameters():
             param.grad.data.clamp_(-1, 1)
         self.optimizer.step()
-        self.scheduler.step()
+        if self.anneal:
+            self.scheduler.step()
         self.train_counter += 1
+
+        if self.use_target_network and self.train_counter % self.target_update == 0:
+            self.sync_target_network()
+
         return loss.data[0] / len(state_action_values)
 
     def compute_sample_Q(self, sample_states):
-        res = self.forward(sample_states).max(1)[0].mean(0).data[0]
-        print(res.shape)
+        res = self.forward(sample_states).data.max(1)[0].mean()
         return float(res)
+
+    def create_target_network(self):
+        self.target_network = [DQNGS(env = self.env, batch_sz = self.batch_size,
+                                    lr = self.learning_rate, gamma = self.gamma,
+                                    regularization = self.regularization,
+                                    target_update = 0,
+                                    anneal = self.anneal, loss = self.loss_name)]
+        self.target_network[0].load_state_dict(self.state_dict())
+        self.target_network[0].eval() # can't train target_network again
+
+    def cuda(self):
+        super(DQNGS, self).cuda()
+        print(self.use_target_network)
+        if self.use_target_network:
+            self.target_network[0].cuda()
+
+    def load_state_dict(self, state_dict):        
+        if self.use_target_network:
+            super(DQNGS, self).load_state_dict(state_dict)
+            self.target_network[0].load_state_dict(state_dict)
+
+    def sync_target_network(self):
+        self.target_network[0].load_state_dict(self.state_dict())

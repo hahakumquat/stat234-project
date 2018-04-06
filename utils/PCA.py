@@ -7,6 +7,8 @@ class PCA():
     def __init__(self, states_file, original_dim=(80, 80), n=100, batch_size=100):
         self.original_dim = original_dim
 
+        self.n_pixels = original_dim[0] * original_dim[1]
+
         states = np.genfromtxt(states_file, delimiter=',')
         states /= 255 # states_file is made up of ints
 
@@ -27,5 +29,5 @@ class PCA():
             (len(transformed), self.original_dim[0], self.original_dim[1]))
 
 if __name__ == '__main__':
-    pca = PCA('data/states/Acrobot_states.csv', n=0.95)
+    pca = PCA('data/states/Acrobot_states.csv', n=0.99)
     print(pca.pca.explained_variance_ratio_)
