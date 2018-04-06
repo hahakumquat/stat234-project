@@ -222,7 +222,7 @@ def main(batch_sz, num_trains):
                     loss_log.log(model.train_model(memory))
                 update_frequency_counter += 1
 
-            if done or t > 20000:
+            if done or t > 10000:
                 reward_log.log(total_reward)
                 duration_log.log(t + 1)
                 if not args.server:
