@@ -5,7 +5,7 @@ import os
 # stat234-project
 root = os.path.dirname(os.getcwd())
 
-results_folder = os.path.join(root, 'data/grid_search_v1_10k')
+results_folder = os.path.join(root, 'results')
 header = None
 final_lines = []
 
