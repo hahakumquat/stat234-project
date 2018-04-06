@@ -153,7 +153,7 @@ if args.base_network and model_name != 'NoTraining':
         model.load_state_dict(torch.load(network_file_to_load))
         print('Loaded pre-trained network.', flush=True)
 
-notes_log = Logger(filename + '_notes_' + cuda_label + '_' + '.txt')
+notes_log = Logger(filename + '_notes_' + cuda_label + '.txt')
 
 notes_log.log('GAME PARAMETERS')
 notes_log.log('game: ' + game_name)
