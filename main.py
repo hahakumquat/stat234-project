@@ -158,8 +158,16 @@ notes_log = Logger(filename + '_notes_' + cuda_label + '.txt')
 notes_log.log('GAME PARAMETERS')
 notes_log.log('game: ' + game_name)
 notes_log.log('model: ' + model_name)
+notes_log.log('agent: ' + agent_name)
+notes_log.log('n_trains: ' + str(num_trains))
+notes_log.log('processing: ' + cuda_label)
 notes_log.log('target_update: ' + str(model.target_update))
-notes_log.log('learning_rate: ' + str(model.learning_rate))
+notes_log.log('frame_skip: ' + str(frame_skip))
+notes_log.log('update_frequency: ' + str(update_frequency))
+notes_log.log('NETWORK PARAMETERS')
+notes_log.log('batch_size: ' + str(model.batch_size))
+notes_log.log('gamma: ' + str(model.gamma))
+notes_log.log('initial_learning_rate: ' + str(model.learning_rate))
 notes_log.log('annealing: ' + str(model.lr_annealer is not None))
 notes_log.log('optimizer: ' + model.optim_name)
 notes_log.log('loss_function: ' + model.loss_name)
@@ -214,7 +222,7 @@ def main(batch_sz, num_trains):
                     loss_log.log(model.train_model(memory))
                 update_frequency_counter += 1
 
-            if done or t > 20000:
+            if done or t > 10000:
                 reward_log.log(total_reward)
                 duration_log.log(t + 1)
                 if not args.server:
