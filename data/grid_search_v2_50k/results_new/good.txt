@@ -1,0 +1,209 @@
+CartPole-v0/020282005216322285
+GAME PARAMETERS
+game: CartPole-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+CartPole-v0/2291501534743322
+GAME PARAMETERS
+game: CartPole-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+CartPole-v0/35134601543876787
+GAME PARAMETERS
+game: CartPole-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+CartPole-v0/37180230756547006
+GAME PARAMETERS
+game: CartPole-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.5
+ 
+CartPole-v0/4426940451201329
+GAME PARAMETERS
+game: CartPole-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 1.0
+ 
+CartPole-v0/6874180677598982
+GAME PARAMETERS
+game: CartPole-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 1.0
+ 
+CartPole-v0/8123832655481216
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.5
+ 
+CartPole-v0/8976162762097434
+GAME PARAMETERS
+game: CartPole-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.5
+ 
+Acrobot-v1/049251507817744455
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_GS
+target_update: 0
+learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/06403543208827167
+GAME PARAMETERS
+game: Acrobot-v1
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 1.0
+ 
+Acrobot-v1/11676214823091713
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_GS
+target_update: 0
+learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/13234126687011027
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/2820237640175166
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/31679343848876795
+GAME PARAMETERS
+game: Acrobot-v1
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.5
+ 
+Acrobot-v1/5420460053377169
+GAME PARAMETERS
+game: Acrobot-v1
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/9373814749207732
+GAME PARAMETERS
+game: Acrobot-v1
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 1.0
+ 
+MountainCar-v0/2736932908508154
+GAME PARAMETERS
+game: MountainCar-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+MountainCar-v0/41885739157198487
+GAME PARAMETERS
+game: MountainCar-v0
+model: DDQN_GS
+target_update: 0
+learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 1.0
+ 
+MountainCar-v0/60738729194737
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_GS
+target_update: 0
+learning_rate: 0.01
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 

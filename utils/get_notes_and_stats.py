@@ -1,11 +1,12 @@
 import csv
 import numpy as np
 import os
+import sys
 
 # stat234-project
 root = os.path.dirname(os.getcwd())
 
-results_folder = os.path.join(root, 'results')
+results_folder = os.path.join(root, 'results' if len(sys.argv) <= 1 else sys.argv[1])
 header = None
 final_lines = []
 
@@ -33,7 +34,9 @@ def stat_all(root):
             xs = []
             for r in reader:
                 xs.append(float(r[0]))
-
+            if len(xs) == 0:
+                return
+            xs = xs[int(len(xs) / 2):]
             for key in rd:
                 if key in file:
                     rd[key]['mean'] = round(np.mean(xs), 2)

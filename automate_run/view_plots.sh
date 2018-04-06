@@ -9,7 +9,7 @@ do
         echo $game/$result
         cd $result
         cat $(ls | grep "notes")
-        plots=$(find . -name "*.pdf")
+        plots=$(find . -name "*durations*.pdf")
         evince -f $plots & echo "[g]ood or [b]ad or o[k]?" & read res        
         if [ $res = "b" ]
         then

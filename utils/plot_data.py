@@ -32,7 +32,10 @@ def plot_all(root):
     for file in os.listdir(root):
         if os.path.isdir(os.path.join(root, file)):
             plot_all(os.path.join(root, file))
-        if file.endswith('.csv'):
+        if (file.endswith('.csv')
+        and 'clean' not in file
+        and 'notes' not in file
+        and not os.path.exists(os.path.join(root, file.replace('.csv', '.pdf')))):
             print("Plotting " + file)
             path = os.path.join(root, file)
             try:
