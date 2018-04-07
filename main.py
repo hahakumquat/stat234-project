@@ -61,6 +61,7 @@ from DDQN import DDQN
 from DQN_PCA import DQNPCA
 from NoTraining import NoTraining
 from DQCNN_PCA import DQCNNPCA
+from DQCNN_PCA_mini import DQCNNPCAMini
 
 # agents
 from EpsilonGreedy import EpsilonGreedy
@@ -131,7 +132,15 @@ elif model_name == 'DQCNN_PCA':
 elif model_name == 'DDQCNN_PCA':
     model = DDQN(game.env, model='DQCNN_PCA', pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
                  batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
-                 anneal=anneal, loss=loss_function)  
+                 anneal=anneal, loss=loss_function)
+elif model_name == 'DQCNN_PCA_mini':
+    model = DQCNNPCA(game.env, pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
+                     batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
+                     anneal=anneal, loss=loss_function)
+elif model_name == 'DDQCNN_PCA_mini':
+    model = DDQN(game.env, model='DQCNN_PCA_mini', pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
+                 batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
+                 anneal=anneal, loss=loss_function)
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
