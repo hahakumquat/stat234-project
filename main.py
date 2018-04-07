@@ -62,7 +62,7 @@ from DDQN import DDQN
 from DQN_PCA import DQNPCA
 from NoTraining import NoTraining
 from DQCNN_PCA import DQCNNPCA
-from DQCNN_PCA_mini import DQCNNPCAMini
+from DQCNN_PCA_Mini import DQCNNPCAMini
 
 # agents
 from EpsilonGreedy import EpsilonGreedy
@@ -117,29 +117,16 @@ model_parameters = {'env': game.env,
                     }
 if 'PCA' in model_name:
     model_parameters['pca_path'] = 'data/states/' + game.file_prefix + 'PCA.pkl'
-if 'DDQN' in model_name:
+if 'DDQ' in model_name:
     model_parameters['model'] = model_name.replace('DDQ', 'DQ')
 
-if model_name == 'NoTraining':
-    model = NoTraining(game.env)    
-elif model_name == 'DQN_GS':
-    model = DQNGS(**model_parameters)
-elif model_name == 'DDQN_GS':
-    model = DDQN(**model_parameters)
-elif model_name == 'DQN_PCA':
-    model = DQNPCA(**model_parameters)
-elif model_name == 'DDQN_PCA':
-    model = DDQN(**model_parameters)  
-elif model_name == 'DQCNN_PCA':
-    model = DQCNNPCA(**model_parameters)
-elif model_name == 'DDQCNN_PCA':
-    model = DDQN(**model_parameters)  
-elif model_name == 'DQCNN_PCA_mini':
-    model = DQCNNPCAMini(**model_parameters)
-elif model_name == 'DDQCNN_PCA_mini':
-    model = DDQN(**model_parameters)
-else:
-    raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
+try:
+    if 'DDQ' in model_name:
+        model = DDQN(**model_parameters)
+    else:
+        model = globals()[model_name.replace('_', '')](**model_parameters)
+except KeyError:
+    raise Exception('Model does not exist. Ex: For DQN.py, use DQN')    
 if use_cuda:
     model.cuda()
     print('Using CUDA.', flush=True)

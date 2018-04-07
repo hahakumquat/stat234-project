@@ -10,18 +10,24 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class NoTraining(nn.Module):
 
-    def __init__(self, env, batch_size=128):
+    def __init__(self, env, **kwargs):
         
         self.env = env
-        self.batch_size = batch_size
         self.train_counter = 0
-        self.use_target_network = 'n/a'
+        self.batch_size = -1
+        self.target_update = -1
+        self.gamma = -1
+        self.learning_rate = -1
+        self.lr_annealer = None
+        self.optim_name = 'None'
+        self.loss_name = 'None'
+        self.regularization = -1
 
     def forward(self, state_batch):
         result = Variable(FloatTensor(np.ones((len(state_batch), self.env.action_space.n))))
         return result
 
-    def train_model(self, memory, target_network):
+    def train_model(self, memory):
         self.train_counter += 1
         return -1
 
