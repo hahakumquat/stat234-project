@@ -13,9 +13,6 @@ from torch.autograd import Variable
 import torchvision.transforms as T
 import random
 
-timestamp = str(random.random())[2:]
-print(timestamp)
-
 parser = argparse.ArgumentParser(description='Run reinforcement learning simulation.')
 parser.add_argument('-g', metavar='game_name', default='CartPole-v0', help='One of 3 classic control games (CartPole-v0, Acrobot-v1, MountainCar-v0).')
 parser.add_argument('-m', metavar='model_name', default='DQN_GS', help='The model type (NoTraining, DQN_GS, DDQN_GS, DQN_PCA, DDQN_PCA).')
@@ -40,6 +37,10 @@ if args.server:
     from pyvirtualdisplay import Display
     display = Display(visible=0, size=(400, 600))
     display.start()
+    timestamp = str(random.random())[2:]
+else:
+    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y__%H_%M_%S')
+print(timestamp)
 
 # first change the cwd to the script path
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
