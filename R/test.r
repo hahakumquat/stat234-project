@@ -35,3 +35,21 @@ cartpole.model$coefficients[cartpole.model$coefficients > 0]
 ## cartpole likes DDQN***, higher lr***, lower weight decay**
 
 ## recommend: 0.1 weight decay, DDQN, different learning rates
+
+df = read.csv("../data/grid_search_v3_100k/notes_and_data.csv")
+
+acrobot.model= lm(mean ~ factor(batch_size) + factor(initial_learning_rate), df[df$game=='Acrobot-v1',])
+summary(acrobot.model)
+acrobot.model$coefficients[acrobot.model$coefficients < 0]
+
+## acrobot likes DDQN***, lower lr, lower weight decay***
+mountaincar.model= lm(mean ~ factor(batch_size) + factor(initial_learning_rate), df[df$game=='MountainCar-v0',])
+summary(mountaincar.model)
+mountaincar.model$coefficients[mountaincar.model$coefficients < 0]
+## mountaincar likes DQN, lower lr, lower weight
+
+CartPole.model= lm(mean ~ factor(batch_size) + factor(initial_learning_rate), df[df$game=='CartPole-v0',])
+summary(CartPole.model)
+CartPole.model$coefficients[CartPole.model$coefficients < 0]
+
+

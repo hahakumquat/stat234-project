@@ -8,6 +8,7 @@ OpenAI Gym
 
 3. Install packages
 - ``conda install -c https://conda.anaconda.org/kne pybox2d``
+- ``conda install scikit-learn``
 - ``pip install gym``
 - ``conda install pytorch-cpu torchvision -c pytorch`` (but better to build pytorch and torchvision from source)
 - ``conda install matplotlib``

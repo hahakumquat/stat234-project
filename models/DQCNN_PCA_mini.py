@@ -35,9 +35,15 @@ class DQCNNPCAMini(nn.Module):
         self.relu3 = nn.LeakyReLU(0.0001)
         
         self.mp = nn.MaxPool2d(2)
-        
-        self.out_layer = nn.Linear(256, env.action_space.n)
 
+        padsize = self.pad(Variable(torch.zeros(1, 80, 80))).shape[-1]
+        print(padsize)
+        if padsize == 28:
+            self.out_layer = nn.Linear(5776, env.action_space.n)
+        elif padsize == 13:
+            self.out_layer = nn.Linear(256, env.action_space.n)
+        if padsize == 21:
+            self.out_layer = nn.Linear(2304, env.action_space.n)
         self.env = env
         self.batch_size = batch_sz
         
@@ -82,19 +88,8 @@ class DQCNNPCAMini(nn.Module):
         print("The number of parameters is: ", total_parameters)        
 
     def forward(self, state_batch):
-        is_volatile = False
-        try:
-            is_volatile = state_batch.volatile
-        except AttributeError:
-            pass
 
-        transformed = self.pca.transform(state_batch)
-        num_pixels = transformed.shape[-1]
-        padded_pixels = int(np.sqrt(num_pixels) + 1)
-        num_padding = padded_pixels**2 - num_pixels
-        zeros = np.zeros((transformed.shape[0], num_padding))
-        state_batch = np.concatenate([transformed, zeros], axis=1)
-        state_batch = Variable(FloatTensor(state_batch), volatile=is_volatile).view(transformed.shape[0], 1, padded_pixels, padded_pixels)
+        state_batch = self.pad(state_batch)
 
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
         state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
@@ -103,6 +98,21 @@ class DQCNNPCAMini(nn.Module):
         result = self.out_layer(state_batch)
         return result
 
+    def pad(self, state_batch):
+        is_volatile = False
+        try:
+            is_volatile = state_batch.volatile
+        except AttributeError:
+            pass
+        transformed = self.pca.transform(state_batch)
+        num_pixels = transformed.shape[-1]
+        padded_pixels = int(np.sqrt(num_pixels) + 1)
+        num_padding = padded_pixels**2 - num_pixels
+        zeros = np.zeros((transformed.shape[0], num_padding))
+        state_batch = np.concatenate([transformed, zeros], axis=1)
+        state_batch = Variable(FloatTensor(state_batch), volatile=is_volatile).view(transformed.shape[0], 1, padded_pixels, padded_pixels)
+        return state_batch
+        
     def train_model(self, memory, target_network=None):
         transitions = memory.sample(self.batch_size)
         # stackoverflow: 
