@@ -5,12 +5,6 @@ from sklearn.decomposition import PCA as sklPCA
 from sklearn.preprocessing import StandardScaler
 import sys
 
-# stat234-project
-root = os.path.realpath(os.path.dirname(sys.argv[0]))
-os.chdir(root)
-root = os.path.dirname(os.getcwd())
-os.chdir(root)
-
 class PCA():
 
     def __init__(self, states_file, original_dim=(80, 80), n=100, batch_size=100):
@@ -38,6 +32,11 @@ class PCA():
             (len(transformed), self.original_dim[0], self.original_dim[1]))
 
 if __name__ == '__main__':
+    # stat234-project
+    root = os.path.realpath(os.path.dirname(sys.argv[0]))
+    os.chdir(root)
+    root = os.path.dirname(os.getcwd())
+    os.chdir(root)
     for game in ['CartPole', 'Acrobot', 'MountainCar']:
         pca = PCA('data/states/' + game + '_states.csv', n=0.99)
         with open('data/states/' + game + '_PCA.pkl', 'wb') as f:
