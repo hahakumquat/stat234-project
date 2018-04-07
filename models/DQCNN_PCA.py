@@ -88,7 +88,6 @@ class DQCNNPCA(nn.Module):
         except AttributeError:
             pass
         state_batch = Variable(FloatTensor(self.pca.inv_transform(self.pca.transform(state_batch))), volatile=is_volatile)
-
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
         state_batch = self.relu2(self.bn2(self.conv2(state_batch)))
         state_batch = self.mp(self.relu3(self.bn3(self.conv3(state_batch))))

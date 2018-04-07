@@ -34,7 +34,7 @@ class PCA():
     def inv_transform(self, transformed):
         return self.std_scale.inverse_transform(
             self.pca.inverse_transform(transformed)).reshape(
-            (len(transformed), self.original_dim[0], self.original_dim[1]))
+            (len(transformed), 1, self.original_dim[0], self.original_dim[1]))
 
 if __name__ == '__main__':
     # stat234-project
