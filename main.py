@@ -135,7 +135,7 @@ elif model_name == 'DDQCNN_PCA':
                  batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
                  anneal=anneal, loss=loss_function)
 elif model_name == 'DQCNN_PCA_mini':
-    model = DQCNNPCA(game.env, pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
+    model = DQCNNPCAMini(game.env, pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
                      batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
                      anneal=anneal, loss=loss_function)
 elif model_name == 'DDQCNN_PCA_mini':
