@@ -53,6 +53,7 @@ sys.path.append('utils')
 # utils
 from ReplayMemory import ReplayMemory, Transition
 from Logger import Logger
+from PCA import PCA
 
 # models
 from DQN_GS import DQNGS
