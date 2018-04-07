@@ -4,7 +4,10 @@ import os
 import sys
 
 # stat234-project
+root = os.path.realpath(os.path.dirname(sys.argv[0]))
+os.chdir(root)
 root = os.path.dirname(os.getcwd())
+os.chdir(root)
 
 results_folder = os.path.join(root, 'data' if len(sys.argv) <= 1 else sys.argv[1])
 header = None

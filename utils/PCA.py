@@ -1,6 +1,15 @@
 import numpy as np
+import os
+import pickle
 from sklearn.decomposition import PCA as sklPCA
 from sklearn.preprocessing import StandardScaler
+import sys
+
+# stat234-project
+root = os.path.realpath(os.path.dirname(sys.argv[0]))
+os.chdir(root)
+root = os.path.dirname(os.getcwd())
+os.chdir(root)
 
 class PCA():
 
@@ -29,5 +38,7 @@ class PCA():
             (len(transformed), self.original_dim[0], self.original_dim[1]))
 
 if __name__ == '__main__':
-    pca = PCA('data/states/Acrobot_states.csv', n=0.99)
-    print(pca.pca.explained_variance_ratio_)
+    for game in ['CartPole', 'Acrobot', 'MountainCar']:
+        pca = PCA('data/states/' + game + '_states.csv', n=0.99)
+        with open('data/states/' + game + '_PCA.pkl', 'wb') as f:
+            pickle.dump(pca, f)

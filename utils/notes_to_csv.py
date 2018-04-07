@@ -2,9 +2,14 @@ import csv
 import os
 import sys
 
+root = os.path.realpath(os.path.dirname(sys.argv[0]))
+os.chdir(root)
+root = os.path.dirname(os.getcwd())
+os.chdir(root)
+
 res = []
 
-with open(sys.argv[1], 'r') as f:
+with open(os.path.join(root, sys.argv[1]), 'r') as f:
     tmp = []
     for line in f:
         if line == ' \n':
