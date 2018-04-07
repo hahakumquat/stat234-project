@@ -56,14 +56,6 @@ from ReplayMemory import ReplayMemory, Transition
 from Logger import Logger
 from PCA import PCA
 
-# models
-from DQN_GS import DQNGS
-from DDQN import DDQN
-from DQN_PCA import DQNPCA
-from NoTraining import NoTraining
-from DQCNN_PCA import DQCNNPCA
-from DQCNN_PCA_Mini import DQCNNPCAMini
-
 # agents
 from EpsilonGreedy import EpsilonGreedy
 from Random import Random
@@ -122,9 +114,11 @@ if 'DDQ' in model_name:
 
 try:
     if 'DDQ' in model_name:
+        from DDQN import DDQN
         model = DDQN(**model_parameters)
     else:
-        model = globals()[model_name.replace('_', '')](**model_parameters)
+        module_name = __import__(model_name)
+        model = getattr(module_name, model_name.replace('_', ''))(**model_parameters)
 except KeyError:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')    
 if use_cuda:
