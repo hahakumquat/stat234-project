@@ -24,16 +24,16 @@ parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000,
 parser.add_argument('--target', metavar='target_update', type=int, default=0, help='Target network update.')
 
 # Neural Network Parameters
-parser.add_argument('--lr', metavar='learning_rate', type=float, default=10000, help='learning rate.')
+parser.add_argument('--lr', metavar='learning_rate', type=float, default=0.001, help='learning rate.')
 parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='batch size.')
-parser.add_argument('--anneal', action='store_true', help='Anneals learning rate.')
-parser.add_argument('--noanneal', action='store_true', help='Anneals learning rate.')
+parser.add_argument('--anneal', action='store_true', help='Turns on learning rate annealing.')
+parser.add_argument('--noanneal', action='store_true', help='Turns off learning rate annealing.')
 parser.add_argument('--loss', metavar='loss', type=str, default='Huber', help='Loss function.')
 parser.add_argument('--regularization', metavar='regularization', type=float, default=0.001, help='L2 regularization.')
 
 args = parser.parse_args()
 if args.server:
-    print("Server enabled.", flush=True)
+    print('Server enabled.', flush=True)
     from pyvirtualdisplay import Display
     display = Display(visible=0, size=(400, 600))
     display.start()
