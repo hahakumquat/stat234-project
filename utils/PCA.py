@@ -21,8 +21,13 @@ class PCA():
         self.pca = sklPCA(n_components=n)
         self.pca.fit(states_std)
 
+        self.n_components = self.pca.n_components_
+
     def transform(self, state):
-        y = state.reshape(len(state), -1)
+        try:
+            y = state.reshape(len(state), -1)
+        except AttributeError:
+            y = state.view(len(state), -1).data.numpy()
         y_std = self.std_scale.transform(y)
         return self.pca.transform(y_std)
         

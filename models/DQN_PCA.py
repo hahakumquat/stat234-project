@@ -20,18 +20,19 @@ class DQNPCA(nn.Module):
 
         with open(pca_path, 'rb') as f:
             self.pca = pickle.load(f)
+        print(self.pca.pca.n_components_)
 
         ## DQN architecture
-        self.linear1 = nn.Linear(self.pca.n_pixels, 32)
+        self.linear1 = nn.Linear(int(self.pca.n_components), 16)
         self.relu1 = nn.LeakyReLU(0.0001)
 
-        self.linear2 = nn.Linear(32, 64)
+        self.linear2 = nn.Linear(16, 32)
         self.relu2 = nn.LeakyReLU(0.0001)
 
-        self.linear3 = nn.Linear(64, 64)
+        self.linear3 = nn.Linear(32, 32)
         self.relu3 = nn.LeakyReLU(0.0001)
                 
-        self.out_layer = nn.Linear(64, env.action_space.n)
+        self.out_layer = nn.Linear(32, env.action_space.n)
 
         self.env = env
         self.batch_size = batch_sz
@@ -77,9 +78,13 @@ class DQNPCA(nn.Module):
         print("The number of parameters is: ", total_parameters)        
 
     def forward(self, state_batch):
-        state_batch = self.pca.transform(state_batch)
+        is_volatile = False
+        try:
+            is_volatile = state_batch.volatile
+        except AttributeError:
+            pass
+        state_batch = Variable(FloatTensor(self.pca.transform(state_batch)), volatile=is_volatile)
 
-        # FIX THIS
         state_batch = self.relu1(self.linear1(state_batch))
         state_batch = self.relu2(self.linear2(state_batch))
         state_batch = self.relu3(self.linear3(state_batch))

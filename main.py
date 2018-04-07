@@ -148,7 +148,7 @@ if model_name != 'NoTraining':
     loss_log = Logger(filename + '_losses_' + cuda_label + '.csv')
 
 # get sample states to compute Q function instead of (in addition to) average reward
-if model_name != 'NoTraining':
+if model_name != 'NoTraining' and 'PCA' not in model_name:
     replay_memory_file = 'data/sample_states/' + game.file_prefix + 'NoTraining_Random_memory_' + cuda_label + '.pkl'
     if os.path.exists(replay_memory_file):
         with open(replay_memory_file, 'rb') as f:
