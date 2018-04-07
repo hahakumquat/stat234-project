@@ -22,16 +22,16 @@ class DQNPCA(nn.Module):
             self.pca = pickle.load(f)
 
         ## DQN architecture
-        self.linear1 = nn.Linear(self.pca.n_pixels, 128)
+        self.linear1 = nn.Linear(self.pca.n_pixels, 32)
         self.relu1 = nn.LeakyReLU(0.0001)
 
-        self.linear2 = nn.Linear(128, 256)
+        self.linear2 = nn.Linear(32, 64)
         self.relu2 = nn.LeakyReLU(0.0001)
 
-        self.linear3 = nn.Linear(256, 256)
+        self.linear3 = nn.Linear(64, 64)
         self.relu3 = nn.LeakyReLU(0.0001)
                 
-        self.out_layer = nn.Linear(256, env.action_space.n)
+        self.out_layer = nn.Linear(64, env.action_space.n)
 
         self.env = env
         self.batch_size = batch_sz
