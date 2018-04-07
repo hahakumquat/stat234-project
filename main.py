@@ -33,7 +33,7 @@ parser.add_argument('--regularization', metavar='regularization', type=float, de
 
 args = parser.parse_args()
 if args.server:
-    print("Server enabled.", flush=True)
+    print('Server enabled.', flush=True)
     from pyvirtualdisplay import Display
     display = Display(visible=0, size=(400, 600))
     display.start()
@@ -62,6 +62,7 @@ from DDQN import DDQN
 from DQN_PCA import DQNPCA
 from NoTraining import NoTraining
 from DQCNN_PCA import DQCNNPCA
+from DQCNN_PCA_mini import DQCNNPCAMini
 
 # agents
 from EpsilonGreedy import EpsilonGreedy
@@ -116,6 +117,8 @@ model_parameters = {'env': game.env,
                     }
 if 'PCA' in model_name:
     model_parameters['pca_path'] = 'data/states/' + game.file_prefix + 'PCA.pkl'
+if 'DDQN' in model_name:
+    model_parameters['model'] = model_name.replace('DDQ', 'DQ')
 
 if model_name == 'NoTraining':
     model = NoTraining(game.env)    
@@ -131,6 +134,10 @@ elif model_name == 'DQCNN_PCA':
     model = DQCNNPCA(**model_parameters)
 elif model_name == 'DDQCNN_PCA':
     model = DDQN(**model_parameters)  
+elif model_name == 'DQCNN_PCA_mini':
+    model = DQCNNPCAMini(**model_parameters)
+elif model_name == 'DDQCNN_PCA_mini':
+    model = DDQN(**model_parameters)
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
