@@ -26,6 +26,13 @@ class DDQN():
             self.modelB = DQCNNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                    lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                    target_update=0, anneal=anneal, loss=loss)
+        elif model == 'DQCNN_PCA_mini':
+            self.modelA = DQCNNPCAMini(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
+                                       lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
+                                       target_update=0, anneal=anneal, loss=loss)
+            self.modelB = DQCNNPCAMini(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
+                                       lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
+                                       target_update=0, anneal=anneal, loss=loss)
         else:
             self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, 
                                 lr=self.learning_rate, gamma=self.gamma, 
