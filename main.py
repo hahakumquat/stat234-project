@@ -105,34 +105,32 @@ if game_name == 'CartPoleCroppedGame':
 else:
     game = Game(game_name)
 
+model_parameters = {'env': game.env,
+                    'batch_sz': batch,
+                    'lr': lr,
+                    'gamma': 0.99,
+                    'regularization': reg,
+                    'target_update': 0 if 'DDQN' in model_name else target_update,
+                    'anneal': anneal,
+                    'loss': loss_function
+                    }
+if 'PCA' in model_name:
+    model_parameters['pca_path'] = 'data/states/' + game.file_prefix + 'PCA.pkl'
+
 if model_name == 'NoTraining':
     model = NoTraining(game.env)    
 elif model_name == 'DQN_GS':
-    model = DQNGS(game.env, batch_sz=batch,
-                  lr=lr, gamma=0.99,
-                  regularization=reg, target_update=target_update,
-                  anneal=anneal, loss=loss_function)
+    model = DQNGS(**model_parameters)
 elif model_name == 'DDQN_GS':
-    model = DDQN(game.env, batch_sz=batch,
-                 lr=lr, gamma=0.99,
-                 regularization=reg, target_update=0,
-                 anneal=anneal, loss=loss_function)
+    model = DDQN(**model_parameters)
 elif model_name == 'DQN_PCA':
-    model = DQNPCA(game.env, pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
-                   batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
-                   anneal=anneal, loss=loss_function)
+    model = DQNPCA(**model_parameters)
 elif model_name == 'DDQN_PCA':
-    model = DDQN(game.env, model='DQN_PCA', pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
-                 batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
-                 anneal=anneal, loss=loss_function)  
+    model = DDQN(**model_parameters)  
 elif model_name == 'DQCNN_PCA':
-    model = DQCNNPCA(game.env, pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
-                     batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
-                     anneal=anneal, loss=loss_function)
+    model = DQCNNPCA(**model_parameters)
 elif model_name == 'DDQCNN_PCA':
-    model = DDQN(game.env, model='DQCNN_PCA', pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
-                 batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
-                 anneal=anneal, loss=loss_function)  
+    model = DDQN(**model_parameters)  
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
