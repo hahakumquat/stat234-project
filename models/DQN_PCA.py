@@ -20,7 +20,6 @@ class DQNPCA(nn.Module):
 
         with open(pca_path, 'rb') as f:
             self.pca = pickle.load(f)
-        print(self.pca.pca.n_components_)
 
         ## DQN architecture
         self.linear1 = nn.Linear(int(self.pca.n_components), 16)

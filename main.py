@@ -18,7 +18,7 @@ print(timestamp)
 
 parser = argparse.ArgumentParser(description='Run reinforcement learning simulation.')
 parser.add_argument('-g', metavar='game_name', default='CartPole-v0', help='One of 3 classic control games (CartPole-v0, Acrobot-v1, MountainCar-v0).')
-parser.add_argument('-m', metavar='model_name', default='DQN_GS', help='The model type (NoTraining, DQN_GS, DDQN_GS).')
+parser.add_argument('-m', metavar='model_name', default='DQN_GS', help='The model type (NoTraining, DQN_GS, DDQN_GS, DQN_PCA, DDQN_PCA).')
 parser.add_argument('-a', metavar='agent_name', default='EpsilonGreedy', help='The agent type (EpsilonGreedy, Random).')
 parser.add_argument('-e', metavar='num_trains', type=int, default=50000, help='Number of minibatch trains.')
 parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running.')
@@ -57,7 +57,7 @@ from PCA import PCA
 
 # models
 from DQN_GS import DQNGS
-from DDQN_GS import DDQNGS
+from DDQN import DDQN
 from DQN_PCA import DQNPCA
 from NoTraining import NoTraining
 
@@ -111,18 +111,18 @@ elif model_name == 'DQN_GS':
                   regularization=reg, target_update=target_update,
                   anneal=anneal, loss=loss_function)
 elif model_name == 'DDQN_GS':
-    model = DDQNGS(game.env, batch_sz=batch,
-                   lr=lr, gamma=0.99,
-                   regularization=reg, target_update=0,
-                   anneal=anneal, loss=loss_function)
+    model = DDQN(game.env, batch_sz=batch,
+                 lr=lr, gamma=0.99,
+                 regularization=reg, target_update=0,
+                 anneal=anneal, loss=loss_function)
 elif model_name == 'DQN_PCA':
     model = DQNPCA(game.env, pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
                    batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
                    anneal=anneal, loss=loss_function)
 elif model_name == 'DDQN_PCA':
-    model = DDQNGS(game.env, model='DQN_PCA', pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
-                   batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
-                   anneal=anneal, loss=loss_function)  
+    model = DDQN(game.env, model='DQN_PCA', pca_path='data/states/' + game.file_prefix + 'PCA.pkl', 
+                 batch_sz=batch, lr=lr, gamma=0.99, regularization=reg, target_update=target_update,
+                 anneal=anneal, loss=loss_function)  
 else:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')
 if use_cuda:
