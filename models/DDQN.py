@@ -2,6 +2,7 @@ import numpy as np
 
 from DQN_GS import DQNGS
 from DQN_PCA import DQNPCA
+from DQCNN_PCA import DQCNNPCA
 
 class DDQN():
     def __init__(self, env, model='DQN_GS', batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber", pca_path=None):
@@ -18,6 +19,13 @@ class DDQN():
             self.modelB = DQNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                  lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                  target_update=0, anneal=anneal, loss=loss)
+        elif model == 'DQCNN_PCA':
+            self.modelA = DQCNNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
+                                   lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
+                                   target_update=0, anneal=anneal, loss=loss)
+            self.modelB = DQCNNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
+                                   lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
+                                   target_update=0, anneal=anneal, loss=loss)
         else:
             self.modelA = DQNGS(env=self.env, batch_sz=self.batch_size, 
                                 lr=self.learning_rate, gamma=self.gamma, 
