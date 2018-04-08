@@ -3,10 +3,13 @@
 
 ## Setup
 1. Download/Install Anaconda
+
 2. ``conda env create -f environment.yml``
+
 3. Fix errors if unmerged into master OpenAI gym branch
 - https://github.com/openai/gym/pull/930
 - In each of the game files in `gym/gym/envs/classic_control/`, add `dtype=np.float32` to each `spaces.Box()` initialization to suppress logger warning
+
 4. Run ``main.py``
 - ``python main.py -h`` for command-line argument help
 - ``python main.py -g CartPole-v0 -m DQN_GS -a EpsilonGreedy -e 1000 --nreplay 10000`` for training grayscale DQN
