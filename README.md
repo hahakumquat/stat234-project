@@ -1,6 +1,7 @@
 # stat234-project
-OpenAI Gym
+(Double) Deep Q-Learning and PCA using OpenAI Gym
 
+## Setup
 1. Download/Install Anaconda
 2. ``conda env create -f environment.yml``
 3. Fix errors if unmerged into master OpenAI gym branch
