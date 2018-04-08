@@ -37,7 +37,7 @@ class DQCNNPCAMini(nn.Module):
         self.mp = nn.MaxPool2d(2)
 
         padsize = self.pad(Variable(torch.zeros(1, 80, 80))).shape[-1]
-        print(padsize)
+        print(padsize, flush=True)
         if padsize == 28:
             self.out_layer = nn.Linear(5776, env.action_space.n)
         elif padsize == 13:
@@ -85,7 +85,7 @@ class DQCNNPCAMini(nn.Module):
             for a in p.shape:
                 tmp *= a
             total_parameters += tmp
-        print("The number of parameters is: ", total_parameters)        
+        print("The number of parameters is: ", total_parameters, flush=True)        
 
     def forward(self, state_batch):
 
@@ -187,7 +187,6 @@ class DQCNNPCAMini(nn.Module):
 
     def cuda(self):
         super(DQCNNPCAMini, self).cuda()
-        print(self.use_target_network)
         if self.use_target_network:
             self.target_network[0].cuda()
 

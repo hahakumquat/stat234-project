@@ -40,7 +40,7 @@ if args.server:
     timestamp = str(random.random())[2:]
 else:
     timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%d-%m-%Y__%H_%M_%S')
-print(timestamp)
+print(timestamp, flush=True)
 
 # first change the cwd to the script path
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
@@ -137,7 +137,7 @@ else:
     raise Exception('Agent does not exist. Ex: For EpsilonGreedy.py, use EpsilonGreedy')
 
 filename = 'results/' + game_name + '/' + timestamp + '/' + game.file_prefix + model_name + '_' + agent_name
-print('filename: ', filename)
+print('filename: ', filename, flush=True)
 reward_log = Logger(filename + '_rewards_' + cuda_label + '.csv')
 duration_log = Logger(filename + '_durations_' + cuda_label + '.csv')
 if model_name != 'NoTraining':

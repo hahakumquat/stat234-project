@@ -77,7 +77,7 @@ class DQNGS(nn.Module):
             for a in p.shape:
                 tmp *= a
             total_parameters += tmp
-        print("The number of parameters is: ", total_parameters)
+        print("The number of parameters is: ", total_parameters, flush=True)
 
     def forward(self, state_batch):
         state_batch = self.relu1(self.bn1(self.conv1(state_batch)))
@@ -161,7 +161,6 @@ class DQNGS(nn.Module):
 
     def cuda(self):
         super(DQNGS, self).cuda()
-        print(self.use_target_network)
         if self.use_target_network:
             self.target_network[0].cuda()
 

@@ -74,7 +74,7 @@ class DQNPCA(nn.Module):
             for a in p.shape:
                 tmp *= a
             total_parameters += tmp
-        print("The number of parameters is: ", total_parameters)        
+        print("The number of parameters is: ", total_parameters, flush=True)        
 
     def forward(self, state_batch):
         is_volatile = False
@@ -164,7 +164,6 @@ class DQNPCA(nn.Module):
 
     def cuda(self):
         super(DQNPCA, self).cuda()
-        print(self.use_target_network)
         if self.use_target_network:
             self.target_network[0].cuda()
 
