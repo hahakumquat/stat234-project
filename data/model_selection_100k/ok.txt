@@ -1,0 +1,114 @@
+CartPole-v0/6882651367301176
+GAME PARAMETERS
+game: CartPole-v0
+model: DDQN_GS
+agent: EpsilonGreedy
+n_trains: 100000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/34512885724615583
+GAME PARAMETERS
+game: Acrobot-v1
+model: DDQN_GS
+agent: EpsilonGreedy
+n_trains: 100000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/4346670946876159
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQCNN_PCA
+agent: EpsilonGreedy
+n_trains: 100000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/5751274277159499
+GAME PARAMETERS
+game: Acrobot-v1
+model: DDQCNN_PCA
+agent: EpsilonGreedy
+n_trains: 100000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+Acrobot-v1/6679012651118765
+GAME PARAMETERS
+game: Acrobot-v1
+model: DDQN_GS
+agent: EpsilonGreedy
+n_trains: 100000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
+MountainCar-v0/22704406090243745
+GAME PARAMETERS
+game: MountainCar-v0
+model: DDQCNN_PCA_mini
+agent: EpsilonGreedy
+n_trains: 100000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+ 
