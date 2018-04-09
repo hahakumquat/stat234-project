@@ -20,10 +20,10 @@ def rename_all(root):
         path = os.path.join(root, file)               
         if os.path.isdir(path):
             rename_all(path)
-        if 'notes_cpu_.txt' in file:
+        if '_mini' in file:
             # print('Getting stats of ' + file)
             print(file)
             
-            os.rename(path, path.replace('notes_cpu_.txt', 'notes_cpu.txt'))
+            os.rename(path, path.replace('_mini', '_Mini'))
     
 rename_all(results_folder)
