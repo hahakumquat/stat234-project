@@ -15,23 +15,23 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNPCA(nn.Module):
 
-    def __init__(self, env, pca_path, batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss='Huber'):
+    def __init__(self, env, pca_path, linears=[16, 32, 32], batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss='Huber'):
         super(DQNPCA, self).__init__()
 
         with open(pca_path, 'rb') as f:
             self.pca = pickle.load(f)
 
         ## DQN architecture
-        self.linear1 = nn.Linear(int(self.pca.n_components), 16)
-        self.relu1 = nn.LeakyReLU(0.0001)
+        self.linears = [int(self.pca.n_components)] + linears
+        
+        self.layers = []
+        for i in range(len(self.linears)-1):
+            print(self.linears[i], self.linears[i+1])
+            self.layers.append(nn.Linear(self.linears[i], self.linears[i+1]))
+            self.layers.append(nn.LeakyReLU(0.0001))
+        self.layers.append(nn.Linear(self.linears[-1], env.action_space.n))
 
-        self.linear2 = nn.Linear(16, 32)
-        self.relu2 = nn.LeakyReLU(0.0001)
-
-        self.linear3 = nn.Linear(32, 32)
-        self.relu3 = nn.LeakyReLU(0.0001)
-                
-        self.out_layer = nn.Linear(32, env.action_space.n)
+        self.seq = nn.Sequential(*self.layers)
 
         self.env = env
         self.batch_size = batch_sz
@@ -83,12 +83,8 @@ class DQNPCA(nn.Module):
         except AttributeError:
             pass
         state_batch = Variable(FloatTensor(self.pca.transform(state_batch)), volatile=is_volatile)
-
-        state_batch = self.relu1(self.linear1(state_batch))
-        state_batch = self.relu2(self.linear2(state_batch))
-        state_batch = self.relu3(self.linear3(state_batch))
-        result = self.out_layer(state_batch)
-        return result
+        
+        return self.seq.forward(state_batch)
 
     def train_model(self, memory, target_network=None):
         transitions = memory.sample(self.batch_size)

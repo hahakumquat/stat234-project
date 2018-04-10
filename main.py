@@ -23,7 +23,9 @@ parser.add_argument('--base_network', action='store_true', help='Starts training
 parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
 parser.add_argument('--target', metavar='target_update', type=int, default=0, help='Target network update.')
 
+
 # Neural Network Parameters
+parser.add_argument('--linears', metavar='linears', type=str, default="16,32,32", help='layers.')
 parser.add_argument('--lr', metavar='learning_rate', type=float, default=0.001, help='learning rate.')
 parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='batch size.')
 parser.add_argument('--anneal', action='store_true', help='Turns on learning rate annealing.')
@@ -87,6 +89,7 @@ model_name = args.m
 agent_name = args.a
 num_trains = args.e
 
+linears = [int(x) for x in args.linears.split('_')]
 lr = args.lr
 batch = args.batch
 anneal = args.anneal
@@ -111,6 +114,8 @@ if 'PCA' in model_name:
     model_parameters['pca_path'] = 'data/states/' + game.file_prefix + 'PCA.pkl'
 if 'DDQ' in model_name:
     model_parameters['model'] = model_name.replace('DDQ', 'DQ')
+if model_name == 'DQN_PCA':
+    model_parameters['linears'] = linears
 
 try:
     if 'DDQ' in model_name:
