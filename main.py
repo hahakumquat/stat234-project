@@ -25,9 +25,9 @@ parser.add_argument('--target', metavar='target_update', type=int, default=0, he
 
 
 # Neural Network Parameters
-parser.add_argument('--linears', metavar='linears', type=str, default="16,32,32", help='layers.')
-parser.add_argument('--lr', metavar='learning_rate', type=float, default=0.001, help='learning rate.')
-parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='batch size.')
+parser.add_argument('--linears', metavar='linears', type=str, default="16,32,32", help='Layer sizes.')
+parser.add_argument('--lr', metavar='learning_rate', type=float, default=0.001, help='Learning rate.')
+parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='Batch size.')
 parser.add_argument('--anneal', action='store_true', help='Turns on learning rate annealing.')
 parser.add_argument('--noanneal', action='store_true', help='Turns off learning rate annealing.')
 parser.add_argument('--loss', metavar='loss', type=str, default='Huber', help='Loss function.')
@@ -183,6 +183,7 @@ notes_log.log('annealing: ' + str(model.lr_annealer is not None))
 notes_log.log('optimizer: ' + model.optim_name)
 notes_log.log('loss_function: ' + model.loss_name)
 notes_log.log('weight_decay: ' + str(model.regularization))
+notes_log.log('layer_sizes: ' + ('Default' if model_name == 'DQN_PCA' else str(linears)))
 notes_log.close()
         
 def main(batch_sz, num_trains):
