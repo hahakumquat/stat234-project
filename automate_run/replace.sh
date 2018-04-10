@@ -1,6 +1,6 @@
 #!/bin/bash
 
-params=(_game_ _model_ _ntrains_ _target_ _lr_ _batch_ _anneal_ _loss_ _reg_)
+params=(_game_ _model_ _ntrains_ _target_ _lr_ _batch_ _anneal_ _loss_ _reg_ _linears_)
 
 cat python.template > tmp.txt
 
