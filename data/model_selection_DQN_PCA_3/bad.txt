@@ -1,0 +1,300 @@
+CartPole-v0/4077091042252119
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 128, 64, 32]
+ 
+CartPole-v0/42558947603679087
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 64, 32]
+ 
+CartPole-v0/6734346507797588
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [64]
+ 
+CartPole-v0/6756130581152016
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128]
+ 
+CartPole-v0/7368091110466221
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 64]
+ 
+Acrobot-v1/13663802927627844
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [64]
+ 
+Acrobot-v1/28887570943234164
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 64, 32]
+ 
+Acrobot-v1/4144254253776617
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128]
+ 
+Acrobot-v1/7664954831916327
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 128, 64, 32]
+ 
+Acrobot-v1/9576872449432834
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 64]
+ 
+MountainCar-v0/23469616945947713
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [64]
+ 
+MountainCar-v0/26504217982268596
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 64, 32]
+ 
+MountainCar-v0/49184821252685207
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128]
+ 
+MountainCar-v0/7665131049685747
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 128, 64, 32]
+ 
+MountainCar-v0/9631203213415718
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 20000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: [128, 64]
+ 
