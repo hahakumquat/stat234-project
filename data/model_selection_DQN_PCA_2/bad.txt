@@ -1,0 +1,340 @@
+CartPole-v0/14876422800887934
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+CartPole-v0/19922978685822068
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+CartPole-v0/14876422800887934
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+CartPole-v0/19922978685822068
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+CartPole-v0/20145782595659745
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+CartPole-v0/2406040369678858
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+CartPole-v0/7827793243964998
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+CartPole-v0/8380897844762931
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+CartPole-v0/9079062374338845
+GAME PARAMETERS
+game: CartPole-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+Acrobot-v1/17089942717319517
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+Acrobot-v1/26058044968155136
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+Acrobot-v1/374294763264986
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+Acrobot-v1/7739058584283923
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+Acrobot-v1/7871138500652171
+GAME PARAMETERS
+game: Acrobot-v1
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+MountainCar-v0/07195937092322258
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+MountainCar-v0/10781804492316416
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
+MountainCar-v0/5760015996473696
+GAME PARAMETERS
+game: MountainCar-v0
+model: DQN_PCA
+agent: EpsilonGreedy
+n_trains: 10000
+processing: cpu
+target_update: 0
+frame_skip: 3
+update_frequency: 4
+NETWORK PARAMETERS
+batch_size: 128
+gamma: 0.99
+initial_learning_rate: 0.001
+annealing: True
+optimizer: RMSprop
+loss_function: Huber
+weight_decay: 0.1
+layer_sizes: Default
+ 
