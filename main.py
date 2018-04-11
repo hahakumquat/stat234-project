@@ -183,7 +183,7 @@ notes_log.log('annealing: ' + str(model.lr_annealer is not None))
 notes_log.log('optimizer: ' + model.optim_name)
 notes_log.log('loss_function: ' + model.loss_name)
 notes_log.log('weight_decay: ' + str(model.regularization))
-notes_log.log('layer_sizes: ' + ('Default' if model_name == 'DQN_PCA' else str(linears)))
+notes_log.log('layer_sizes: ' + ('Default' if model_name != 'DQN_PCA' else str(linears)))
 notes_log.close()
         
 def main(batch_sz, num_trains):
