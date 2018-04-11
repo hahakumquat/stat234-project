@@ -1,13 +1,13 @@
 #!/bin/bash
 
-ntrains=(200000)
+ntrains=(100000)
 target_update=(0)
 weight_decay=(0.1)
 batch_sizes=(128)
 losses=(Huber)
 anneals=(--anneal)
 lrs=(0.001)
-models=(DDQN_GS DDQCNN_PCA DDQCNN_PCA_Mini)
+models=(DQN_GS DQN_PCA DDQN_GS DDQCNN_PCA DQCNN_PCA DQCNN_PCA_Mini DDQCNN_PCA_mini)
 games=(CartPole-v0 Acrobot-v1 MountainCar-v0)
 
 for e in "${ntrains[@]}"
