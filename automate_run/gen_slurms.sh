@@ -7,7 +7,7 @@ batch_sizes=(128)
 losses=(Huber)
 anneals=(--anneal)
 lrs=(0.001)
-models=(DQN_GS DQN_PCA DDQN_GS DDQCNN_PCA DQCNN_PCA DQCNN_PCA_Mini DDQCNN_PCA_mini)
+models=(DQN_GS DQN_PCA DDQN_GS DDQCNN_PCA DQCNN_PCA DQCNN_PCA_Mini DDQCNN_PCA_Mini)
 games=(CartPole-v0 Acrobot-v1 MountainCar-v0)
 linears=(32_64_64)
 
