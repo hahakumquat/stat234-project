@@ -9,6 +9,7 @@ anneals=(--anneal)
 lrs=(0.001)
 models=(DQN_GS DQN_PCA DDQN_GS DDQCNN_PCA DQCNN_PCA DQCNN_PCA_Mini DDQCNN_PCA_mini)
 games=(CartPole-v0 Acrobot-v1 MountainCar-v0)
+linears=(32_64_64)
 
 for e in "${ntrains[@]}"
 do
@@ -28,11 +29,16 @@ do
                             do
                                 for g in "${games[@]}"
                                 do
-                                    ./replace.sh $g $m $e $targ $lr $batch $anl $loss $reg
-                                    cat slurm.template > tmp2.slurm
-                                    sed -i s/_name_/$g$m$e$targ$lr$batch$anl$loss$reg/ tmp2.slurm
-                                    cat tmp.txt >> tmp2.slurm
-                                    sbatch tmp2.slurm
+                                    for linear in "${linears[@]}"
+                                    do
+                                        ./replace.sh $g $m $e $targ $lr $batch $anl $loss $reg $linear
+                                        cat slurm.template > tmp2.slurm
+
+                                        # to name .out and .err files
+                                        sed -i s/_name_/$g$m$e$targ$lr$batch$anl$loss$reg/ tmp2.slurm
+                                        cat tmp.txt >> tmp2.slurm
+                                        sbatch tmp2.slurm
+                                    done
                                 done
                             done
                         done
