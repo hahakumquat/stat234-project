@@ -76,3 +76,28 @@ summary(acrobot.model)
 mountaincar.model = lm(mean ~ Convolution + Double + PCA + Mini, new.df[new.df$game == "MountainCar-v0",])
 
 summary(mountaincar.model)
+
+df = read.csv("../data/final_v1_200k/notes_and_data.csv", stringsAsFactors = FALSE)
+
+df$model[df$model == "DQN_GS"] <- "DQCNN_GS"
+df$model[df$model == "DDQN_GS"] <- "DDQCNN_GS"
+df$model[df$model == "DDQCN_PCA_mini"] <- "DDQCNN_PCA_Mini"
+
+new.df = data.frame(model=df$model, game=df$game,
+                    Convolution=grepl("CNN", df$model),
+                    Double=grepl("DD", df$model),
+                    PCA=grepl("PCA", df$model),
+                    Mini=grepl("Mini", df$model),
+                    mean=df$mean)
+
+cartpole.model = lm(mean ~ Convolution + Double + PCA + Mini, new.df[new.df$game == "CartPole-v0",])
+
+summary(cartpole.model)
+
+acrobot.model = lm(mean ~ Convolution + Double + PCA + Mini, new.df[new.df$game == "Acrobot-v1",])
+
+summary(acrobot.model)
+
+mountaincar.model = lm(mean ~ Convolution + Double + PCA + Mini, new.df[new.df$game == "MountainCar-v0",])
+
+summary(mountaincar.model)
