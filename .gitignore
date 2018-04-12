@@ -1,4 +1,5 @@
 *.Rhistory
+*.RData
 
 ipython
 ipython/*
