@@ -1,3 +1,25 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:84f362ca13da9f1c60c97aab72c2f9a473ba8964b7eebc9ef23bad37d30bb4f7
-size 4561
+key,mean,std,max,min,25,50,75,game,model,agent,n_trains,processing,target_update,frame_skip,update_frequency,batch_size,gamma,initial_learning_rate,annealing,optimizer,loss_function,weight_decay,layer_sizes
+MountainCar_DQN_PCA_EpsilonGreedy_notes_cpu,1274.31,692.36,2836.0,201.0,709.0,1076.0,1811.0,MountainCar-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+MountainCar_DQN_PCA_EpsilonGreedy_notes_cpu,602.6,370.2,2052.0,129.0,336.0,506.0,759.0,MountainCar-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+MountainCar_DQN_PCA_EpsilonGreedy_notes_cpu,1591.93,1035.68,4652.0,348.0,898.25,1198.5,2052.0,MountainCar-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+MountainCar_DQN_PCA_EpsilonGreedy_notes_cpu,649.15,422.54,2079.0,127.0,319.0,555.5,850.25,MountainCar-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+MountainCar_DQN_PCA_EpsilonGreedy_notes_cpu,2080.49,1706.05,6844.0,663.0,830.0,1288.0,3157.0,MountainCar-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+MountainCar_DQN_PCA_EpsilonGreedy_notes_cpu,667.6,469.31,3161.0,124.0,351.5,554.5,850.5,MountainCar-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+MountainCar_DQN_PCA_EpsilonGreedy_notes_cpu,574.4,417.87,2546.0,147.0,315.5,444.0,699.0,MountainCar-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+MountainCar_DQN_PCA_EpsilonGreedy_notes_cpu,641.8,464.99,2183.0,133.0,322.0,484.0,782.75,MountainCar-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+Acrobot_DQN_PCA_EpsilonGreedy_notes_cpu,846.08,499.01,2877.0,200.0,498.0,734.0,1052.0,Acrobot-v1,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+Acrobot_DQN_PCA_EpsilonGreedy_notes_cpu,770.85,354.31,1657.0,297.0,473.25,690.5,1004.0,Acrobot-v1,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+Acrobot_DQN_PCA_EpsilonGreedy_notes_cpu,1309.39,684.27,3431.0,387.0,843.75,1107.5,1637.0,Acrobot-v1,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+Acrobot_DQN_PCA_EpsilonGreedy_notes_cpu,871.03,406.35,2009.0,242.0,580.5,767.0,1099.5,Acrobot-v1,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+Acrobot_DQN_PCA_EpsilonGreedy_notes_cpu,714.72,366.94,2267.0,240.0,418.5,646.0,908.5,Acrobot-v1,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+Acrobot_DQN_PCA_EpsilonGreedy_notes_cpu,747.94,331.42,2002.0,254.0,514.0,668.0,977.0,Acrobot-v1,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+Acrobot_DQN_PCA_EpsilonGreedy_notes_cpu,850.49,445.12,2399.0,258.0,513.0,696.0,1153.0,Acrobot-v1,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+Acrobot_DQN_PCA_EpsilonGreedy_notes_cpu,825.82,354.89,1879.0,233.0,568.25,766.5,1037.0,Acrobot-v1,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+CartPole_DQN_PCA_EpsilonGreedy_notes_cpu,22.25,14.56,111.0,9.0,11.0,16.0,29.0,CartPole-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+CartPole_DQN_PCA_EpsilonGreedy_notes_cpu,29.7,18.04,121.0,9.0,13.0,27.0,40.0,CartPole-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+CartPole_DQN_PCA_EpsilonGreedy_notes_cpu,23.62,15.9,108.0,9.0,11.0,17.0,31.0,CartPole-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+CartPole_DQN_PCA_EpsilonGreedy_notes_cpu,31.92,16.24,124.0,9.0,21.0,29.0,41.0,CartPole-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+CartPole_DQN_PCA_EpsilonGreedy_notes_cpu,29.16,16.54,131.0,9.0,14.0,28.0,38.0,CartPole-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+CartPole_DQN_PCA_EpsilonGreedy_notes_cpu,30.36,16.21,129.0,9.0,16.0,29.0,40.0,CartPole-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+CartPole_DQN_PCA_EpsilonGreedy_notes_cpu,27.1,16.49,123.0,9.0,12.0,24.0,36.25,CartPole-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
+CartPole_DQN_PCA_EpsilonGreedy_notes_cpu,25.32,15.67,111.0,9.0,12.0,22.0,34.0,CartPole-v0,DQN_PCA,EpsilonGreedy,10000,cpu,0,3,4,128,0.99,0.001,True,RMSprop,Huber,0.1,Default
