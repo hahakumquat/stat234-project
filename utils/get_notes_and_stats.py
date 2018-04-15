@@ -16,8 +16,8 @@ final_lines = []
 def stat_all(root):
     global header
     rd = {}
-    rd['durations'] = {}
-    # rd['rewards'] = {}
+    # rd['durations'] = {}
+    rd['rewards'] = {}
     # rd['losses'] = {}
     # rd['sample_Q'] = {}
     keys = []
