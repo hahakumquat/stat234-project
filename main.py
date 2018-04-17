@@ -16,24 +16,24 @@ import torchvision.transforms as T
 import random
 
 parser = argparse.ArgumentParser(description='Run reinforcement learning simulation.')
-parser.add_argument('-g', metavar='game_name', default='CartPole-v0', help='One of 3 classic control games (CartPole-v0, Acrobot-v1, MountainCar-v0).')
-parser.add_argument('-m', metavar='model_name', default='DQN_GS', help='The model type (NoTraining, DQN_GS, DDQN_GS, DQN_PCA, DDQN_PCA).')
-parser.add_argument('-a', metavar='agent_name', default='EpsilonGreedy', help='The agent type (EpsilonGreedy, Random).')
-parser.add_argument('-e', metavar='num_trains', type=int, default=50000, help='Number of minibatch trains.')
-parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running.')
-parser.add_argument('--base_network', action='store_true', help='Starts training from a network with pre-trained weights.')
-parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory.')
-parser.add_argument('--target', metavar='target_update', type=int, default=0, help='Target network update.')
+parser.add_argument('-g', metavar='game_name', default='CartPole-v0', help='One of 3 classic control games (CartPole-v0, Acrobot-v1, MountainCar-v0). Default is CartPole-v0.')
+parser.add_argument('-m', metavar='model_name', default='DQN_GS', help='The model type (NoTraining, DQN_GS, DDQN_GS, DQN_PCA, DDQN_PCA). Default is DQN_GS.')
+parser.add_argument('-a', metavar='agent_name', default='EpsilonGreedy', help='The agent type (EpsilonGreedy, Random). Default is EpsilonGreedy.')
+parser.add_argument('-e', metavar='num_trains', type=int, default=50000, help='Number of minibatch trains. Default is 50000.')
+parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running. Default is False.')
+parser.add_argument('--base_network', action='store_true', help='Starts training from a network with pre-trained weights. Default is False.')
+parser.add_argument('--nreplay', metavar='replay_size', type=int, default=10000, help='Size of replay memory. Default is 10000.')
+parser.add_argument('--target', metavar='target_update', type=int, default=0, help='Target network update. Default is 0.')
 
 
 # Neural Network Parameters
-parser.add_argument('--linears', metavar='linears', type=str, default="16_32_32", help='Layer sizes.')
-parser.add_argument('--lr', metavar='learning_rate', type=float, default=0.001, help='Learning rate.')
-parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='Batch size.')
-parser.add_argument('--anneal', action='store_true', help='Turns on learning rate annealing.')
+parser.add_argument('--linears', metavar='linears', type=str, default="16_32_32", help='Layer sizes. Default is 16_32_32.')
+parser.add_argument('--lr', metavar='learning_rate', type=float, default=0.001, help='Learning rate. Default is 0.001.')
+parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='Batch size. Default is 128.')
+parser.add_argument('--anneal', action='store_true', help='Turns on learning rate annealing. Default is False.')
 parser.add_argument('--noanneal', action='store_true', help='Turns off learning rate annealing.')
-parser.add_argument('--loss', metavar='loss', type=str, default='Huber', help='Loss function.')
-parser.add_argument('--regularization', metavar='regularization', type=float, default=0.001, help='L2 regularization.')
+parser.add_argument('--loss', metavar='loss', type=str, default='Huber', help='Loss function. Default is Huber.')
+parser.add_argument('--regularization', metavar='regularization', type=float, default=0.1, help='L2 regularization. Default is 0.1.')
 
 args = parser.parse_args()
 if args.server:
