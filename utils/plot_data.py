@@ -6,6 +6,8 @@ import csv
 import os
 import seaborn as sns
 import sys
+
+# sns.set()
  
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
 os.chdir(scriptPath)
@@ -37,7 +39,8 @@ def plot_all(root):
         if (file.endswith('.csv')
            and 'clean' not in file
            and 'notes' not in file
-           and not os.path.exists(os.path.join(root, file.replace('.csv', '.pdf')))):
+           and 'states' not in file):
+           # and not os.path.exists(os.path.join(root, file.replace('.csv', '.pdf')))):
             path = os.path.join(root, file)
             print("Plotting " + path)
             try:
@@ -59,7 +62,10 @@ def plot_all(root):
             
             plt.title(' '.join(plot_type.split('_')))
             plt.xlabel('episodes' if 'losses' not in plot_type else 'number of trains')
-            plt.ylabel('reward' if 'rewards' in plot_type else '')
+            for potential_label in ['reward', 'duration', 'loss', 'sample_Q']:
+                if potential_label in plot_type:
+                    ylabel = potential_label
+            plt.ylabel(ylabel)
             if 'rewards' in plot_type:
                 if 'CartPole' in plot_type:
                     plt.ylim([0, 200])

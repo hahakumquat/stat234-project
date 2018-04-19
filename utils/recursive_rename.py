@@ -22,6 +22,11 @@ def rename_all(root):
         path = os.path.join(root, file)               
         if os.path.isdir(path):
             rename_all(path)
+        if file.endswith('.pdf'):
+            new_file = file.replace('DQN_GS', 'DQN-GS').replace('DQN_PCA', 'DQN-PCA').replace('PCA_Mini', 'PCA-Mini').replace('DQCNN_PCA', 'DQCNN-PCA')
+            new_path = os.path.join(root, new_file)
+            os.rename(path, new_path)
+            print('hi')
         if '_mini' in file:
             # print('Getting stats of ' + file)
             print(file)
