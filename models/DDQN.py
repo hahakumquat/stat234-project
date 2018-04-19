@@ -6,7 +6,7 @@ from DQCNN_PCA import DQCNNPCA
 from DQCNN_PCA_Mini import DQCNNPCAMini
 
 class DDQN():
-    def __init__(self, env, model='DQN_GS', batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber", pca_path=None):
+    def __init__(self, env, model='DQN_GS', batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber", pca_path=None, linears=[16, 32, 32]):
 
         self.env = env
         self.batch_size = batch_sz
@@ -16,10 +16,10 @@ class DDQN():
         if model == 'DQN_PCA':
             self.modelA = DQNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                  lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
-                                 target_update=0, anneal=anneal, loss=loss)
+                                 target_update=0, anneal=anneal, loss=loss, linears=linears)
             self.modelB = DQNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                  lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
-                                 target_update=0, anneal=anneal, loss=loss)
+                                 target_update=0, anneal=anneal, loss=loss, linears=linears)
         elif model == 'DQCNN_PCA':
             self.modelA = DQCNNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                    lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
@@ -27,7 +27,7 @@ class DDQN():
             self.modelB = DQCNNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                    lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                    target_update=0, anneal=anneal, loss=loss)
-        elif model == 'DQCNN_PCA_mini':
+        elif model == 'DQCNN_PCA_Mini':
             self.modelA = DQCNNPCAMini(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                        lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                        target_update=0, anneal=anneal, loss=loss)
