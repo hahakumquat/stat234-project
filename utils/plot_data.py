@@ -61,12 +61,20 @@ def plot_all(root):
             plt.title(' '.join(plot_type.split('_')))
             plt.xlabel('episodes' if 'losses' not in plot_type else 'number of trains')
             plt.ylabel('reward' if 'rewards' in plot_type else '')
-            if 'CartPole' in plot_type:
-                plt.ylim([0, 200])
-            elif 'Acrobot' in plot_type:
-                plt.ylim([-2000, 0])
-            elif 'MountainCar' in plot_type:
-                plt.ylim([-5000, 0])
+            if 'rewards' in plot_type:
+                if 'CartPole' in plot_type:
+                    plt.ylim([0, 200])
+                elif 'Acrobot' in plot_type:
+                    plt.ylim([-2000, 0])
+                elif 'MountainCar' in plot_type:
+                    plt.ylim([-5000, 0])
+            elif 'durations' in plot_type:
+                if 'CartPole' in plot_type:
+                    plt.ylim([0, 200])
+                elif 'Acrobot' in plot_type:
+                    plt.ylim([0, 2000])
+                elif 'MountainCar' in plot_type:
+                    plt.ylim([0, 5000])
             plt.legend()
             end_dir = path.split('.')[0] + '.pdf'
             plt.savefig(end_dir)
