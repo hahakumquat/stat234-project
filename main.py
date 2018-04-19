@@ -125,7 +125,7 @@ try:
         from DDQN import DDQN
         model = DDQN(**model_parameters)
     else:
-        module_name = __import__(model_name)
+        module_name = __import__(model_name.replace('-', '_'))
         model = getattr(module_name, model_name.replace('-', ''))(**model_parameters)
 except KeyError:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')    
