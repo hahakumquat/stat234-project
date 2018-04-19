@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import csv
 import os
+import seaborn as sns
 import sys
  
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
@@ -27,7 +28,6 @@ root = os.path.join(script_dir, directory)
 def running_mean(lst, k):
     cumsum = np.cumsum(np.insert(lst, 0, 0)) 
     res = (cumsum[k:] - cumsum[:-k]) / float(k)
-    print(len(res))
     return res
  
 def plot_all(root):
@@ -35,11 +35,12 @@ def plot_all(root):
         if os.path.isdir(os.path.join(root, file)):
             plot_all(os.path.join(root, file))
         if (file.endswith('.csv')
-        and 'clean' not in file
-        and 'notes' not in file
-        and not os.path.exists(os.path.join(root, file.replace('.csv', '.pdf')))):
-            print("Plotting " + file)
+           and 'clean' not in file
+           and 'notes' not in file
+           and not os.path.exists(os.path.join(root, file.replace('.csv', '.pdf')))
+           and 'rewards' in file):
             path = os.path.join(root, file)
+            print("Plotting " + path)
             try:
                 reader = csv.reader(open(path, 'r'))
             except FileNotFoundError:
@@ -57,8 +58,15 @@ def plot_all(root):
             except ValueError:
                 plot_type = file[:file.index('.csv')]
             
-            plt.title(plot_type)
+            plt.title(' '.join(plot_type.split('_')))
             plt.xlabel('episodes' if 'losses' not in plot_type else 'number of trains')
+            plt.ylabel('reward' if 'rewards' in plot_type else '')
+            if 'CartPole' in plot_type:
+                plt.ylim([0, 200])
+            elif 'Acrobot' in plot_type:
+                plt.ylim([-2000, 0])
+            elif 'MountainCar' in plot_type:
+                plt.ylim([-5000, 0])
             plt.legend()
             end_dir = path.split('.')[0] + '.pdf'
             plt.savefig(end_dir)
