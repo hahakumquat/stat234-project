@@ -17,7 +17,7 @@ import random
 
 parser = argparse.ArgumentParser(description='Run reinforcement learning simulation.')
 parser.add_argument('-g', metavar='game_name', default='CartPole-v0', help='One of 3 classic control games (CartPole-v0, Acrobot-v1, MountainCar-v0). Default is CartPole-v0.')
-parser.add_argument('-m', metavar='model_name', default='DQN_GS', help='The model type (NoTraining, DQN_GS, DDQN_GS, DQN_PCA, DDQN_PCA). Default is DQN_GS.')
+parser.add_argument('-m', metavar='model_name', default='DQN-GS', help='The model type (NoTraining, DQN-GS, DDQN-GS, DQN-PCA, DDQN-PCA). Default is DQN-GS.')
 parser.add_argument('-a', metavar='agent_name', default='EpsilonGreedy', help='The agent type (EpsilonGreedy, Random). Default is EpsilonGreedy.')
 parser.add_argument('-e', metavar='num_trains', type=int, default=50000, help='Number of minibatch trains. Default is 50000.')
 parser.add_argument('--server', action='store_true', help='Creates a fake window for server-side running. Default is False.')
@@ -103,6 +103,7 @@ if game_name == 'CartPoleCroppedGame':
 else:
     game = Game(game_name)
 
+model_name = model_name.replace('_', '-')
 model_parameters = {'env': game.env,
                     'batch_sz': batch,
                     'lr': lr,
@@ -116,7 +117,7 @@ if 'PCA' in model_name:
     model_parameters['pca_path'] = 'data/states/' + game.file_prefix + 'PCA.pkl'
 if 'DDQ' in model_name:
     model_parameters['model'] = model_name.replace('DDQ', 'DQ')
-if model_name == 'DQN_PCA':
+if 'DQN-PCA' in model_name:
     model_parameters['linears'] = linears
 
 try:
@@ -125,7 +126,7 @@ try:
         model = DDQN(**model_parameters)
     else:
         module_name = __import__(model_name)
-        model = getattr(module_name, model_name.replace('_', ''))(**model_parameters)
+        model = getattr(module_name, model_name.replace('-', ''))(**model_parameters)
 except KeyError:
     raise Exception('Model does not exist. Ex: For DQN.py, use DQN')    
 if use_cuda:
@@ -161,7 +162,7 @@ if model_name != 'NoTraining' and 'PCA' not in model_name:
         Q_log = Logger(filename + '_sample_Q_' + cuda_label + '.csv')
 
 if args.base_network and model_name != 'NoTraining':
-    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN_GS_Random_network_' + cuda_label + '.pt'
+    network_file_to_load = 'data/networks/' + game.file_prefix + 'DQN-GS_Random_network_' + cuda_label + '.pt'
     if os.path.exists(network_file_to_load):
         model.load_state_dict(torch.load(network_file_to_load))
         print('Loaded pre-trained network.', flush=True)
@@ -185,7 +186,7 @@ notes_log.log('annealing: ' + str(model.lr_annealer is not None))
 notes_log.log('optimizer: ' + model.optim_name)
 notes_log.log('loss_function: ' + model.loss_name)
 notes_log.log('weight_decay: ' + str(model.regularization))
-notes_log.log('layer_sizes: ' + ('Default' if model_name != 'DQN_PCA' else str(linears).replace(',', '~')))
+notes_log.log('layer_sizes: ' + ('Default' if 'DQN-PCA' not in model_name else str(linears).replace(',', '~')))
 notes_log.close()
         
 def main(batch_sz, num_trains):
@@ -249,7 +250,7 @@ def main(batch_sz, num_trains):
 def get_screen():
     if model_name == 'DQN':
         screen = np.array(game.env.render(mode='rgb_array')).transpose((2, 0, 1))
-    elif model_name == 'DQN_GS':
+    elif model_name == 'DQN-GS':
         screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
     else:
         screen = np.expand_dims(Image.fromarray(game.env.render(mode='rgb_array')).convert('L'), axis=2).transpose((2, 0, 1))
