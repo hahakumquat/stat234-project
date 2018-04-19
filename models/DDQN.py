@@ -1,9 +1,9 @@
 import numpy as np
 
-from DQN_GS import DQNGS
-from DQN_PCA import DQNPCA
-from DQCNN_PCA import DQCNNPCA
-from DQCNN_PCA_Mini import DQCNNPCAMini
+from DQN-GS import DQNGS
+from DQN-PCA import DQNPCA
+from DQCNN-PCA import DQCNNPCA
+from DQCNN-PCA-Mini import DQCNNPCAMini
 
 class DDQN():
     def __init__(self, env, model='DQN_GS', batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber", pca_path=None, linears=[16, 32, 32]):
@@ -13,21 +13,21 @@ class DDQN():
         self.learning_rate = lr
         self.gamma = gamma
         self.regularization = regularization
-        if model == 'DQN_PCA':
+        if model == 'DQN-PCA':
             self.modelA = DQNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                  lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                  target_update=0, anneal=anneal, loss=loss, linears=linears)
             self.modelB = DQNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                  lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                  target_update=0, anneal=anneal, loss=loss, linears=linears)
-        elif model == 'DQCNN_PCA':
+        elif model == 'DQCNN-PCA':
             self.modelA = DQCNNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                    lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                    target_update=0, anneal=anneal, loss=loss)
             self.modelB = DQCNNPCA(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                    lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                    target_update=0, anneal=anneal, loss=loss)
-        elif model == 'DQCNN_PCA_Mini':
+        elif model == 'DQCNN-PCA-Mini':
             self.modelA = DQCNNPCAMini(env=self.env, pca_path=pca_path, batch_sz=self.batch_size, 
                                        lr=self.learning_rate, gamma=self.gamma, regularization=0.0001, 
                                        target_update=0, anneal=anneal, loss=loss)
