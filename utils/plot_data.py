@@ -37,8 +37,7 @@ def plot_all(root):
         if (file.endswith('.csv')
            and 'clean' not in file
            and 'notes' not in file
-           and not os.path.exists(os.path.join(root, file.replace('.csv', '.pdf')))
-           and 'rewards' in file):
+           and not os.path.exists(os.path.join(root, file.replace('.csv', '.pdf')))):
             path = os.path.join(root, file)
             print("Plotting " + path)
             try:
