@@ -55,14 +55,14 @@ def stat_all(root):
                     if ':' in line:
                         pair = line[:-1].split(':')
                         keys.append(pair[0].strip())
-                        values.append(pair[1].strip().replace(', ', '~'))
+                        values.append(pair[1].strip().replace('~ ', '~'))
 
     notes_file = [x for x in os.listdir(root) if 'notes' in x and x.endswith('.txt')]
     if len(notes_file) == 0:
         return
     data = []
     for key in rd: # only key will be duration
-        data += [notes_file[0].split('.')[0], rd[key]['mean'], rd[key]['std'], rd[key]['max'], rd[key]['min']] + rd[key]['quantiles']
+        data += [os.path.basename(os.path.normpath(root)), rd[key]['mean'], rd[key]['std'], rd[key]['max'], rd[key]['min']] + rd[key]['quantiles']
     data += values
     data = [str(datum) for datum in data]
     final_lines.append(','.join(data)+'\n')
