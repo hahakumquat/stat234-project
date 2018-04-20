@@ -7,7 +7,9 @@ import os
 import seaborn as sns
 import sys
 
-# sns.set()
+sns.set()
+# sns.set_palette('deep')
+sns.set_style('darkgrid', {'legend.frameon': True})
  
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
 os.chdir(scriptPath)
@@ -82,6 +84,7 @@ def plot_all(root):
                     plt.ylim([0, 5000])
             plt.legend()
             end_dir = path.split('.')[0] + '.pdf'
+            plt.tight_layout()
             plt.savefig(end_dir)
             plt.close()
  
