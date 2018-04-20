@@ -55,7 +55,7 @@ def stat_all(root):
                     if ':' in line:
                         pair = line[:-1].split(':')
                         keys.append(pair[0].strip())
-                        values.append(pair[1].strip().replace('~ ', '~'))
+                        values.append(pair[1].strip().replace('~ ', '-').replace('~', '-'))
 
     notes_file = [x for x in os.listdir(root) if 'notes' in x and x.endswith('.txt')]
     if len(notes_file) == 0:
