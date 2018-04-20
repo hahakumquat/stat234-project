@@ -3,7 +3,7 @@
 games=(CartPole-v0 Acrobot-v1 MountainCar-v0)
 # params=(128 64 128_64 128_64_32 128_128_64_32)
 params=(16 16_32 16_32_64 64_32_16 64_16 64 32 32_32_16)
-models=(DDQN_PCA)
+models=(DQN_PCA DDQN_PCA)
 for g in "${games[@]}"
 do
     for p in "${params[@]}"
