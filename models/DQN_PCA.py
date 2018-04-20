@@ -26,7 +26,7 @@ class DQNPCA(nn.Module):
         
         self.layers = []
         for i in range(len(self.linears)-1):
-            print(self.linears[i], self.linears[i+1])
+            # print(self.linears[i], self.linears[i+1])
             self.layers.append(nn.Linear(self.linears[i], self.linears[i+1]))
             self.layers.append(nn.LeakyReLU(0.0001))
         self.layers.append(nn.Linear(self.linears[-1], env.action_space.n))

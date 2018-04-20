@@ -66,7 +66,7 @@ def plot_all(root):
             plt.xlabel('episodes' if 'losses' not in plot_type else 'number of trains')
             for potential_label in ['reward', 'duration', 'loss', 'sample_Q']:
                 if potential_label in plot_type:
-                    ylabel = potential_label
+                    ylabel = potential_label.replace('sample_Q', 'sample state Q-value')
             plt.ylabel(ylabel)
             if 'rewards' in plot_type:
                 if 'CartPole' in plot_type:
