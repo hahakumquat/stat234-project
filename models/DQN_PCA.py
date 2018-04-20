@@ -15,7 +15,7 @@ ByteTensor = torch.cuda.ByteTensor if use_cuda else torch.ByteTensor
 
 class DQNPCA(nn.Module):
 
-    def __init__(self, env, pca_path, linears=[16, 32, 32], batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss='Huber'):
+    def __init__(self, env, pca_path, linears=[128, 64], batch_sz=128, lr=0.01, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss='Huber'):
         super(DQNPCA, self).__init__()
 
         with open(pca_path, 'rb') as f:

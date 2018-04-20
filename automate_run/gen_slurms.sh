@@ -9,7 +9,7 @@ anneals=(--anneal)
 lrs=(0.001)
 models=(DQN_GS DDQN_GS DQN_PCA DDQN_PCA DQCNN_PCA DDQCNN_PCA DQCNN_PCA_Mini DDQCNN_PCA_Mini)
 games=(CartPole-v0 Acrobot-v1 MountainCar-v0)
-linears=(32_64_64)
+linears=(128_64)
 
 for e in "${ntrains[@]}"
 do

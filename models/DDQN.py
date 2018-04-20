@@ -6,7 +6,7 @@ from DQCNN_PCA import DQCNNPCA
 from DQCNN_PCA_Mini import DQCNNPCAMini
 
 class DDQN():
-    def __init__(self, env, model='DQN_GS', batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber", pca_path=None, linears=[16, 32, 32]):
+    def __init__(self, env, model='DQN_GS', batch_sz=128, lr=0.1, gamma=0.99, regularization=0.0001, target_update=0, anneal=False, loss="Huber", pca_path=None, linears=[128, 64]):
 
         self.env = env
         self.batch_size = batch_sz

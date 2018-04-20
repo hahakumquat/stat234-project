@@ -27,7 +27,7 @@ parser.add_argument('--target', metavar='target_update', type=int, default=0, he
 
 
 # Neural Network Parameters
-parser.add_argument('--linears', metavar='linears', type=str, default="16_32_32", help='Layer sizes. Default is 16_32_32.')
+parser.add_argument('--linears', metavar='linears', type=str, default="128_64", help='Layer sizes, separated by underscores. Default is 128_64.')
 parser.add_argument('--lr', metavar='learning_rate', type=float, default=0.001, help='Learning rate. Default is 0.001.')
 parser.add_argument('--batch', metavar='batch_sizes', type=int, default=128, help='Batch size. Default is 128.')
 parser.add_argument('--anneal', action='store_true', help='Turns on learning rate annealing. Default is False.')
