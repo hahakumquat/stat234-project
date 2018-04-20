@@ -73,13 +73,13 @@ class DQCNNPCA(nn.Module):
             self.lr_annealer = lambda epoch: max(np.exp(-epoch / 10000), 0.0005 / lr)
             self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, 
                                                          lr_lambda=self.lr_annealer)
-        total_parameters = 0
+        self.total_parameters = 0
         for p in self.parameters():
             tmp = 1
             for a in p.shape:
                 tmp *= a
-            total_parameters += tmp
-        print("The number of parameters is: ", total_parameters, flush=True)        
+            self.total_parameters += tmp
+        print("The number of parameters is: ", self.total_parameters, flush=True)        
 
     def forward(self, state_batch):
         is_volatile = False

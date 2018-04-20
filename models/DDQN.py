@@ -53,6 +53,7 @@ class DDQN():
 
         self.use_target_network = -1
         self.target_update = 0
+        self.total_parameters = self.modelA.total_parameters + self.modelB.total_parameters
 
     def forward(self, state_batch):
         result = (self.modelA.forward(state_batch) + self.modelB.forward(state_batch)) / 2
