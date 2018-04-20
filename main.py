@@ -234,7 +234,7 @@ def main(batch_sz, num_trains):
                 # only train after update_frequency different actions 
                 # have been selected. This speeds up training. See DQN paper.
                 if update_frequency_counter % update_frequency == 0:
-                    loss_log.log(model.train_model(memory))
+                    loss = model.train_model(memory)
                 update_frequency_counter += 1
 
             if done or t > 10000:
@@ -242,6 +242,7 @@ def main(batch_sz, num_trains):
                 duration_log.log(t + 1)
                 if not args.server:
                     print(t + 1)
+                loss_log.log(loss)
                 if sample_states is not None:
                     Q_log.log(model.compute_sample_Q(sample_states))
                 break
