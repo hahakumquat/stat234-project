@@ -66,6 +66,8 @@ def stat_all(root):
     data += values
     data = [str(datum) for datum in data]
     final_lines.append(','.join(data)+'\n')
+    if len(keys) > 0 and keys[-1] != 'num_parameters':
+        keys.append('num_parameters')
     header = 'key,mean,std,max,min,25,50,75,' + ','.join(keys) + '\n'
     
 stat_all(results_folder)
