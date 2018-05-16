@@ -1,6 +1,8 @@
 # stat234-project
 (Double) Deep Q-Learning and PCA using OpenAI Gym
 
+Paper located at https://github.com/rlouyang/stat234-writeup
+
 ## Setup
 1. Download/install Anaconda
 
